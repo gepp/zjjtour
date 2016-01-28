@@ -6,7 +6,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>首页</title>
+		<title>${indexMap.title }</title>
 	</head>
 	<link rel="stylesheet" href="${contextpath }/css/style.css" />
 	<link rel="stylesheet" href="${contextpath }/font/iconfont.css" />
@@ -60,188 +60,44 @@
 						<div id="panorama" class="nav-down-menu" style="display: none;" _t_nav="panorama">
 							<div class="item">
 								<ul class="clr">
+									<c:forEach var="menu"  items="${quanjingMenuList }">
 									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
+										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
+										<h5 class="transition">${menu.name }</h5>
 									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
+									 </c:forEach>
 								</ul>
 							</div>
 						</div>
 						<div id="activity" class="nav-down-menu" style="display: none;" _t_nav="activity">
 							<div class="item">
 								<ul class="clr">
+									<c:forEach var="menu"  items="${changyouMenuList }">
 									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
+										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
+										<h5 class="transition">${menu.name }</h5>
 									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
+									 </c:forEach>
 								</ul>
 							</div>
 						</div>
 						<div id="news" class="nav-down-menu" style="display: none;" _t_nav="news">
-							<div class="item">
-								<ul class="clr">
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-								</ul>
-							</div>
+							 
 						</div>
 						<div id="community" class="nav-down-menu" style="display: none;" _t_nav="community">
 							<div class="item">
 								<ul class="clr">
+									<c:forEach var="menu"  items="${tingwenMenuList }">
 									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
+										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
+										<h5 class="transition">${menu.name }</h5>
 									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
+									 </c:forEach>
 								</ul>
 							</div>
 						</div>
 						<div id="route" class="nav-down-menu" style="display: none;" _t_nav="route">
-							<div class="item">
-								<ul class="clr">
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/4.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/1.png" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/2.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-									<li class="transition">
-										<div class="img-content"><img src="${contextpath }/images/3.jpg" class="transition"><span>这里是天子山简介</span></div>
-										<h5 class="transition">天子山</h5>
-									</li>
-								</ul>
-							</div>
+							 
 						</div>
 					</div>
 					<!--导航 结束-->
@@ -291,11 +147,11 @@
 		<div id="show" rel="autoPlay">
 			<div class="img">
 				<span>
-		              <a class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">葛大爷在此，谁敢造次。</div><img src="${contextpath }/images/1.png" /></a>
-		              <a class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">葛大爷在此，谁敢造次。</div><img src="${contextpath }/images/2.jpg" /></a>
-		              <a class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">葛大爷在此，谁敢造次。</div><img src="${contextpath }/images/3.jpg" /></a>
-		              <a class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">葛大爷在此，谁敢造次。</div><img src="${contextpath }/images/4.jpg" /></a>
-		              <a class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">葛大爷在此，谁敢造次。</div><img src="${contextpath }/images/2.jpg" /></a>
+						<c:forEach var="video" items="${videoList }">
+						
+		              <a class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">${video.title }</div><img src="${video.indeximg }" /></a>
+
+		          		</c:forEach>
 		          </span>
 				<div class="masks mk1"></div>
 				<div class="masks mk2"></div>
@@ -303,12 +159,13 @@
 		</div>
 		<!--视频弹窗-->
 		<div class="hint">
+			<c:forEach var="video" items="${videoList }">
 			<div class="hint-in1">
-				<div class="hint2">葛大爷在此，只有海公公敢爆菊</div>
+				<div class="hint2">${video.title }</div>
 				<div class="hint3"><i class="iconfont transition">&#xe614;</i></div>
 			</div>
-			<!--<embed src="http://player.youku.com/player.php/sid/XMTQzODM3NDg3Ng==/v.swf" allowFullScreen="true" quality="high" width="780" height="430" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>-->
-			<video width="780" height="430" src="${contextpath }/images/乱剪.mp4" controls="controls">您的浏览器不支持改视频播放</video>
+ 			<video width="780" height="430" src="${video.videoUrl } " controls="controls">您的浏览器不支持改视频播放</video>
+ 			</c:forEach>
 		</div>
 		<!--视频轮播 end-->
 		<!--标题-->
@@ -327,62 +184,16 @@
 		<!--全景张家界-->
 		<div class="panorama clr">
 			<ul>
+			
+			<c:forEach var="quanjing" items="${quanjingList }">
 				<li>
-					<img src="${contextpath }/images/11.jpg">
+					<img src="${quanjing.indeximg }">
 					<div class="mask transition">
-						<h4>海公公</h4>
+						<h4>${quanjing.title }</h4>
 						<button>查看全景</button>
 					</div>
 				</li>
-				<li>
-					<img src="${contextpath }/images/12.jpg">
-					<div class="mask transition">
-						<h4>海公公</h4>
-						<button>查看全景</button>
-					</div>
-				</li>
-				<li>
-					<img src="${contextpath }/images/13.jpg">
-					<div class="mask transition">
-						<h4>海公公</h4>
-						<button>查看全景</button>
-					</div>
-				</li>
-				<li>
-					<img src="${contextpath }/images/14.jpg">
-					<div class="mask transition">
-						<h4>海公公</h4>
-						<button>查看全景</button>
-					</div>
-				</li>
-				<li>
-					<img src="${contextpath }/images/15.jpg">
-					<div class="mask transition">
-						<h4>海公公</h4>
-						<button>查看全景</button>
-					</div>
-				</li>
-				<li>
-					<img src="${contextpath }/images/16.jpg">
-					<div class="mask transition">
-						<h4>海公公</h4>
-						<button>查看全景</button>
-					</div>
-				</li>
-				<li>
-					<img src="${contextpath }/images/11.jpg">
-					<div class="mask transition">
-						<h4>海公公</h4>
-						<button>查看全景</button>
-					</div>
-				</li>
-				<li>
-					<img src="${contextpath }/images/17.jpg">
-					<div class="mask transition">
-						<h4>海公公</h4>
-						<button>查看全景</button>
-					</div>
-				</li>
+				 </c:forEach>
 			</ul>
 		</div>
 		<!--全景张家界 end-->
@@ -404,42 +215,29 @@
 			</div>
 			<!--标题  end-->
 			<ul>
+				
+				<c:forEach var="changyou" items="${changyouList }">
 				<li class="transition">
-					<h4>张家界、凤凰古城精品旅游线路</h4>
-					<p class="transition">—— 张家界位于湖南西北部，属武陵山脉腹地。因旅游而建、因旅游而兴的张家界市，拥有令世人惊叹的风光。九寨沟看水，张家界看山。武陵源核心景区面积达264平方公里。景区中三千座石峰拨地而起。</p>
+					<h4>${changyou.title }</h4>
+					<p class="transition">${changyou.abstractContent }</p>
 				</li>
-				<li class="transition">
-					<h4>张家界雪景摄影旅游线路</h4>
-					<p class="transition">—— 雪景是张家界一大特色奇观，冬天张家界景区都是被白白积雪覆盖着，整个景区是洁白如瑕的景象展现给所有人的眼中。感觉走向另外一个世界了。张家界一连下的好几场雪，一般最大的一场雪是最好的...</p>
-				</li>
-				<li class="transition">
-					<h4>张家界天门山一日游精品旅游线路</h4>
-					<p class="transition">—— 湖南，张家界，澧水南岸，有座奇山。山高1518.6米，孤峰高耸，临空独尊。千米绝壁之上，有洞开如门，悬空危立，似明镜高悬。此山，名天门山，称湘西第一神山。此洞，曰天门洞，为举世罕见...</p>
-				</li>
-				<li class="transition">
-					<h4>2015年张家界自助游旅游线路</h4>
-					<p class="transition">—— 张家界国家森林公园（门票248元，四日有效；年票298元，一年有效。包含黄石寨、金鞭溪、袁家界、 杨家界、大观台、天子山、十里画廊等景区。是“世界地质公园”“中国第一个国家森林公园”</p>
-				</li>
+				</c:forEach>
+				 
 			</ul>
 		</div>
 		<!--畅游张家界 end-->
 
 		<!--娱乐张家界-->
 		<div class="entertainment clr" id="index_4">
+			<c:forEach var="yule" items="${activityList }">
 			<div class="entertainment-content">
-				<img src="${contextpath }/images/19.png" />
+				<img src="${yule.indeximg }" />
 				<div class="mask">
 					<button>立即报名</button>
-					<p>万福温泉属天然自涌温泉，泉水清澈碧透，常年恒温53℃，富含多种有益人体的微量元素和矿物质，景区建有具神奇魅力</p>
+					<p>${yule.abstractContent }</p>
 				</div>
 			</div>
-			<div class="entertainment-content">
-				<img src="${contextpath }/images/18.png" />
-				<div class="mask">
-					<button>立即报名</button>
-					<p>与浪共舞是我们精心为您策划的一场青春之旅，在与大自然抗争中演绎精彩的瞬间，这就是漂流，一项勇敢者的运动。</p>
-				</div>
-			</div>
+			 </c:forEach>
 			<!--标题-->
 			<div class="index-title clr">
 				<h2 class="transition">
@@ -467,29 +265,29 @@
 		<!--标题  end-->
 		<!--休闲张家界-->
 		<div class="leisure clr">
-			<div class="delicacy"><img src="${contextpath }/images/meishi.png">
+			<div class="delicacy"><img src="${meishiMenu.img }">
 				<div class="mask">
-					<h4>美食</h4>
-					<p>菜肴风味属翼菜，以咸为主，粗犷大气，兼收八大菜系的特点，擅长爆、炸、炒。回民扒鸡、狗肉全席、金毛狮子鱼、菊花鱿鱼、抓炒全鱼，都是广受好评的当地名菜。</p>
+					<h4>${meishiMenu.name }</h4>
+					<p>${meishiMenu.description }</p>
 				</div>
 			</div>
 			<div class="hotel">
-				<div class="leisure-top"><img src="${contextpath }/images/hotel.png"></div>
+				<div class="leisure-top"><img src="${jiudianMenu.img }"></div>
 				<div class="leisure-bottom transition">
-					<h5>酒店</h5>
-					<p>张家界住宿设备完善，有很多酒店、旅馆和便捷酒店，可选择余地很多，但暂时没有开设国际青年旅舍。 张家界的住宿区域主要分布在两个区域：老火车站-中山路和水上公园。老火车站-中山路处于市中心，购物和...<a href="#">［详细介绍］</a></p><i></i></div>
+					<h5>${jiudianMenu.name }</h5>
+					<p>${jiudianMenu.description }<a href="#">［详细介绍］</a></p><i></i></div>
 			</div>
 			<div class="spots">
 				<div class="leisure-top transition">
-					<h5>景点</h5>
-					<p>张家界住宿设备完善，有很多酒店、旅馆和便捷酒店，可选择余地很多，但暂时没有开设国际青年旅舍。 张家界的住宿区域主要分布在两个区域：老火车站-中山路和水上公园。老火车站-中山路处于市中心，购物和...<a href="#">［详细介绍］</a></p><i></i></div>
-				<div class="leisure-bottom"><img src="${contextpath }/images/hotel.png"></div>
+					<h5>${jingdianMenu.name }</h5>
+					<p>${jingdianMenu.description }<a href="#">［详细介绍］</a></p><i></i></div>
+				<div class="leisure-bottom"><img src="${jingdianMenu.img }"></div>
 			</div>
 			<div class="gate">
-				<div class="leisure-top"><img src="${contextpath }/images/hotel.png"></div>
+				<div class="leisure-top"><img src="${menpiaoMenu.img }"></div>
 				<div class="leisure-bottom transition">
-					<h5>门票</h5>
-					<p>张家界住宿设备完善，有很多酒店、旅馆和便捷酒店，可选择余地很多，但暂时没有开设国际青年旅舍。 张家界的住宿区域主要分布在两个区域：老火车站-中山路和水上公园。老火车站-中山路处于市中心，购物和...<a href="#">［详细介绍］</a></p><i></i></div>
+					<h5>${menpiaoMenu.name }</h5>
+					<p>${menpiaoMenu.description}<a href="#">［详细介绍］</a></p><i></i></div>
 			</div>
 		</div>
 		<!--休闲张家界 end-->
@@ -497,22 +295,13 @@
 		<!--听闻张家界-->
 		<div class="index-swim clr" id="index_6">
 			<ul>
+			
+				<c:forEach var="tingwen" items="${tingwenList }">
 				<li class="transition">
-					<h4>张家界、凤凰古城精品旅游线路</h4>
-					<p class="transition">—— 张家界位于湖南西北部，属武陵山脉腹地。因旅游而建、因旅游而兴的张家界市，拥有令世人惊叹的风光。九寨沟看水，张家界看山。武陵源核心景区面积达264平方公里。景区中三千座石峰拨地而起。</p>
+					<h4>${tingwen.title }</h4>
+					<p class="transition">—— ${tingwen.abstractContent }</p>
 				</li>
-				<li class="transition">
-					<h4>张家界雪景摄影旅游线路</h4>
-					<p class="transition">—— 雪景是张家界一大特色奇观，冬天张家界景区都是被白白积雪覆盖着，整个景区是洁白如瑕的景象展现给所有人的眼中。感觉走向另外一个世界了。张家界一连下的好几场雪，一般最大的一场雪是最好的...</p>
-				</li>
-				<li class="transition">
-					<h4>张家界天门山一日游精品旅游线路</h4>
-					<p class="transition">—— 湖南，张家界，澧水南岸，有座奇山。山高1518.6米，孤峰高耸，临空独尊。千米绝壁之上，有洞开如门，悬空危立，似明镜高悬。此山，名天门山，称湘西第一神山。此洞，曰天门洞，为举世罕见...</p>
-				</li>
-				<li class="transition">
-					<h4>2015年张家界自助游旅游线路</h4>
-					<p class="transition">—— 张家界国家森林公园（门票248元，四日有效；年票298元，一年有效。包含黄石寨、金鞭溪、袁家界、 杨家界、大观台、天子山、十里画廊等景区。是“世界地质公园”“中国第一个国家森林公园”</p>
-				</li>
+			    </c:forEach>
 			</ul>
 			<!--标题-->
 			<div class="index-swim-left">
