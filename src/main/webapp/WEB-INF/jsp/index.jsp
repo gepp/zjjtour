@@ -114,7 +114,12 @@
 					<li>
 						<a href="${adv.jumpUrl }" class="pic" target="_blank">
 							<div class="index_focus_info">
+								<c:if test="${adv.showFlag=='1' }">
 								<h3>${adv.title }</h3>
+								<p class="text">
+									${adv.abstractContent }
+								</p>
+								</c:if>
 							</div>
 							<img class="pic" src="${adv.imgUrl }" width="1600" height="600" alt="">
 						</a>
