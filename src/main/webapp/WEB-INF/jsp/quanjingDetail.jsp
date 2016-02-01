@@ -115,40 +115,11 @@
 			</ul>
 		</div>
 		<!--面包屑  end-->
-		<!--分类标题-->
-		<div class="list-title">
-			<ul class="clr">
-				<c:forEach var="secondMenu" items="${secondMenuList }">
-				<li <c:if test="${secondMenu.id==secondMenuId}">class="transition active"</c:if>
-					<c:if test="${secondMenu.id!=secondMenuId}">class="transition "</c:if>
-				onclick="jumpQuanjing('${secondMenu.id}')">${secondMenu.name }</li>
-				</c:forEach>
-				
-			</ul>
-		</div>
-		<!--分类标题 end-->
-		<!--分类标签-->
-		<div class="list-label">
-			<c:forEach var="bq" items="${bqMenuList }">
-			<button <c:if test="${bq.id==currentId}">class="active"</c:if>>${bq.name }</button>
-			</c:forEach>
-		</div>
-		<!--分类标签 end-->
-		<!--图片列表-->
-		<div class="item-list">
-			<ul class="clr" id="newsListUl">
-				<c:forEach items="${quanjingList }" var="quanjingNews">
-				<li class="transition">
-					<div class="img-content"><img src="${quanjingNews.indeximg }" class="transition"><span>${quanjingNews.abstract_content }</span></div>
-					<h5 class="transition">${quanjingNews.title }</h5>
-				</li>
-				</c:forEach>
-			</ul>
-		</div>
-		<!--图标列表-->		
+	 <div class="panorama-details clr">
+	 	${securityNew.content }
+	 </div>	
 		
-		<input type="hidden" name="secondMenuId" id="secondMenuId" value="${secondMenuId }"/>
-		<input type="hidden" name="currentId" id="currentId" value="${currentId }"/>
+		 
 		<div class="footer">
 			<!--友情链接 -->
 			<h4>友情链接</h4>
@@ -210,7 +181,7 @@
 				</div>
 			</div>
 			<div class="footer-img-list clr"><img src="${contextpath }/images/footer.png"><img src="${contextpath }/images/footer1.png"><img src="${contextpath }/images/footer2.png"><img src="${contextpath }/images/footer3.png"><img src="${contextpath }/images/footer4.png"></div>
-			<div class="copyright">版权所有：张家界市人民政府    湘ICP备15001419号-2    E-mail：admin@travelzjj.com</div>
+			<div class="copyright">版权所有：张家界市人民政府    湘ICP备15001419号-2    E-mail：admin@travelzjj.com</div>
 		</div>
 
 		 
