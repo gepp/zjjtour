@@ -41,7 +41,7 @@
 							<div class="normal"><a href="#"><i class="iconfont font-150">&#xe608;</i></a></div>
 						</li>
 						<li _t_nav="panorama">
-							<div class="normal"><a href="#">全景</a></div>
+							<div class="normal"><a href="${contextpath }/quanjing.htm">全景</a></div>
 						</li>
 						<li _t_nav="activity">
 							<div class="normal"><a href="#">畅游</a></div>
