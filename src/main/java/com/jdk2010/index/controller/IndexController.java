@@ -186,6 +186,21 @@ public class IndexController extends BaseController {
         String id=getPara("id");
         SecurityNews securityNew=dalClient.findById(id, SecurityNews.class);
         setAttr("securityNew", securityNew);
+        
+        String bqId=getPara("bqId");
+        SecurityMenu bq=dalClient.queryForObject("select * from security_menu where id="+bqId ,SecurityMenu.class);
+        setAttr("bqMenu", bq);
+        
+        String secondMenuId=getPara("secondMenuId");
+        SecurityMenu secondMenu=dalClient.queryForObject("select * from security_menu where id="+secondMenuId ,SecurityMenu.class);
+        setAttr("secondMenu", secondMenu);
+        
+        
+        
+        //标签
+        List<Map<String,Object>> biaoqianList=dalClient.queryForObjectList("select * from news_maodian where news_id="+id);
+        setAttr("biaoqianList", biaoqianList);
+        
         return "/quanjingDetail" ;
     }
     

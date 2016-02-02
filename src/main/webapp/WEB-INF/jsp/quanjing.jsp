@@ -29,17 +29,18 @@
 						<button class="iconfont transition" type="button">&#xe605;</button>
 					</div>
 					<div class="weather">
-						<iframe allowtransparency="true" frameborder="0" width="180" height="36" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=1&bd=0&k=&f=&q=1&e=1&a=1&c=57558&w=180&h=36&align=left"></iframe>
-					</div>
+					<iframe allowtransparency="true" frameborder="0" width="317" height="28" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=1&v=0&d=1&bd=0&k=000000&f=&q=1&e=1&a=1&c=57558&w=317&h=28&align=center"></iframe>
+					
+ 					</div>
 				</div>
 				<div class="logo-right-bottom">
 					<!--导航-->
 					<ul class="nav navbar-nav clr">
 						<li _t_nav="home">
-							<div class="normal"><a href="#"><i class="iconfont font-150">&#xe608;</i></a></div>
+							<div class="normal"><a href="${contextpath }/"><i class="iconfont font-150">&#xe608;</i></a></div>
 						</li>
 						<li class="active" _t_nav="panorama">
-							<div class="normal"><a href="#">全景</a></div>
+							<div class="normal"><a href="${contextpath }/quanjing.htm">全景</a></div>
 						</li>
 						<li _t_nav="activity">
 							<div class="normal"><a href="#">畅游</a></div>
@@ -59,7 +60,7 @@
 							<div class="item">
 								<ul class="clr">
 									<c:forEach var="menu"  items="${quanjingMenuList }">
-									<li class="transition">
+									<li class="transition" onclick="jumpQuanjing('${menu.id }')">
 										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
 										<h5 class="transition" >${menu.name }</h5>
 									</li>
@@ -130,7 +131,7 @@
 		<!--分类标签-->
 		<div class="list-label">
 			<c:forEach var="bq" items="${bqMenuList }">
-			<button <c:if test="${bq.id==currentId}">class="active"</c:if>>${bq.name }</button>
+			<button onclick="gotoBiaoqian('${bq.id}')" <c:if test="${bq.id==currentId}">class="active"</c:if>>${bq.name }</button>
 			</c:forEach>
 		</div>
 		<!--分类标签 end-->
@@ -138,7 +139,7 @@
 		<div class="item-list">
 			<ul class="clr" id="newsListUl">
 				<c:forEach items="${quanjingList }" var="quanjingNews">
-				<li class="transition">
+				<li class="transition" onclick="jumpDetail('${quanjingNews.id}')">
 					<div class="img-content"><img src="${quanjingNews.indeximg }" class="transition"><span>${quanjingNews.abstract_content }</span></div>
 					<h5 class="transition">${quanjingNews.title }</h5>
 				</li>
@@ -265,6 +266,16 @@
 					}
 				}); */
 				
+			}
+			function jumpDetail(id){
+				var secondMenuId=$("#secondMenuId").val();
+				var bqId=$("#currentId").val();
+				window.location.href='${contextpath}/quanjingDetail.htm?id='+id+"&bqId="+bqId+"&secondMenuId="+secondMenuId;
+			}
+			function gotoBiaoqian(bqId){
+				var secondMenuId=$("#secondMenuId").val();
+				 
+				window.location.href="${contextpath}/quanjing.htm?currentId="+bqId+"&secondMenuId="+secondMenuId;
 			}
 			
 		</script>

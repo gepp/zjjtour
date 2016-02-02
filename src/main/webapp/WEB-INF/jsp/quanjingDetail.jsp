@@ -6,16 +6,15 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>${indexMap.title }</title>
+		<title>全景详情</title>
 	</head>
-	<link rel="stylesheet" href="${contextpath }/css/style.css" />
-	<link rel="stylesheet" href="${contextpath }/font/iconfont.css" />
+	<link rel="stylesheet" href="${contextpath}/css/style.css" />
+	<link rel="stylesheet" href="${contextpath}/font/iconfont.css" />
 
 	<body>
-		 
 		<div class="navbar-fixed-top clr">
 			<div class="logo">
-				<img src="${contextpath }/images/logo.png" />
+				<img src="${contextpath}/images/logo.png" />
 			</div>
 			<div class="logo-title">
 				<h6>张家界市人民政府旅游官网</h6>
@@ -36,10 +35,10 @@
 					<!--导航-->
 					<ul class="nav navbar-nav clr">
 						<li _t_nav="home">
-							<div class="normal"><a href="#"><i class="iconfont font-150">&#xe608;</i></a></div>
+							<div class="normal"><a href="${contextpath}/"><i class="iconfont font-150">&#xe608;</i></a></div>
 						</li>
 						<li class="active" _t_nav="panorama">
-							<div class="normal"><a href="#">全景</a></div>
+							<div class="normal"><a href="${contextpath }/quanjing">全景</a></div>
 						</li>
 						<li _t_nav="activity">
 							<div class="normal"><a href="#">畅游</a></div>
@@ -54,12 +53,12 @@
 							<div class="normal"><a href="#">游客中心</a></div>
 						</li>
 					</ul>
-					<div class="navigation-down phone-header">
+					 <div class="navigation-down phone-header">
 						<div id="panorama" class="nav-down-menu" style="display: none;" _t_nav="panorama">
 							<div class="item">
 								<ul class="clr">
 									<c:forEach var="menu"  items="${quanjingMenuList }">
-									<li class="transition">
+										<li class="transition" onclick="jumpQuanjing('${menu.id }')">
 										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
 										<h5 class="transition" >${menu.name }</h5>
 									</li>
@@ -102,24 +101,74 @@
 				</div>
 			</div>
 		</div>
-		 
-		<img src="${quanjing.img }" width="100%"/>
+		<!-- banner -->
+			<img src="${quanjing.img }" width="100%"/>
+		<!--banner end-->
 		<!--面包屑-->
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="#">首页</a></li>
-				<li><a href="#">全景</a></li>
-				<li><a href="#">绝美风光</a></li>
-				<li>地标美景</li>
+				<li><a href="#">${quanjing.name } </a></li>
+				<li><a href="#">${secondMenu.name }</a></li>
+				<li><a href="#">${bqMenu.name }</a></li>
+				<li>${securityNew.title }</li>
 			</ul>
 		</div>
 		<!--面包屑  end-->
-	 <div class="panorama-details clr">
-	 	${securityNew.content }
-	 </div>	
-		
-		 
+
+		<!--全景详情-->
+		<div class="panorama-details clr">
+			<div class="section">
+				<div id="menu1" class="menu">
+
+					<div id="menu">
+						<div class="line"></div>
+						<ul>
+							<li><a href="#item-1" class="cur transition">360°全景</a></li>
+								<c:forEach items="${biaoqianList }" var="biaoqian">
+								<li><a href="#item${biaoqian.orderlist }" class="transition">${biaoqian.maodian_name }</a></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<div id="content">
+					<div class="content-item" id="item-1">
+						<h4><i class="iconfont">&#xe610;</i>扩大的盆景，缩小的仙境</h4>
+						<iframe allowtransparency="true" frameborder="0" src="${securityNew.quanjingUrl }" width="750" height="400" style="border: 1px solid #eee;">这里是全景控件</iframe>
+					</div>
+					<c:forEach items="${biaoqianList }" var="biaoqian">
+	 				    <div class="content-item" id="item${biaoqian.orderlist }">
+	 				    	<h4><i class="iconfont">&#xe610;</i>${biaoqian.maodian_name }</h4>
+	 				    	${biaoqian.maodian_content }
+						</div>
+ 				    </c:forEach>
+				</div>
+			</div>
+			<div class="panorama-details-right">
+				<div class="tj-pic">
+					<img src="${contextpath}/images/11.jpg">
+					<span>神秘宝峰寺</span>
+				</div>
+				<div class="tj-pic">
+					<img src="${contextpath}/images/13.jpg">
+					<span>神秘宝峰寺</span>
+				</div>
+				<ul>
+					<h5>相关新闻</h5>
+					<div class="clr"></div>
+					<li>去年国际旅游人次11.8亿...</li>
+					<li>张家界天门山索道今日恢复运...</li>
+					<li>23亿元风能发电项目落户桑植...</li>
+					<li>武陵源天子山景区联合开展...</li>
+					<li>中国游客给新西兰旅游业...</li>
+					<li>武陵源天子山景区联合开展...</li>
+					<li>中国游客给新西兰旅游业...</li>
+				</ul>
+			</div>
+		</div>
+		<!--图标列表-->
+
 		<div class="footer">
 			<!--友情链接 -->
 			<h4>友情链接</h4>
@@ -175,21 +224,20 @@
 				</div>
 				<div class="footer-item"><i class="iconfont">&#xe60c;</i><span>诚信中心</span></li>
 				</div>
-				<div class="footer-item"><img src="${contextpath }/images/mmqrcode.jpg"><span>关注微信公众号</span></li>
+				<div class="footer-item"><img src="${contextpath}/images/mmqrcode.jpg"><span>关注微信公众号</span></li>
 				</div>
 				<div class="footer-item"><i class="iconfont">&#xe607;</i><span>关注新浪微博</span></li>
 				</div>
 			</div>
-			<div class="footer-img-list clr"><img src="${contextpath }/images/footer.png"><img src="${contextpath }/images/footer1.png"><img src="${contextpath }/images/footer2.png"><img src="${contextpath }/images/footer3.png"><img src="${contextpath }/images/footer4.png"></div>
+			<div class="footer-img-list clr"><img src="${contextpath}/images/footer.png"><img src="${contextpath}/images/footer1.png"><img src="${contextpath}/images/footer2.png"><img src="${contextpath}/images/footer3.png"><img src="${contextpath}/images/footer4.png"></div>
 			<div class="copyright">版权所有：张家界市人民政府    湘ICP备15001419号-2    E-mail：admin@travelzjj.com</div>
 		</div>
 
-		 
-		
-		<!--<script src="${contextpath }/js/jquery-2.1.0.js"></script>-->
-		<script type="text/javascript" src="${contextpath }/js/jquery.min.js"></script>
-		<script src="${contextpath }/js/bootstrap.min.js"></script>
-		<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
+		<script type="text/javascript" src="${contextpath}/js/jquery.min.js"></script>
+		<script src="${contextpath}/js/bootstrap.min.js"></script>
+		<script src="${contextpath}/js/jquery.bootstrap-autohidingnavbar.js"></script>
+		<script type="text/javascript" src="${contextpath}/js/juheweb.js"></script>
+		<script type="text/javascript" src="${contextpath}/js/menu.js"></script>
 
 		<script>
 			//		头部悬浮
@@ -214,30 +262,14 @@
 					}, 150);
 				});
 			});
-			function jumpQuanjing(secondMenuId){
-				var currentId="";
-				window.location.href="${contextpath}/quanjing.htm?currentId="+currentId+"&secondMenuId="+secondMenuId;
-			
-				/* var currentId=$("#currentId").val();
-				$.ajax({
-					url : "${contextpath}/newsList.htm?currentId="+currentId+"&secondMenuId="+secondMenuId,
-					type : "post",
-					success : function(data) {
-						var str="";
-						for(var i=0;i<data.length;i++){
-							var item=data[i];
-							str=str+"<li class=\"transition\">"
-							+"<div class=\"img-content\"><img src=\""+item.indeximg+"\" class=\"transition\"><span>"+item.abstract_content+"</span></div>"
-							+"<h5 class=\"transition\">"+item.title+"</h5></li>";
-						}
-						console.log("str:"+str);
-						
-						$("#newsListUl").text(str);
-					}
-				}); */
-				
-			}
-			
+//			定位悬浮
+$(document).ready(function(){
+					$('#menu1').stickyfloat({ duration: 0 });
+				});
+function jumpQuanjing(secondMenuId){
+	var currentId="";
+	window.location.href="${contextpath}/quanjing.htm?currentId="+currentId+"&secondMenuId="+secondMenuId;
+}
 		</script>
 	</body>
 
