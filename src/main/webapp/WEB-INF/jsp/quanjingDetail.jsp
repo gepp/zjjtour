@@ -22,8 +22,23 @@
 			</div>
 			<div class="logo-right">
 				<div class="logo-right-top clr">
-					<div class="login"><a href="">登录</a><a href="">注册</a></div>
-					<div class="search">
+ 	
+ 					
+				<c:if test="${member!=null }">
+					<div class="login">
+						<a href="">欢迎您,${member.data.cnickname }</a><a href="javascript:void(0)" onclick="logout();">退出</a>
+					</div>
+
+				</c:if>
+				<c:if test="${member==null }">
+					<div class="login">
+						<a href="${contextpath }/toLogin.htm">登录</a><a
+							href="${contextpath }/toRegister.htm">注册</a>
+					</div>
+				</c:if>
+				
+ 	
+ 					<div class="search">
 						<input type="text" class="transition" placeholder="请输入搜索关键字">
 						<button class="iconfont transition" type="button">&#xe605;</button>
 					</div>
@@ -47,7 +62,7 @@
 							<div class="normal"><a href="#">娱乐</a></div>
 						</li>
 						<li _t_nav="community">
-							<div class="normal"><a href="#">听闻</a></div>
+							<div class="normal"><a href="${contextpath }/tingwen.htm">听闻</a></div>
 						</li>
 						<li _t_nav="route">
 							<div class="normal"><a href="#">游客中心</a></div>
@@ -238,7 +253,8 @@
 		<script src="${contextpath}/js/jquery.bootstrap-autohidingnavbar.js"></script>
 		<script type="text/javascript" src="${contextpath}/js/juheweb.js"></script>
 		<script type="text/javascript" src="${contextpath}/js/menu.js"></script>
-
+		<script src="${contextpath}/js/layer/layer.js"></script>
+		<script src="${contextpath}/js/common.js"></script>
 		<script>
 			//		头部悬浮
 			$("div.navbar-fixed-top").autoHidingNavbar();
@@ -269,6 +285,17 @@ $(document).ready(function(){
 function jumpQuanjing(secondMenuId){
 	var currentId="";
 	window.location.href="${contextpath}/quanjing.htm?currentId="+currentId+"&secondMenuId="+secondMenuId;
+}
+function logout(){
+	 $.ajax({
+			type: "post", 
+			url: "${contextpath}/loginout.htm", 
+			dataType: "json",
+			success: function (data) { 
+				 layer.msg("注销成功！");
+				 window.location.href="${contextpath}/";
+			} 
+	});
 }
 		</script>
 	</body>
