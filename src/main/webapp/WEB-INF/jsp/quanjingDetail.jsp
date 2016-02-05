@@ -26,7 +26,7 @@
  					
 				<c:if test="${member!=null }">
 					<div class="login">
-						<a href="">欢迎您,${member.data.cnickname }</a><a href="javascript:void(0)" onclick="logout();">退出</a>
+						<a href="">欢迎您,${member.data.cloginname }</a><a href="javascript:void(0)" onclick="logout();">退出</a>
 					</div>
 
 				</c:if>
@@ -53,13 +53,13 @@
 							<div class="normal"><a href="${contextpath}/"><i class="iconfont font-150">&#xe608;</i></a></div>
 						</li>
 						<li class="active" _t_nav="panorama">
-							<div class="normal"><a href="${contextpath }/quanjing">全景</a></div>
+							<div class="normal"><a href="${contextpath }/quanjing.htm">全景</a></div>
 						</li>
 						<li _t_nav="activity">
-							<div class="normal"><a href="#">畅游</a></div>
+							<div class="normal"><a href="${contextpath }/changyou.htm">畅游</a></div>
 						</li>
 						<li _t_nav="news">
-							<div class="normal"><a href="#">娱乐</a></div>
+							<div class="normal"><a href="${contextpath }/activity.htm">娱乐</a></div>
 						</li>
 						<li _t_nav="community">
 							<div class="normal"><a href="${contextpath }/tingwen.htm">听闻</a></div>
@@ -124,9 +124,11 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="#">首页</a></li>
-				<li><a href="#">${quanjing.name } </a></li>
+				<li><a href="#">全景</a></li>
+				<c:if test="${secondMenu!=null }">
 				<li><a href="#">${secondMenu.name }</a></li>
 				<li><a href="#">${bqMenu.name }</a></li>
+				</c:if>
 				<li>${securityNew.title }</li>
 			</ul>
 		</div>

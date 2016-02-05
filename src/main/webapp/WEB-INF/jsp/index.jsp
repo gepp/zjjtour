@@ -27,7 +27,7 @@
 				<div class="logo-right-top clr">
 				<c:if test="${member!=null }">
 					<div class="login">
-						<a href="">欢迎您,${member.data.cnickname }</a><a href="javascript:void(0)" onclick="logout();">退出</a>
+						<a href="">欢迎您,${member.data.cloginname }</a><a href="javascript:void(0)" onclick="logout();">退出</a>
 					</div>
 
 				</c:if>
@@ -55,10 +55,10 @@
 							<div class="normal"><a href="${contextpath }/quanjing.htm">全景</a></div>
 						</li>
 						<li _t_nav="activity">
-							<div class="normal"><a href="#">畅游</a></div>
+							<div class="normal"><a href="${contextpath }/changyou.htm">畅游</a></div>
 						</li>
 						<li _t_nav="news">
-							<div class="normal"><a href="#">娱乐</a></div>
+							<div class="normal"><a href="${contextpath }/activity.htm">娱乐</a></div>
 						</li>
 						<li _t_nav="community">
 							<div class="normal"><a href="${contextpath }/tingwen.htm">听闻</a></div>
@@ -99,7 +99,7 @@
 							<div class="item">
 								<ul class="clr">
 									<c:forEach var="menu"  items="${tingwenMenuList }">
-									<li class="transition">
+									<li class="transition" >
 										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
 										<h5 class="transition">${menu.name }</h5>
 									</li>
@@ -202,7 +202,7 @@
 			<ul>
 			
 			<c:forEach var="quanjing" items="${quanjingList }">
-				<li>
+				<li onclick="jumpQuanjingDetail('${quanjing.id}')">
 					<img src="${quanjing.indeximg }">
 					<div class="mask transition">
 						<h4>${quanjing.title }</h4>
@@ -226,14 +226,14 @@
 						<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
 					</svg>
 				</h2>
-					<div class="more transition">查看更多</div>
+					<div class="more transition" onclick="window.location.href='${contextpath}/changyou.htm'">查看更多</div>
 				</div>
 			</div>
 			<!--标题  end-->
 			<ul>
 				
 				<c:forEach var="changyou" items="${changyouList }">
-				<li class="transition">
+				<li class="transition" onclick="jumpChangyouDetail('${changyou.id}')">
 					<h4>${changyou.title }</h4>
 					<p class="transition">${changyou.abstractContent }</p>
 				</li>
@@ -249,7 +249,7 @@
 			<div class="entertainment-content">
 				<img src="${yule.indeximg }" />
 				<div class="mask">
-					<button>立即报名</button>
+					<button onclick="checkUser('${yule.activityStatus}','${yule.id }')">立即报名</button>
 					<p>${yule.abstractContent }</p>
 				</div>
 			</div>
@@ -276,31 +276,31 @@
 					<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
 				</svg>
 			</h2>
-			<div class="more transition">查看更多</div>
+			<div class="more transition" onclick="jumpXiuxiansecond('');">查看更多</div>
 		</div>
 		<!--标题  end-->
 		<!--休闲张家界-->
 		<div class="leisure clr">
-			<div class="delicacy"><img src="${meishiMenu.img }">
+			<div class="delicacy"  onclick="jumpXiuxiansecond('${meishiMenu.id}');"><img src="${meishiMenu.img }">
 				<div class="mask">
 					<h4>${meishiMenu.name }</h4>
 					<p>${meishiMenu.description }</p>
 				</div>
 			</div>
 			<div class="hotel">
-				<div class="leisure-top"><img src="${jiudianMenu.img }"></div>
+				<div class="leisure-top" onclick="jumpXiuxiansecond('${jiudianMenu.id}');"><img src="${jiudianMenu.img }"></div>
 				<div class="leisure-bottom transition">
 					<h5>${jiudianMenu.name }</h5>
 					<p>${jiudianMenu.description }<a href="#">［详细介绍］</a></p><i></i></div>
 			</div>
 			<div class="spots">
-				<div class="leisure-top transition">
+				<div class="leisure-top transition" onclick="jumpXiuxiansecond('${jingdianMenu.id}');">
 					<h5>${jingdianMenu.name }</h5>
 					<p>${jingdianMenu.description }<a href="#">［详细介绍］</a></p><i></i></div>
 				<div class="leisure-bottom"><img src="${jingdianMenu.img }"></div>
 			</div>
 			<div class="gate">
-				<div class="leisure-top"><img src="${menpiaoMenu.img }"></div>
+				<div class="leisure-top" onclick="jumpXiuxiansecond('${menpiaoMenu.id}');"><img src="${menpiaoMenu.img }"></div>
 				<div class="leisure-bottom transition">
 					<h5>${menpiaoMenu.name }</h5>
 					<p>${menpiaoMenu.description}<a href="#">［详细介绍］</a></p><i></i></div>
@@ -313,7 +313,7 @@
 			<ul>
 			
 				<c:forEach var="tingwen" items="${tingwenList }">
-				<li class="transition">
+				<li class="transition" onclick="jumpTingwenDetail('${tingwen.id}')">
 					<h4>${tingwen.title }</h4>
 					<p class="transition">—— ${tingwen.abstractContent }</p>
 				</li>
@@ -329,7 +329,7 @@
 						<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
 					</svg>
 				</h2>
-					<div class="more transition">查看更多</div>
+					<div class="more transition" onclick="window.location.href='${contextpath}/tingwen.htm'">查看更多</div>
 				</div>
 			</div>
 			<!--标题  end-->
@@ -567,6 +567,44 @@ $(document).ready(function($){
 				} 
 		});
 	}
+	
+	function jumpQuanjingDetail(id){
+		window.location.href='${contextpath}/quanjingDetail.htm?id='+id;
+	}
+	function jumpChangyouDetail(id){
+		window.location.href='${contextpath}/changyouDetail.htm?id='+id;
+	}
+	function jumpTingwenDetail(id){
+		window.location.href='${contextpath}/tingwenDetail.htm?id='+id;
+	}
+	function jumpXiuxiansecond(secondMenuId){
+		window.location.href="${contextpath}/xiuxian.htm?secondMenuId="+secondMenuId;
+	}
+	
+	function checkUser(status,id){
+		if(status!=1){
+			layer.msg('您好，活动暂未开始或已结束！');
+			return false;
+		}
+		$.ajax({
+			type: "post", 
+			url: "${contextpath}/checkActivity.htm?id="+id, 
+			dataType: "json",
+			success: function (data) { 
+				 if(data.status=='success'){
+					 layer.alert('恭喜您,报名成功！', {
+						    closeBtn: 0
+						}, function(){
+							window.location.reload();
+						});
+					 
+				 }else{
+					 layer.alert(data.message);
+				 }
+			} 
+	});
+	}
+	
 		</script>
 	</body>
 
