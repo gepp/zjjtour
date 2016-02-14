@@ -25,34 +25,46 @@
 			</div>
 			<div class="logo-right">
 				<div class="logo-right-top clr">
-					<div class="login"><a href="">登录</a><a href="">注册</a></div>
-					<div class="search">
+				<c:if test="${member!=null }">
+					<div class="login">
+						<a href="">欢迎您,${member.data.cloginname }</a><a href="javascript:void(0)" onclick="logout();">退出</a>
+					</div>
+
+				</c:if>
+				<c:if test="${member==null }">
+					<div class="login">
+						<a href="${contextpath }/toLogin.htm">登录</a><a
+							href="${contextpath }/toRegister.htm">注册</a>
+					</div>
+				</c:if>
+				<div class="search">
 						<input type="text" class="transition" placeholder="请输入搜索关键字">
 						<button class="iconfont transition" type="button">&#xe605;</button>
 					</div>
 					<div class="weather">
-						<iframe allowtransparency="true" frameborder="0" width="180" height="36" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=1&bd=0&k=&f=&q=1&e=1&a=1&c=57558&w=180&h=36&align=left"></iframe>
+					<iframe allowtransparency="true" frameborder="0" width="317" height="28" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=1&v=0&d=1&bd=0&k=000000&f=&q=1&e=1&a=1&c=57558&w=317&h=28&align=center"></iframe>
 					</div>
 				</div>
 				<div class="logo-right-bottom">
 					<!--导航-->
 					<ul class="nav navbar-nav clr">
-						<li class="active" _t_nav="home">
-							<div class="normal"><a href="#"><i class="iconfont font-150">&#xe608;</i></a></div>
+						
+						<li class="<c:if test="${type=='index'||type=='' }">active</c:if>" _t_nav="home">
+							<div class="normal"><a href="${contextpath }/"><i class="iconfont font-150">&#xe608;</i></a></div>
 						</li>
-						<li _t_nav="panorama">
-							<div class="normal"><a href="#">全景</a></div>
+						<li _t_nav="panorama" class="<c:if test="${type=='quanjing' }">active</c:if>">
+							<div class="normal"><a href="${contextpath }/quanjing.htm">全景</a></div>
 						</li>
-						<li _t_nav="activity">
-							<div class="normal"><a href="#">畅游</a></div>
+						<li _t_nav="activity" class="<c:if test="${type=='changyou' }">active</c:if>">
+							<div class="normal"><a href="${contextpath }/changyou.htm">畅游</a></div>
 						</li>
-						<li _t_nav="news">
-							<div class="normal"><a href="#">娱乐</a></div>
+						<li _t_nav="news" class="<c:if test="${type=='yule' }">active</c:if>">
+							<div class="normal"><a href="${contextpath }/activity.htm">娱乐</a></div>
 						</li>
-						<li _t_nav="community">
-							<div class="normal"><a href="#">听闻</a></div>
+						<li _t_nav="community" class="<c:if test="${type=='tingwen' }">active</c:if>">
+							<div class="normal"><a href="${contextpath }/tingwen.htm">听闻</a></div>
 						</li>
-						<li _t_nav="route">
+						<li _t_nav="route" class="<c:if test="${type=='youke' }">active</c:if>">
 							<div class="normal"><a href="#">游客中心</a></div>
 						</li>
 					</ul>
@@ -61,7 +73,7 @@
 							<div class="item">
 								<ul class="clr">
 									<c:forEach var="menu"  items="${quanjingMenuList }">
-									<li class="transition">
+									<li class="transition" onclick="jumpQuanjing('${menu.id }')">
 										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
 										<h5 class="transition">${menu.name }</h5>
 									</li>
@@ -73,7 +85,7 @@
 							<div class="item">
 								<ul class="clr">
 									<c:forEach var="menu"  items="${changyouMenuList }">
-									<li class="transition">
+									<li class="transition" onclick="jumpChangyou('${menu.id}')">
 										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
 										<h5 class="transition">${menu.name }</h5>
 									</li>
@@ -88,7 +100,7 @@
 							<div class="item">
 								<ul class="clr">
 									<c:forEach var="menu"  items="${tingwenMenuList }">
-									<li class="transition">
+									<li class="transition" onclick="jumpTingwen('${menu.id}');" >
 										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
 										<h5 class="transition">${menu.name }</h5>
 									</li>
@@ -115,6 +127,27 @@
 		<script type="text/javascript" src="${contextpath }/js/slide.js"></script>
 
 		<script>
+		function jumpQuanjing(secondMenuId){
+			var currentId="";
+			window.location.href="${contextpath}/quanjing.htm?currentId="+currentId+"&secondMenuId="+secondMenuId;
+		}
+		function jumpTingwen(secondMenuId){
+			window.location.href="${contextpath}/tingwen.htm?secondMenuId="+secondMenuId;
+		}
+		function jumpChangyou(secondMenuId){
+			window.location.href="${contextpath}/changyou.htm?secondMenuId="+secondMenuId;
+		}
+		function logout(){
+			 $.ajax({
+					type: "post", 
+					url: "${contextpath}/loginout.htm", 
+					dataType: "json",
+					success: function (data) { 
+						 layer.msg("注销成功！");
+						 window.location.href="${contextpath}/";
+					} 
+			});
+		}
 			//		头部悬浮
 			$("div.navbar-fixed-top").autoHidingNavbar();
 			jQuery(document).ready(function() {

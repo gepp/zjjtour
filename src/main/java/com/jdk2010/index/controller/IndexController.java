@@ -111,7 +111,15 @@ public class IndexController extends BaseController {
         Map<String,Object>  indexMap=dalClient.queryForObject("select * from system_indexsetting");
         setAttr("indexMap", indexMap);
         
+        String type=getPara("type");
+        setAttr("type", type);
+        
         return "/header";
+    }
+    
+    @RequestMapping("/footer")
+    public String footer(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return "/footer";
     }
     
     @RequestMapping("/quanjing")
