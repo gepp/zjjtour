@@ -1,0 +1,139 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+	</head>
+	<link rel="stylesheet" href="${contextpath}/css/style.css" />
+	<link rel="stylesheet" href="${contextpath}/font/iconfont.css" />
+
+	<body>
+		<div id="header"></div>
+		<!--登录-->
+		<div class="login clr">
+			<div class="login-register">
+				<h4>注册</h4>
+				<input type="text" placeholder="手机号码"  id="mobile" name="mobile"/>
+				<input type="password" placeholder="请输入密码" id="cpassword" name="cpassword"/>
+				<p class="clr">
+					<input type="text" placeholder="请输手机验证码" id="verifyCode" name="verifyCode"/>
+					<button onclick="sendCode();">获取验证码</button>
+				</p>
+				<button onclick="register();">注册</button>
+				<p class="signup-guide clr"><span>已有账号<a href="${contextpath }/toLogin.htm">立即登录</a></span></p>
+			</div>
+		</div>
+		<!--登录 end-->
+		
+		<div id="footer">
+		</div>
+
+		
+		
+		
+		<script type="text/javascript" src="${contextpath}/js/jquery.min.js"></script>
+		<script src="${contextpath}/js/bootstrap.min.js"></script>
+		<script src="${contextpath}/js/jquery.bootstrap-autohidingnavbar.js"></script>
+		<script src="${contextpath}/js/layer/layer.js"></script>
+		<script src="${contextpath}/js/common.js"></script>
+		<script>
+		jQuery(document).ready(function() {
+			$("#header").load("${contextpath}/header.htm?type=index");
+			$("#footer").load("${contextpath}/footer.htm");
+		});
+			function sendCode() {
+				var mobile = $("#mobile").val();
+				if (trim(mobile) == '') {
+					layer.msg('请输入手机号码！');
+					return false;
+				} else if (!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))) {
+					layer.msg("手机号码有误，请 重新输入！");
+					$("#mobile").focus();
+					return false;
+				} else {
+					$.ajax({
+						type: "post", 
+						url: "${contextpath}/isExists.htm?mobile="+mobile, 
+						dataType: "json",
+						success: function (data) { 
+							 var jsonArray=str2json(data);
+							 if(jsonArray.data==false){
+								setTimeout('sendCode()', 100);
+							 }else{
+								 layer.msg('手机号码已存在,请重新输入您的手机号码！');
+								 $("#mobile").focus();
+								 return false;
+							 }
+						} 
+				});
+				}
+
+			}
+			function sendCode(){
+				var mobile = $("#mobile").val();
+				 $.ajax({
+						type: "post", 
+						  async: false,
+						url: "${contextpath}/sendCode.htm?mobile="+mobile, 
+						dataType: "json",
+						success: function (data) { 
+							 var jsonArray=str2json(data);
+							 if(jsonArray.status=='success'){
+								 layer.msg('验证码已发送！');
+							 }else{
+								 layer.msg(jsonArray.error.msg);
+								 $("#mobile").focus();
+								 return false;
+							 }
+						} 
+				});
+			}
+		
+
+			function register() {
+				var mobile = $("#mobile").val();
+				var verifyCode = $("#verifyCode").val();
+				var cpassword = $("#cpassword").val();
+				if (trim(mobile) == '') {
+					layer.msg('请输入手机号码！');
+					return false;
+				} else if (trim(verifyCode) == '') {
+					layer.msg('请输入验证码！');
+					return false;
+				} else if (trim(cpassword) == '') {
+					layer.msg('请输入密码！');
+					return false;
+				}
+				
+				 $.ajax({
+						type: "post", 
+						  async: false,
+						url: "${contextpath}/register.htm?mobile="+mobile+"&verifyCode="+verifyCode+"&cpassword="+cpassword, 
+						dataType: "json",
+						success: function (data) { 
+							 
+							 var jsonArray=str2json(data);
+							 if(jsonArray.status=='success'){
+								 layer.alert('恭喜您,注册成功！', {
+									    closeBtn: 0
+									}, function(){
+									     window.location.href="${contextpath}/";
+									});
+								 
+							 }else{
+								 layer.msg(jsonArray.error.msg);
+								 $("#mobile").focus();
+								 return false;
+							 }
+						} 
+				});
+
+			}
+		</script>
+	</body>
+
+</html>
