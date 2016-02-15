@@ -15,9 +15,9 @@
 		<!--视频弹窗遮罩  这一段需要放在前面-->
 		<div class="box"></div>
 		<!--视频弹窗遮罩 end-->
-		<div class="navbar-fixed-top clr">
+		<div class="navbar-fixed-top clr"  onclick="window.location.href='${contextpath}/'">
 			<div class="logo">
-				<img src="${contextpath }/images/logo.png" />
+				<img src="${contextpath }/images/logo.png"/>
 			</div>
 			<div class="logo-title">
 				<h6>张家界市人民政府旅游官网</h6>
