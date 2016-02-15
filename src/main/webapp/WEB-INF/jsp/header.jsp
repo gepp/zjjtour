@@ -52,6 +52,9 @@
 						<li class="<c:if test="${type=='index'||type=='' }">active</c:if>" _t_nav="home">
 							<div class="normal"><a href="${contextpath }/"><i class="iconfont font-150">&#xe608;</i></a></div>
 						</li>
+						<li _t_nav="shijue" class="<c:if test="${type=='shijue' }">active</c:if>">
+							<div class="normal"><a href="${contextpath }/shijue.htm">视觉</a></div>
+						</li>
 						<li _t_nav="panorama" class="<c:if test="${type=='quanjing' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/quanjing.htm">全景</a></div>
 						</li>
@@ -69,6 +72,7 @@
 						</li>
 					</ul>
 					<div class="navigation-down phone-header">
+						
 						<div id="panorama" class="nav-down-menu" style="display: none;" _t_nav="panorama">
 							<div class="item">
 								<ul class="clr">

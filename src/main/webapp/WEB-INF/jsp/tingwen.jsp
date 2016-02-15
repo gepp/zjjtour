@@ -46,7 +46,8 @@
 										</div>
 										<h5 class="transition">${item.title }</h5>
 										<p>${item.abstract_content }</p>
-										<span class="time">${item.ctime }</span>
+										<fmt:formatDate value="${item.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
+										<span class="time">${ctime }</span>
 										<span class="number"><i class="iconfont">&#xe616;</i>0</span>
 									</li>
 									 </c:forEach>

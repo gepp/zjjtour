@@ -49,7 +49,7 @@
 				</div>
 				<div id="content">
 					<div class="content-item" id="item-1">
-						<h4><i class="iconfont">&#xe610;</i>扩大的盆景，缩小的仙境</h4>
+						<h4><i class="iconfont">&#xe610;</i>${biaoqian.maodian_name }</h4>
 						<iframe allowtransparency="true" frameborder="0" src="${securityNew.quanjingUrl }" width="750" height="400" style="border: 1px solid #eee;">这里是全景控件</iframe>
 					</div>
 					<c:forEach items="${biaoqianList }" var="biaoqian">
@@ -60,27 +60,7 @@
  				    </c:forEach>
 				</div>
 			</div>
-			<div class="panorama-details-right">
-				<div class="tj-pic">
-					<img src="${contextpath}/images/11.jpg">
-					<span>神秘宝峰寺</span>
-				</div>
-				<div class="tj-pic">
-					<img src="${contextpath}/images/13.jpg">
-					<span>神秘宝峰寺</span>
-				</div>
-				<ul>
-					<h5>相关新闻</h5>
-					<div class="clr"></div>
-					<li>去年国际旅游人次11.8亿...</li>
-					<li>张家界天门山索道今日恢复运...</li>
-					<li>23亿元风能发电项目落户桑植...</li>
-					<li>武陵源天子山景区联合开展...</li>
-					<li>中国游客给新西兰旅游业...</li>
-					<li>武陵源天子山景区联合开展...</li>
-					<li>中国游客给新西兰旅游业...</li>
-				</ul>
-			</div>
+			 <div id="rightNews"></div>
 		</div>
 		<!--图标列表-->
 
@@ -101,6 +81,7 @@
 			jQuery(document).ready(function() {
 				$("#header").load("${contextpath}/header.htm?type=quanjing");
 				$("#footer").load("${contextpath}/footer.htm");
+				$("#rightNews").load("${contextpath}/right.htm");
 			});
 			//			定位悬浮
 			$(document).ready(function() {

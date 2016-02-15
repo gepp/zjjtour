@@ -117,6 +117,18 @@ public class IndexController extends BaseController {
         return "/header";
     }
     
+    @RequestMapping("/right")
+    public String right(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        
+    	//活动
+        List<MemberActivity> activityList=dalClient.queryForObjectList("select * from member_activity where  top_status=1 and review_status=1 limit 0,2",MemberActivity.class);
+        setAttr("activityList", activityList);
+      //畅游
+        List<SecurityNews> changyouList=dalClient.queryForObjectList("select * from security_news where menu_id in (select id from security_menu where parent_id=1010) and index_status=1 and review_status=1   limit 0,8",SecurityNews.class);
+        setAttr("changyouList", changyouList);
+        return "/right";
+    }
+    
     @RequestMapping("/footer")
     public String footer(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return "/footer";

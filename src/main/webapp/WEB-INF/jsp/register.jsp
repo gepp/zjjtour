@@ -21,7 +21,8 @@
 				<input type="password" placeholder="请输入密码" id="cpassword" name="cpassword"/>
 				<p class="clr">
 					<input type="text" placeholder="请输手机验证码" id="verifyCode" name="verifyCode"/>
-					<button onclick="sendCode();">获取验证码</button>
+					<button onclick="sendCode();" id="getCode">获取验证码</button>
+					 
 				</p>
 				<button onclick="register();">注册</button>
 				<p class="signup-guide clr"><span>已有账号<a href="${contextpath }/toLogin.htm">立即登录</a></span></p>
@@ -44,6 +45,7 @@
 		jQuery(document).ready(function() {
 			$("#header").load("${contextpath}/header.htm?type=index");
 			$("#footer").load("${contextpath}/footer.htm");
+			
 		});
 			function sendCode() {
 				var mobile = $("#mobile").val();
@@ -62,7 +64,15 @@
 						success: function (data) { 
 							 var jsonArray=str2json(data);
 							 if(jsonArray.data==false){
-								setTimeout('sendCode()', 100);
+								 var codeBtn=$("#getCode");
+									var ti=120;
+									var t=setInterval(function(){
+										codeBtn.html("重新获取(<span style='color:red;font-size:16px;padding:0 3px;font-weight:bold;'>"+ ti +"</span>) ");
+										ti--;
+										if(ti<0){clearInterval(t);codeBtn.html("获取验证码").removeAttr("disabled")}
+									},1000);
+									codeBtn.attr("disabled","disabled");
+								setTimeout('sendCodeTrue()', 100);
 							 }else{
 								 layer.msg('手机号码已存在,请重新输入您的手机号码！');
 								 $("#mobile").focus();
@@ -73,7 +83,7 @@
 				}
 
 			}
-			function sendCode(){
+			function sendCodeTrue(){
 				var mobile = $("#mobile").val();
 				 $.ajax({
 						type: "post", 

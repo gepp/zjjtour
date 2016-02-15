@@ -60,27 +60,7 @@
 				<!--分页end-->
 				</div>
 			</div>
-			<div class="panorama-details-right">
-				<div class="tj-pic">
-					<img src="${contextpath}/images/11.jpg">
-					<span>神秘宝峰寺</span>
-				</div>
-				<div class="tj-pic">
-					<img src="${contextpath}/images/13.jpg">
-					<span>神秘宝峰寺</span>
-				</div>
-				<ul>
-					<h5>经典路线</h5>
-					<div class="clr"></div>
-					<li>去年国际旅游人次11.8亿...</li>
-					<li>张家界天门山索道今日恢复运...</li>
-					<li>23亿元风能发电项目落户桑植...</li>
-					<li>武陵源天子山景区联合开展...</li>
-					<li>中国游客给新西兰旅游业...</li>
-					<li>武陵源天子山景区联合开展...</li>
-					<li>中国游客给新西兰旅游业...</li>
-				</ul>
-			</div>
+			 <div id="rightNews"></div>
 		</div>
 		 
 <div id="footer">
@@ -99,6 +79,7 @@
 			jQuery(document).ready(function() {
 				$("#header").load("${contextpath}/header.htm?type=yule");
 				$("#footer").load("${contextpath}/footer.htm");
+				$("#rightNews").load("${contextpath}/right.htm");
 			 
 			});
 			function jumpQuanjing(secondMenuId){
