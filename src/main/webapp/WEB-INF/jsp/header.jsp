@@ -15,8 +15,8 @@
 		<!--视频弹窗遮罩  这一段需要放在前面-->
 		<div class="box"></div>
 		<!--视频弹窗遮罩 end-->
-		<div class="navbar-fixed-top clr"  onclick="window.location.href='${contextpath}/'">
-			<div class="logo">
+		<div class="navbar-fixed-top clr"  >
+			<div class="logo" onclick="window.location.href='${contextpath}/'">
 				<img src="${contextpath }/images/logo.png"/>
 			</div>
 			<div class="logo-title">
@@ -68,7 +68,7 @@
 							<div class="normal"><a href="${contextpath }/tingwen.htm">听闻</a></div>
 						</li>
 						<li _t_nav="route" class="<c:if test="${type=='youke' }">active</c:if>">
-							<div class="normal"><a href="#">游客中心</a></div>
+							<div class="normal"><a href="${contextpath }/memberCenter.htm">游客中心</a></div>
 						</li>
 					</ul>
 					<div class="navigation-down phone-header">
@@ -120,16 +120,6 @@
 				</div>
 			</div>
 		</div>
-		 
-		  
-		
-		
-		<script type="text/javascript" src="${contextpath }/js/jquery.min.js"></script>
-		<script src="${contextpath }/js/bootstrap.min.js"></script>
-		<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
-		<script src="${contextpath }/js/jquery.SuperSlide.js"></script>
-		<script type="text/javascript" src="${contextpath }/js/slide.js"></script>
-
 		<script>
 		function jumpQuanjing(secondMenuId){
 			var currentId="";
@@ -174,114 +164,10 @@
 					}, 150);
 				});
 			});
-			//			 焦点图
-			jQuery(".index_focus").hover(function() {
-				jQuery(this).find(".index_focus_pre,.index_focus_next").stop(true, true).fadeTo("show", 1)
-			}, function() {
-				jQuery(this).find(".index_focus_pre,.index_focus_next").fadeOut()
-			});
-			jQuery(".index_focus").slide({
-				titCell: ".slide_nav a ",
-				mainCell: ".bd ul",
-				delayTime: 500,
-				interTime: 3500,
-				prevCell: ".index_focus_pre",
-				nextCell: ".index_focus_next",
-				effect: "fold",
-				autoPlay: true,
-				trigger: "click",
-				startFun: function(i) {
-					jQuery(".index_focus_info").eq(i).find("h3").css("display", "block").fadeTo(1000, 1);
-					jQuery(".index_focus_info").eq(i).find(".text").css("display", "block").fadeTo(1000, 1);
-				}
-			});
-			
-//			悬浮定位
-jQuery(document).ready(function($) {
-                $(".index_nav li a").click(function(event) {
-                    var index = this.title
-                    var id = '#' + 'index_' + index
-                    $("html,body").animate({
-                        scrollTop: $(id).offset().top
-                    }, 1000);
-                });
-                $(".taoba").click(function(event) {
-                    var index = this.title;
-
-                    $(".taoba").removeClass('active');
-                    $(this).addClass('active');
-
-                    var id = '#' + 'index_' + index
-                    $("html,body").animate({
-                        scrollTop: $(id).offset().top
-                    }, 1000);
-                });
-
-                $(function() {
-                    $(window).scroll(function() {
-                        t = $(document).scrollTop();
-                        if (t > 500) {
-                            $('#tbox').show();
-                        } else {
-                            $('#tbox').hide();
-                        }
-                        if (t > 50) {
-                            $('#gotop').fadeIn('slow');
-                        } else {
-                            $('#gotop').fadeOut('slow');
-                        }
-
-                        var windowTopHeight = t;
-                        if(windowTopHeight >= $('#index_1').offset().top && windowTopHeight < $('#index_2').offset().top){
-                            // 第一页
-                            $('.taoba').removeClass('active');
-                            $('.taoba[title=1]').addClass('active');
-                        }else if(windowTopHeight >= $('#index_2').offset().top && windowTopHeight < $('#index_3').offset().top){
-                            // 第二页
-                            $('.taoba').removeClass('active');
-                            $('.taoba[title=2]').addClass('active');
-                        }else if(windowTopHeight >= $('#index_3').offset().top && windowTopHeight < $('#index_4').offset().top){
-                            // 第三页
-                            $('.taoba').removeClass('active');
-                            $('.taoba[title=3]').addClass('active');
-                        }else if(windowTopHeight >= $('#index_4').offset().top && windowTopHeight < $('#index_5').offset().top){
-                            // 第四页
-                            $('.taoba').removeClass('active');
-                            $('.taoba[title=4]').addClass('active');
-                        }else if(windowTopHeight >= $('#index_5').offset().top && windowTopHeight < $('#index_6').offset().top){
-                            // 第五页
-                            $('.taoba').removeClass('active');
-                            $('.taoba[title=5]').addClass('active');
-                        }else if(windowTopHeight >= $('#index_6').offset().top){
-                            // 第六页
-                            $('.taoba').removeClass('active');
-                            $('.taoba[title=6]').addClass('active');
-                        }
-                    })
-                    $('#gotop').click(function() {
-                        $('body,html').animate({
-                                scrollTop: 0
-                            },
-                            800); //点击回到顶部按钮，缓懂回到顶部,数字越小越快
-                        return false;
-                    })
-                });
-            });
-            
-//         视频弹窗
-$(document).ready(function($){
-
-	$(".btn1").click(function(event){
-		$(".hint").css({"display":"block"});
-		$(".box").css({"display":"block"});
-	});
-	
-	$(".hint3").click(function(event) {
-		$(this).parent().parent().css({"display":"none"});
-		$(".box").css({"display":"none"});
-	});
-	
-});
+			 
+			 			
+ 
+ 
 		</script>
 	</body>
 

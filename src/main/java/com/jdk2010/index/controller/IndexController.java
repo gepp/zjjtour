@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hsqldb.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,15 @@ import ch.qos.logback.core.util.SystemInfo;
 import com.jdk2010.base.security.menu.model.SecurityMenu;
 import com.jdk2010.base.security.securitynews.model.SecurityNews;
 import com.jdk2010.base.security.securitynews.service.ISecurityNewsService;
+import com.jdk2010.framework.constant.Constants;
 import com.jdk2010.framework.controller.BaseController;
 import com.jdk2010.framework.dal.client.DalClient;
+import com.jdk2010.framework.util.JsonUtil;
+import com.jdk2010.framework.util.ReturnData;
 import com.jdk2010.member.memberactivity.model.MemberActivity;
 import com.jdk2010.system.systemadv.model.SystemAdv;
 import com.jdk2010.system.systemadv.service.ISystemAdvService;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 
 @Controller
@@ -133,6 +138,89 @@ public class IndexController extends BaseController {
     public String footer(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return "/footer";
     }
+    @RequestMapping("/myActivityList")
+    public String myActivityList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Map<String,Object> member=getSessionAttr("member");
+        if(member==null){
+            return "/login";
+        }else{
+          //活动
+            Map<String,Object> data=(Map<String,Object>)member.get("data");
+            String memberid=data.get("id")+"";
+            String searchSQL = "";
+            
+            String title = getPara("title");
+            if (title != null && !"".equals(title)) {
+                searchSQL = searchSQL + " and  title LIKE '%" + title + "%'";
+                setAttr("title", title);
+            }
+            String activity_status = getPara("activity_status");
+            if (activity_status != null && !"".equals(activity_status)) {
+                searchSQL = searchSQL + " and  activity_status ="+activity_status ;
+                setAttr("activity_status", activity_status);
+            }
+            
+            String start_time_start = getPara("start_time_start");
+            if (start_time_start != null && !"".equals(start_time_start)) {
+                searchSQL = searchSQL + " and  start_time >='"+start_time_start+"'";
+                setAttr("start_time_start", start_time_start);
+            }
+            
+            String start_time_end= getPara("start_time_end");
+            if (start_time_end != null && !"".equals(start_time_end)) {
+                searchSQL = searchSQL + " and  end_time <='"+start_time_end+"'";
+                setAttr("start_time_end", start_time_end);
+            }
+            
+            List<MemberActivity> activityList=dalClient.queryForObjectList("select * from member_activity where id in (select  activity_id from member_activity_detail where userid="+memberid+") "+searchSQL,MemberActivity.class);
+            setAttr("activityList", activityList);
+            return "/myActivityList";
+        }
+    }
+    @RequestMapping("/cancelActivity")
+    public void cancelActivity(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String activity_id=getPara("activity_id");
+        String flag=Constants.SUCCESS;
+        String reason="";
+
+        Map<String,Object> member=getSessionAttr("member");
+        if(member==null){
+            flag=Constants.ERROR;
+            reason="请重新登录！";
+        }else{
+            Map<String,Object> data=(Map<String,Object>)member.get("data");
+            String memberid=data.get("id")+"";
+            dalClient.update("delete from member_activity_detail where userid="+memberid +" and activity_id="+activity_id);
+        }
+        ReturnData returnData = new ReturnData(flag,reason);
+        renderJson(response, returnData);
+    }
+    
+    
+    @RequestMapping("/memberCenter")
+    public String memberCenter(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String testMember="{\"status\":\"success\",\"data\":{\"id\":252,\"cloginname\":\"18952028230\",\"ctel\":\"18952028230\",\"dupdate\":\"Feb 5, 2016 11:29:34 PM\"}}";
+        setSessionAttr("member",JsonUtil.jsonToMap(testMember));
+        Map<String,Object> member=getSessionAttr("member");
+        if(member==null){
+            return "/login";
+        }else{
+          //活动
+            Map<String,Object> data=(Map<String,Object>)member.get("data");
+            String memberid=data.get("id")+"";
+            List<MemberActivity> activityList=dalClient.queryForObjectList("select * from member_activity where id in (select  activity_id from member_activity_detail where userid="+memberid+")",MemberActivity.class);
+            setAttr("activityList", activityList);
+            return "/memberCenter";
+        }
+    }
+    
+    
+    @RequestMapping("/toMemberEdit")
+    public String toMemberEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        
+        return "/memberEdit";
+    }
+    
     
     @RequestMapping("/quanjing")
     public String quanjing(HttpServletRequest request, HttpServletResponse response) throws Exception {
