@@ -21,7 +21,7 @@
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
-				<li><a href="#">首页</a></li>
+				<li><a href="${contextpath }/">首页</a></li>
 				<li><a href="#">全景</a></li>
 				<li><a href="#">绝美风光</a></li>
 				<li>地标美景</li>
@@ -74,8 +74,6 @@
 		<script src="${contextpath}/js/layer/layer.js"></script>
 		<script src="${contextpath}/js/common.js"></script>
 		<script>
-			//		头部悬浮
-			$("div.navbar-fixed-top").autoHidingNavbar();
 			jQuery(document).ready(function() {
 				$("#header").load("${contextpath}/header.htm?type=quanjing");
 				$("#footer").load("${contextpath}/footer.htm");

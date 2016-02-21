@@ -71,7 +71,7 @@ a {text-decoration: none;}
 .item>ul {margin: 0 -15px;}
 .item>ul>li {display: block;float: left;width: calc(100% / 4 - 30px);margin: 0 15px;cursor: pointer;}
 .item>ul>li>.img-content {width: 100%;position: relative;overflow: hidden;}
-.item>ul>li>.img-content>img {width: 100%;}
+.item>ul>li>.img-content>img {width: 100%;height:135px}
 .item>ul>li>.img-content>span {position: absolute;bottom: 0px;left: 0;padding: 0 0 0 5px;width: 100%;height: 0px;line-height: 40px;color: #ddd;background: rgba(0, 0, 0, 0.7);transition: all linear .2s !important;-webkit-transition: all linear .2s !important;-moz-transition: all linear .2s !important;-ms-transition: all linear .2s !important;}
 .item>ul>li>h5 {font-size: 20px;color: #666;height: 60px;margin: 10px 0 0 5px;}
 .item>ul>li:hover {background: #00BB9E;}
@@ -351,7 +351,7 @@ a {text-decoration: none;}
 /*新闻列表(文字)*/
 .news-font-list{width:930px}
 .news-font-list>ul>li{ border-bottom: 1px solid #eee; padding-bottom: 40px; margin-bottom: 60px; cursor: pointer;}
-.news-font-list>ul>li{float: left; }
+.news-font-list>ul>li{float: left;  width: 100%;}
 .news-font-list>ul>li>h4{ color: #4a4a4a; margin-bottom: 20px;}
 span.zhiding,span.toutiao{ line-height: 24px; border-radius: 3px; height: 24px;position:relative; display: block;color: #fff; padding: 0 10px; font-size: 16px;margin-right: 10px;float: left;}
 span.zhiding.f14,span.toutiao.f14{ line-height: 18px; border-radius: 3px; height: 18px;position:relative; display: block;color: #fff; padding: 0 5px; font-size: 14px;margin-right: 10px;float: left;}
@@ -499,7 +499,45 @@ span.zhiding>em,span.toutiao>em{ display: block; width: 0; height: 0; position: 
 .form-group>.sex>label input[type=radio] + .text:before{border-radius: 50%; border: 1px solid #ccc; position: absolute;top: 5px;display: block; content: ""; height: 18px; width: 18px;  margin-right: 10px;left: 0;}
 .form-group>.sex>label input[type=radio]:checked + .text:before{ content: ""; position: absolute;  z-index: 1;  height: 20px;border-color: #00BB9E;box-sizing: border-box;color: #FFFFFF;background: #00bb9e;width: 20px;text-align: center;line-height: 18px;}
 .form-group>.sex>label input[type=radio]:checked + .text:after{ content: ""; position: absolute; z-index: 2;  height: 10px;left: 5px;border-color: #fff;box-sizing: border-box;color: #FFFFFF;background: #FFFFFF;width: 10px;top: 10px;border-radius: 50%;}
+/*投诉*/
+.question>.top>i{ color: #C74343; display: block; float: left; width: 20px;}
+.question>.top>time,.answer>.top>time{ display: block; float: left; color: #999;}
+.question>.bottom,.answer>.bottom{margin-left: 100px; color: #666;}
+.answer>.bottom{color: #00BB9E;}
+.answer>.top>i{ color:#00BB9E; display: block; float: left; width: 20px;}
+.question,.answer{line-height: 30px;}
+.question span,.answer span{display: block; float: left; width: 80px;}
+.section>h6{float: right; padding: 10px 20px; border-radius: 5px;background: rgba(0, 187, 158, 1); color: #fff;}
+.section>h6:hover{background: rgba(0, 187, 158, 0.8); color: #fff; cursor: pointer;}
+.complaint{width: 1200px; margin: 40px auto; border-top: 1px solid #f7f7f7;}
+.complaint .form-group>p>input{height: 30px; box-sizing: border-box; border: 1px solid #ddd; padding: 2px 5px; float: left; line-height: 28px;}
+.complaint .form-group>p>img{width: 100px; height: 30px; float: left; margin-left: 10px; cursor: pointer;}
+.complaint .form-group>p>a{display: block; line-height: 30px; cursor: pointer; color: #005EFF; text-decoration: underline; margin-left: 5px; float: left;}
+.complaint .form-group>p{display: block; float: left; width: calc(100% - 75px);width: -webkit-calc(100% - 75px);width: -moz-calc(100% - 75px);}
 
-
+#searchTag{
+	z-index:1000;
+	/*display:none;*/
+	position:absolute;
+	/* padding-bottom: 30px; */
+	overflow: hidden;
+	top:28px;
+	left:0px;
+	width:200px;
+	padding: 10px 10px 30px;
+	background:#fff;
+	border-radius:14px;
+	-moz-border-radius:14px;
+	-webkit-border-radius:14px;
+	box-shadow:0 2px 4px rgba(34,25,25,0.5);
+	-moz-box-shadow:0 2px 4px rgba(34,25,25,0.5);
+	-webkit-box-shadow:0 2px 4px rgba(34,25,25,0.5);
+}
+#searchTag p{text-align:left;line-height:22px;padding:2px 0;margin:0;border:0;}
+#searchTag span{font-weight:bold;color: #00BB9E;}
+#searchTag em.red{color:#ff0000;font-style:normal;}
+#searchTag a{margin:0 5px;color: #22A5DD;display: block;}
+#searchTag a:hover{ text-decoration: underline;}
+#tagClose{font-size: 14px;color: #E4391E;/* font-weight:800; */background: #f5f5f5;cursor:pointer;position:absolute;bottom: 0;/* right:8px; */left: 0;text-align: center;width: 100%;line-height: 30px;}
 
 

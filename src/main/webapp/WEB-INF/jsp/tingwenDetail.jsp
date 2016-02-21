@@ -21,7 +21,7 @@
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
-				<li><a href="#">首页</a></li>
+				<li><a href="${contextpath }/">首页</a></li>
 				<li><a href="#">听闻</a></li>
 				<li><a href="${contextpath }/tingwen.htm?secondMenuId=${securityMenu.id}">${securityMenu.name }</a></li>
 				<li>${securityNew.title }</li>
@@ -43,12 +43,12 @@
 						 ${securityNew.content }
 					</div>
 				<!--分页-->
-				<div class="page">
+				<!-- <div class="page">
 					<ul class="clr">
 						<li title="下一篇"><i class="iconfont">&#xe611;</i></li>
 						<li title="上一篇"><i class="iconfont">&#xe611;</i></li>
 					</ul>
-				</div>
+				</div> -->
 				<!--分页end-->
 				</div>
 			</div>

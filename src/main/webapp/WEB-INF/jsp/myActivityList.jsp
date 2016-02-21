@@ -21,6 +21,7 @@
 			<span>当前位置：</span>
 			<li><a href="${contextpath }/">首页</a></li>
 			<li>游客中心</li>
+			<li>我的活动</li>
 		</ul>
 	</div>
 	<!--面包屑  end-->
@@ -30,9 +31,9 @@
 		<div class="tourist-left">
 			<ul>
 				<li onclick="window.location.href='${contextpath}/memberCenter.htm'">游客中心</li>
-				<li>个人信息</li>
+				<li onclick="window.location.href='${contextpath}/toMemberEdit.htm'">个人信息</li>
 				<li class="active" onclick="window.location.href='${contextpath}/myActivityList.htm'">我的活动</li>
-				<li>我的投诉</li>
+				<li  onclick="window.location.href='${contextpath}/myTousuList.htm'">我的投诉</li>
 			</ul>
 		</div>
 		<div class="tourist-right">
@@ -73,7 +74,7 @@
 							<tbody>
 								<tr>
 									 
-									<th>标题</th>
+									<th style="width:140px">标题</th>
 									<th>活动开始时间</th>
 									<th>活动截止时间</th>
 									<th>活动状态</th>
@@ -93,7 +94,7 @@
 									<span onclick="cancelActivity('${item.id}')">取消报名</span>
 									</c:if>
 									<c:if test="${ item.activityStatus!=0}">
-									活动已开始或已结束,不能取消
+									活动已开始或已结束
 									</c:if>
 									</td>
 								</tr>
@@ -110,9 +111,10 @@
 		 
 	</div>
 
-	<script type="text/javascript" src="${contextpath}/js/jquery.min.js"></script>
-	<script src="${contextpath}/js/laydate/laydate.js"></script>
-	<script src="${contextpath}/js/layer/layer.js"></script>
+<script type="text/javascript" src="${contextpath}/js/jquery.min.js"></script>
+		<script src="${contextpath}/js/bootstrap.min.js"></script>
+		<script src="${contextpath}/js/jquery.bootstrap-autohidingnavbar.js"></script>
+		<script src="${contextpath}/js/laydate/laydate.js"></script>
 	<script type="text/javascript">
 	jQuery(document).ready(function() {
 		$("#header").load("${contextpath}/header.htm?type=youke");

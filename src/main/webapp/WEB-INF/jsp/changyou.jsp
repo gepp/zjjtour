@@ -20,7 +20,7 @@
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
-				<li><a href="#">首页</a></li>
+				<li><a href="${contextpath }/">首页</a></li>
 				<li><a href="#">${changyou.name }</a></li>
 				<li><a href="#">${thirdShowName }</a></li>
 			</ul>
@@ -28,9 +28,9 @@
 		<!--面包屑  end-->
 		<!--分类标签-->
 		<div class="list-label">
-			<button onclick="jumpTingwen('')" <c:if test="${secondMenuId==''}"> class="active"</c:if>>全部</button>
+			<button onclick="jumpChangyou('')" <c:if test="${secondMenuId==''}"> class="active"</c:if>>全部</button>
 			<c:forEach var="menu" items="${secondMenuList }">
-			<button onclick="jumpTingwen('${menu.id}')" <c:if test="${secondMenuId==menu.id}"> class="active"</c:if>>${menu.name }</button>
+			<button onclick="jumpChangyou('${menu.id}')" <c:if test="${secondMenuId==menu.id}"> class="active"</c:if>>${menu.name }</button>
 			</c:forEach>
 		</div>
 		<!--分类标签 end-->
@@ -107,6 +107,14 @@
 				window.location.href='${contextpath}/changyouDetail.htm?id='+id;
 			}
 			 
+			function jumpChangyou(secondMenuId){
+				if(secondMenuId==''){
+					window.location.href="${contextpath}/changyou.htm";
+				}else{
+					window.location.href="${contextpath}/changyou.htm?secondMenuId="+secondMenuId;
+				}
+				
+			}
 			 
 			
 		</script>

@@ -34,7 +34,8 @@
 			</div>
 			<ul>
 			
-				<li><span>姓名:</span><font>${member.data.cloginname }</font></li>
+				<li><span>姓名:</span><font>${member.data.cname }</font></li>
+				
 				<li><span>性别:</span><font><c:if test="${member.data.csex==null }">未设置</c:if><c:if test="${member.data.csex!=null }">${member.data.csex }</c:if></font></li>
  				<li><span>生日:</span><font><c:if test="${member.data.dbirthday==null }">未设置</c:if><c:if test="${member.data.dbirthday!=null }">${member.data.dbirthday }</c:if></font></li>
 				<li><span>手机:</span><font>${member.data.ctel }</font></li>
@@ -45,9 +46,9 @@
 		<div class="tourist-left">
 			<ul>
 				<li class="active">游客中心</li>
-				<li>个人信息</li>
+				<li onclick="window.location.href='${contextpath}/toMemberEdit.htm'">个人信息</li>
 				<li onclick="window.location.href='${contextpath}/myActivityList.htm'">我的活动</li>
-				<li>我的投诉</li>
+				<li  onclick="window.location.href='${contextpath}/myTousuList.htm'">我的投诉</li>
 			</ul>
 		</div>
 		<div class="tourist-right">

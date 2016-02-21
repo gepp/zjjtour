@@ -8,7 +8,7 @@
 	<!-- 分页  -->
 	<tag>
 		<name>page</name>
-		<tag-class>com.jdk2010.framework.util.PageTag</tag-class>
+		<tag-class>com.jdk2010.util.PageTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>href</name>

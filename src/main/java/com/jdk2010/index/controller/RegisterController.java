@@ -89,6 +89,30 @@ public class RegisterController extends BaseController {
 	}
 	
 	
+	@RequestMapping("/toGetPwd")
+	public String toGetPwd(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		return "/toGetPwd";
+	}
+	
+	@RequestMapping("/sendCodeGetPwd")
+	public void sendCodeGetPwd(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String mobile=getPara("mobile");
+		String returnMsg=ZjjMsgUtil.sendCode(mobile, "3");
+		renderJson(response, returnMsg);
+	}
+	
+	@RequestMapping("/changePass")
+	public void changePass(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String mobile=getPara("mobile");
+		String verifyCode=getPara("verifyCode");
+		String cpassword=getPara("cpassword");
+//		cpassword=MD5Utils.md5(cpassword);
+		String returnMsg=ZjjMsgUtil.changePass(mobile,verifyCode,cpassword);
+		renderJson(response, returnMsg);
+	}
 	
 
 }

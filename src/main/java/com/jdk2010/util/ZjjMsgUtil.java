@@ -1,7 +1,12 @@
 package com.jdk2010.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.jdk2010.framework.util.HttpUtil;
+import com.jdk2010.framework.util.JsonUtil;
 import com.jdk2010.framework.util.MD5Utils;
+import com.jdk2010.framework.util.StringUtil;
 
 public class ZjjMsgUtil {
 	public static final String URL="http://ststest.travelzjj.com:15404/sts-app/Api/member/";
@@ -60,8 +65,63 @@ public class ZjjMsgUtil {
 		return returnStr;
 	}
 	
+	public static String updateMember(int id,String cnickname,String cname,String csex,String dbirthday,String cemail,String cheadimgurl){
+		String methodName="updateMember";
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("id", id);
+		if(StringUtil.isNotBlank(cnickname)){
+			map.put("cnickname", cnickname);
+		}
+		if(StringUtil.isNotBlank(cname)){
+			map.put("cname", cname);
+		}
+		if(StringUtil.isNotBlank(csex)){
+			map.put("csex", csex);
+		}
+		if(StringUtil.isNotBlank(dbirthday)){
+			map.put("dbirthday", dbirthday);
+		}
+		if(StringUtil.isNotBlank(cemail)){
+			map.put("cemail", cemail);
+		}
+		if(StringUtil.isNotBlank(cheadimgurl)){
+			map.put("cheadimgurl", cheadimgurl);
+		}
+		
+		String paramsJson =JsonUtil.toJson(map);
+		String sign = MD5Utils.md5(USERNAME+paramsJson+KEY);
+		String posturl=URL+ methodName+"?format=json&user="+USERNAME+"&paramsJson="+ paramsJson + "&sign="+sign;
+		System.out.println("updateMember-url:"+posturl);
+		String returnStr=HttpUtil.post(posturl,"");
+		System.out.println("returnstr:"+returnStr);
+		return returnStr;
+	}
+	
+	
+	//注册
+		public static String changePass(String mobile,String verifyCode,String cpassword){
+			String methodName="changePass";
+			String paramsJson ="{\"verifyCode\":\""+verifyCode+"\",\"ctel\":\""+mobile+"\",\"cpassword\":\""+cpassword+"\"}";
+			String sign = MD5Utils.md5(USERNAME+paramsJson+KEY);
+			System.out.println("sign:"+sign);
+			String posturl=URL+ methodName+"?format=json&user="+USERNAME+"&paramsJson="+ paramsJson + "&sign="+sign;
+			System.out.println("changePass-url:"+posturl);
+			String returnStr=HttpUtil.post(posturl,"");
+			System.out.println("returnstr:"+returnStr);
+			return returnStr;
+		}
+	
+	
+	
 	public static void main(String[] args) {
-		System.out.println(ZjjMsgUtil.login("18621790300","e10adc3949ba59abbe56e057f20f883e"));
+		int id=252;
+		String cnickname="";
+		String cname="123";
+		String csex="";
+		String dbirthday="";
+		String cemail="";
+		String cheadimgurl="";
+		System.out.println(changePass("18952028230","255291","123433"));
 	}
 	
 }

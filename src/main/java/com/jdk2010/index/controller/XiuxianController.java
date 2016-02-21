@@ -39,14 +39,7 @@ public class XiuxianController extends BaseController {
     
     @RequestMapping("/xiuxian")
     public String xiuxian(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List<SecurityMenu> quanjingMenuList=dalClient.queryForObjectList("select * from security_menu where parent_id=1011",SecurityMenu.class);
-        setAttr("quanjingMenuList",quanjingMenuList);
         
-        List<SecurityMenu> changyouMenuList=dalClient.queryForObjectList("select * from security_menu where parent_id=1010",SecurityMenu.class);
-        setAttr("changyouMenuList",changyouMenuList);
-        
-        List<SecurityMenu> tingwenMenuList=dalClient.queryForObjectList("select * from security_menu where parent_id=1037",SecurityMenu.class);
-        setAttr("tingwenMenuList",tingwenMenuList);
         
         Map<String,Object>  indexMap=dalClient.queryForObject("select * from system_indexsetting");
         setAttr("indexMap", indexMap);

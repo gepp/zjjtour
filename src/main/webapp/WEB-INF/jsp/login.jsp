@@ -19,12 +19,12 @@
 				<h4>登录</h4>
 				<input type="text" placeholder="请输入用户名" id="mobile" name="mobile"/>
 				<input type="password" placeholder="请输入密码" id="cpassword" name="cpassword"/>
-				<label>
+				<!-- <label>
 					<input type="checkbox" />
 					<span class="text">记住用户名</span>
-				</label>
+				</label> -->
 				<button onclick="login();">登录</button>
-				<p class="signup-guide clr"><span>没有账号？<a href="${contextpath }/toRegister.htm">免费注册</a></span><span>忘记密码？</span></p>
+				<p class="signup-guide clr" onclick="window.location.href='${contextpath}/toGetPwd.htm'"><span>没有账号？<a href="${contextpath }/toRegister.htm">免费注册</a></span><span>忘记密码？</span></p>
 			</div>
 			<div class="login-right">
 				<h4>微信扫描登录</h4>
@@ -50,6 +50,15 @@
 			$("#header").load("${contextpath}/header.htm?type=index");
 			$("#footer").load("${contextpath}/footer.htm");
 		});
+		
+		$(document).keyup(function(event){ 
+		    var keycode = event.which; 
+		    //处理回车的情况 
+		    if(keycode==13){ 
+		    	login();
+		   } 
+		    
+		});  
 		function login(){
 			var mobile = $("#mobile").val();
 			var cpassword = $("#cpassword").val();

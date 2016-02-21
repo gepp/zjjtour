@@ -79,7 +79,7 @@
 				<div class="hint2">${video.title }</div>
 				<div class="hint3"><i class="iconfont transition">&#xe614;</i></div>
 			</div>
- 			<video width="780" height="430" src="${video.videoUrl } " controls="controls">您的浏览器不支持改视频播放</video>
+ 			<%-- <video width="780" height="430" src="${video.videoUrl } " controls="controls">您的浏览器不支持改视频播放</video> --%>
  			</c:forEach>
 		</div>
 		<!--视频轮播 end-->
@@ -92,7 +92,7 @@
 					<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
 				</svg>
 			</h2>
-			<div class="more transition">查看更多</div>
+			<div class="more transition" onclick="window.location.href='${contextpath}/quanjing.htm'">查看更多</div>
 		</div>
 		<!--标题  end-->
 
@@ -438,7 +438,11 @@ $(document).ready(function($){
 						});
 					 
 				 }else{
-					 layer.alert(data.message);
+					 layer.alert(data.message, {
+						    closeBtn: 0
+						}, function(){
+						     window.location.href="${contextpath}/toLogin.htm";
+						});
 				 }
 			} 
 	});

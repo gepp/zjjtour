@@ -21,8 +21,8 @@
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
-				<li><a href="#">首页</a></li>
-				<li><a href="#">娱乐</a></li>
+				<li><a href="${contextpath }/">首页</a></li>
+				<li><a href="${contextpath }/activity.htm">娱乐</a></li>
 				<li>精彩活动</li>
 			</ul>
 		</div>
@@ -39,7 +39,7 @@
 								<ul class="clr">
 									<c:forEach var="item" items="${activityList }">
 									<li class="transition" onclick="jumpDetail('${item.id}')">
-										<div class="img-content"><img src="${item.indeximg }" class="transition">
+										<div class="img-content"><img src="${item.smallimg }" class="transition">
 											<c:if test="${item.topStatus==1 }">
 											<i class="iconfont">&#xe617;</i>
 											</c:if>

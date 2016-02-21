@@ -20,8 +20,8 @@
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
-				<li><a href="#">首页</a></li>
-				<li><a href="#">娱乐</a></li>
+				<li><a href="${contextpath }/">首页</a></li>
+				<li><a href="${contextpath }/activity.htm">娱乐</a></li>
 				<li>精彩活动</li>
 			</ul>
 		</div>
@@ -51,12 +51,12 @@
 					${activity.content }
 					</div>
 				<!--分页-->
-				<div class="page">
+				<!-- <div class="page">
 					<ul class="clr">
 						<li title="下一个活动"><i class="iconfont">&#xe611;</i></li>
 						<li title="上一活动"><i class="iconfont">&#xe611;</i></li>
 					</ul>
-				</div>
+				</div> -->
 				<!--分页end-->
 				</div>
 			</div>
@@ -135,7 +135,11 @@
 								});
 							 
 						 }else{
-							 layer.alert(data.message);
+							 layer.alert(data.message, {
+								    closeBtn: 0
+								}, function(){
+								     window.location.href="${contextpath}/toLogin.htm";
+								});
 						 }
 					} 
 			});

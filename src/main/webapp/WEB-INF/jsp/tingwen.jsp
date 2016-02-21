@@ -21,7 +21,7 @@
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
-				<li><a href="#">首页</a></li>
+				<li><a href="${contextpath }/">首页</a></li>
 				<li><a href="#">听闻</a></li>
 				<li><a href="#">${thirdShowName }</a></li>
 			</ul>

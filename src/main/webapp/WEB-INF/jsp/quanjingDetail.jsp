@@ -15,14 +15,16 @@
 		 <div id="header">
 		</div>
 		<!-- banner -->
+		<div >
 			<img src="${quanjing.img }" width="100%"/>
+			</div>
 		<!--banner end-->
 		<!--面包屑-->
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
-				<li><a href="#">首页</a></li>
-				<li><a href="#">全景</a></li>
+				<li><a href="${contextpath }/">首页</a></li>
+				<li><a href="${contextpath }/quanjing.htm">全景</a></li>
 				<c:if test="${secondMenu!=null }">
 				<li><a href="#">${secondMenu.name }</a></li>
 				<li><a href="#">${bqMenu.name }</a></li>
@@ -35,12 +37,15 @@
 		<!--全景详情-->
 		<div class="panorama-details clr">
 			<div class="section">
+				<c:if test="${securityNew.maodianStatus==1 }">
 				<div id="menu1" class="menu">
-
+					
 					<div id="menu">
 						<div class="line"></div>
 						<ul>
+							<c:if test="${securityNew.quanjingUrl !=null&&securityNew.quanjingUrl !='' }">
 							<li><a href="#item-1" class="cur transition">360°全景</a></li>
+							</c:if>
 								<c:forEach items="${biaoqianList }" var="biaoqian">
 								<li><a href="#item${biaoqian.orderlist }" class="transition">${biaoqian.maodian_name }</a></li>
 							</c:forEach>
@@ -48,10 +53,14 @@
 					</div>
 				</div>
 				<div id="content">
+				<c:if test="${securityNew.quanjingUrl !=null&&securityNew.quanjingUrl !='' }">
 					<div class="content-item" id="item-1">
+					
 						<h4><i class="iconfont">&#xe610;</i>${biaoqian.maodian_name }</h4>
 						<iframe allowtransparency="true" frameborder="0" src="${securityNew.quanjingUrl }" width="750" height="400" style="border: 1px solid #eee;">这里是全景控件</iframe>
+				
 					</div>
+				</c:if>
 					<c:forEach items="${biaoqianList }" var="biaoqian">
 	 				    <div class="content-item" id="item${biaoqian.orderlist }">
 	 				    	<h4><i class="iconfont">&#xe610;</i>${biaoqian.maodian_name }</h4>
@@ -59,6 +68,32 @@
 						</div>
  				    </c:forEach>
 				</div>
+			</c:if>
+			<c:if test="${securityNew.maodianStatus!=1 }">
+			<div  >
+			<div class="news-font-list">
+					<h4>${securityNew.title }</h4>
+					<div class="tit-bar">
+					<fmt:formatDate value="${securityNew.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
+						<span>${ctime }</span>
+						<span><i class="iconfont">&#xe616;</i>&nbsp;0</span></span>
+						<span>来源：本站原创</span>
+					</div>
+					<div class="abstract">${securityNew.abstractContent }</div>
+					<div class="news-content">
+						 ${securityNew.content }
+					</div>
+				<!--分页-->
+				<!-- <div class="page">
+					<ul class="clr">
+						<li title="下一篇"><i class="iconfont">&#xe611;</i></li>
+						<li title="上一篇"><i class="iconfont">&#xe611;</i></li>
+					</ul>
+				</div> -->
+				<!--分页end-->
+				</div>
+			</div>
+			</c:if>
 			</div>
 			 <div id="rightNews"></div>
 		</div>
