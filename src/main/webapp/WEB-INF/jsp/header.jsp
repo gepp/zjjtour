@@ -39,7 +39,7 @@
 					</div>
 				</c:if>
 				<div class="search">
-						<input type="text" class="transition" placeholder="请输入搜索关键字" value="${keyword }" id="keyword" onfocus="showSearch();">
+						<input type="text" class="transition" placeholder="请输入搜索关键字" value="${keyword }" autocomplete="off" id="keyword" >
 						<button class="iconfont transition" type="button" onclick="search()">&#xe605;</button>
 						<!--搜索提示-->
 							<div id="searchTag" style="display:none">
@@ -53,8 +53,7 @@
 							<!--搜索提示 end-->
 					</div>
 					<div class="weather">
-					<iframe allowtransparency="true" frameborder="0" width="317" height="28" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=1&v=0&d=1&bd=0&k=000000&f=&q=1&e=1&a=1&c=57558&w=317&h=28&align=center"></iframe>
-					</div>
+<iframe width="240" scrolling="no" height="24" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1"></iframe>					</div>
 				</div>
 				<div class="logo-right-bottom">
 					<!--导航-->
@@ -63,8 +62,8 @@
 						<li class="<c:if test="${type=='index'||type=='' }">active</c:if>" _t_nav="home">
 							<div class="normal"><a href="${contextpath }/"><i class="iconfont font-150">&#xe608;</i></a></div>
 						</li>
-						<li _t_nav="shijue" class="<c:if test="${type=='shijue' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/">视觉</a></div>
+						<li _t_nav="shijue" class="<c:if test="${type=='shipin' }">active</c:if>">
+							<div class="normal"><a href="${contextpath }/shipin.htm">视觉</a></div>
 						</li>
 						<li _t_nav="panorama" class="<c:if test="${type=='quanjing' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/quanjing.htm">全景</a></div>
@@ -177,6 +176,22 @@
 			//		头部悬浮
 			$("div.navbar-fixed-top").autoHidingNavbar();
 			jQuery(document).ready(function() {
+				
+				$('#keyword').hover(function () {
+		            showSearch();
+		        }, function () {
+		            closeSearch();
+		        })
+		        $('#keyword').focus(function () {
+		        	closeSearch();
+		        })
+		        
+		        $('#searchTag').hover(function () {
+		            showSearch();
+		        }, function () {
+		            closeSearch();
+		        })
+				
 				var qcloud = {};
 				$('[_t_nav]').hover(function() {
 					var _nav = $(this).attr('_t_nav');
@@ -221,5 +236,7 @@
  
 		</script>
 	</body>
-
+	<c:if test="${type!='index'&&type!='' }"> 
+	<script type="text/javascript" src="${contextpath }/js/scrolltopcontrol.js"></script><!--返回顶部-->
+	</c:if>
 </html>

@@ -36,7 +36,7 @@
 		<!--分类标签 end-->
 		 
 		 <!--新闻列表-->
-		 <div class="panorama-details clr">
+		 <div class="panorama-details clr" id="tupian">
 			<div class="section">
 				<div class="news-font-list">
 					<ul>

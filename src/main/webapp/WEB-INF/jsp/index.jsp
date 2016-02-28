@@ -58,30 +58,39 @@
 		</div>
 		<!--标题  end-->
 		<!--视频轮播-->
-
-		<div id="show" rel="autoPlay">
-			<div class="img">
-				<span>
-						<c:forEach var="video" items="${videoList }">
-						
-		              <a class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">${video.title }</div><img src="${video.indeximg }" /></a>
-
-		          		</c:forEach>
-		          </span>
-				<div class="masks mk1"></div>
-				<div class="masks mk2"></div>
+          
+		 <div class="slider"  >
+			<div class="bd">
+				<ul>
+					<c:forEach items="${videoList }" var="video">
+					<li onclick="openShipin('${video.title}','${video.outJs }');">
+						<a  class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">${video.title }</div><img src="${video.indeximg }" /></a>
+					</li>
+ 					 </c:forEach>
+				</ul>
+			</div>
+			<div class="hd">
+				<ul>
+				</ul>
+			</div>
+			<div class="pnBtn prev"> <span class="blackBg"></span>
+				<a class="arrow" href="javascript:void(0)"><i class="iconfont">&#xe609;</i></a>
+			</div>
+			<div class="pnBtn next"> <span class="blackBg"></span>
+				<a class="arrow" href="javascript:void(0)"><i class="iconfont">&#xe612;</i></a>
 			</div>
 		</div>
 		<!--视频弹窗-->
 		<div class="hint">
-			<c:forEach var="video" items="${videoList }">
 			<div class="hint-in1">
-				<div class="hint2">${video.title }</div>
+				<div class="hint2" id="shipinTitle"></div>
 				<div class="hint3"><i class="iconfont transition">&#xe614;</i></div>
 			</div>
- 			<%-- <video width="780" height="430" src="${video.videoUrl } " controls="controls">您的浏览器不支持改视频播放</video> --%>
- 			</c:forEach>
-		</div>
+			<div id="shipinUrl">
+			<div id="youkuplayer" style="width:780px;height:430px"></div>
+			
+			</div>
+ 		</div>
 		<!--视频轮播 end-->
 		<!--标题-->
 		<div class="index-title clr" id="index_2">
@@ -258,6 +267,7 @@
 		<script type="text/javascript" src="${contextpath }/js/slide.js"></script>
 		<script src="${contextpath}/js/layer/layer.js"></script>
 		<script src="${contextpath}/js/common.js"></script>
+		<script src="http://player.youku.com/jsapi"></script>
 
 		<script>
 			//		头部悬浮
@@ -284,6 +294,9 @@
 					}, 150);
 				});
 			});
+			jQuery(".slider .bd li").first().before( jQuery(".slider .bd li").last() );
+			jQuery(".slider").hover(function(){ jQuery(this).find(".arrow").stop(true,true).fadeIn(300) },function(){ jQuery(this).find(".arrow").fadeOut(300) });				jQuery(".slider").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"leftLoop",autoPlay:true, vis:3,autoPage:true, trigger:"click"});
+
 			//			 焦点图
 			jQuery(".index_focus").hover(function() {
 				jQuery(this).find(".index_focus_pre,.index_focus_next").stop(true, true).fadeTo("show", 1)
@@ -383,18 +396,31 @@ function jumpQuanjing(secondMenuId){
 }  
 //         视频弹窗
 $(document).ready(function($){
-
-	$(".btn1").click(function(event){
-		$(".hint").css({"display":"block"});
-		$(".box").css({"display":"block"});
-	});
-	
 	$(".hint3").click(function(event) {
 		$(this).parent().parent().css({"display":"none"});
 		$(".box").css({"display":"none"});
 	});
 	
 });
+ 	function openShipin(title,outJsId){
+ 		$(".hint").css({"display":"block"});
+		$(".box").css({"display":"block"});
+ 		$("#shipinTitle").html(title);
+ 		
+ 		 /* var outJs="<div id=\"youkuplayer\" style=\"width:780px;height:430px\"></div>"+
+ 		"<script type=\"text/javascript\" src=\"http://player.youku.com/jsapi\">"+
+ 		"player = new YKU.Player('youkuplayer',{"+
+ 		"styleid: '0',client_id: '383f88d830f3015c',vid: '"+outJsId+"'});"
+ 		+"<//script>"; */
+ 		player = new YKU.Player('youkuplayer',{
+ 			styleid: '0',
+ 			client_id: '383f88d830f3015c',
+ 			vid: outJsId
+ 		 });
+ 		
+ 		//$("#shipinUrl").html(outJs);  
+ 	}
+
 	function logout(){
 		 $.ajax({
 				type: "post", 

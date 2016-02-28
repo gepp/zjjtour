@@ -51,6 +51,19 @@
 												<span class="transition"><font class="transition">活动时间:</font>${startTime }至${endTime }</span>
 												<span class="transition"><font class="transition">报名人数:</font>${item.usercount }</span>
 											</div>
+											
+											<c:if test="${item.activityStatus==0 }">
+												<div  class="activity  not-started" ><i class="iconfont">&#xe61e;</i></div>
+												</c:if>
+												<c:if test="${item.activityStatus==1 }">
+												<div  class="activity  start" ><i class="iconfont">&#xe61d;</i></div>
+ 												</c:if>
+												<c:if test="${item.activityStatus==2 }">
+												<div  class="activity  end" ><i class="iconfont">&#xe61f;</i></div>
+												</c:if>
+											  
+												
+											
 									</li>
 									 </c:forEach>
 								</ul>

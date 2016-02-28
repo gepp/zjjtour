@@ -475,12 +475,5 @@ public class IndexController extends BaseController {
 		return "/jingqu";
 	}
 
-	@RequestMapping("/chengxin")
-	public String chengxin(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		
-		SecurityNews securityNews=dalClient.queryForObject("select * from security_news where menu_id=1080",SecurityNews.class);
-		setAttr("securityNews", securityNews);
-		return "/chengxin";
-	}
+	 
 }
