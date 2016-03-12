@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.tag.mytag.com" prefix="page"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +24,7 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="#">听闻</a></li>
+				<li><a href="#" onclick="jumpTingwen('')">听闻</a></li>
 				<li><a href="#">${thirdShowName }</a></li>
 			</ul>
 		</div>
@@ -41,52 +43,53 @@
 		 <!--新闻列表-->
 		<div class="news-list" id="tupian">
 			<ul class="clr" id="tupian">
-				<c:forEach var="item" items="${newsList }">
+				<c:forEach items="${pageList.list }" var="item">
 				<li class="transition" onclick="jumpDetail('${item.id}')">
 					<div class="news-list-img">
 						<img src="${item.indeximg }" class="transition">
 					</div>
 					<h5 class="transition">
-					<c:if test="${item.index_status==1 }">
+					<c:if test="${item.indexStatus==1 }">
 						<span class="zhiding f14"><em></em>置顶</span>
 						</c:if>
-						<c:if test="${item.top_status==1 }">
+						<c:if test="${item.topStatus==1 }">
 						<span class="toutiao f14"><em></em>头条</span>
 						</c:if>
 					${item.title }</h5>
-					<p>${item.abstract_content }</p>
+					<p>${item.abstractContent }</p>
 					<fmt:formatDate value="${item.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 					<span class="time">${ctime }</span>
 					<span class="number"><i class="iconfont" >&#xe616;</i>0</span>
 				</li>
 				 </c:forEach>
 			</ul>
+			<page:page href="${contextpath}/tingwen.htm" data="pageList" />	
 		</div>
 		<!--图标列表-->	
 		 <div class="panorama-details clr"  id="wenzi" style="display:none">
 			<div class="section">
 				<div class="news-font-list">
 					<ul>
-						<c:forEach var="item" items="${newsList }">
+								<c:forEach items="${pageList.list }" var="item">
 									 <li class="clr" style="float:none" onclick="jumpDetail('${item.id}')">
 											<h4 class="transition">
-											<c:if test="${item.index_status==1 }">
+											<c:if test="${item.indexStatus==1 }">
 											<span class="zhiding"><em></em>置顶</span>
 											</c:if>
-											<c:if test="${item.top_status==1 }">
+											<c:if test="${item.topStatus==1 }">
 											<span class="toutiao"><em></em>头条</span>
 											</c:if>
 											${item.title }
 											<fmt:formatDate value="${item.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 											</h4>
 											<div class="time">${ctime }<span class="number"><i class="iconfont">&#xe616;</i>0</span></div>
-								<p>${item.abstract_content }<span class="transition">查看详情<i class="iconfont">&#xe611;</i></span></p>
+								<p>${item.abstractContent }<span class="transition">查看详情<i class="iconfont">&#xe611;</i></span></p>
 									</li>
 								 
 						</c:forEach>
 					
 					</ul>
-					
+					<page:page href="${contextpath}/tingwen.htm" data="pageList" />	
 				 
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.tag.mytag.com" prefix="page"%>
 <!DOCTYPE html>
 <html>
 
@@ -38,33 +39,19 @@
 		 <!--新闻列表-->
 		 <div class="news-list">
 								<ul class="clr">
-									<c:forEach var="item" items="${newsList }">
+									<c:forEach items="${pageList.list }" var="item">
 									<li class="transition" onclick="jumpDetail('${item.id}')">
 										<div class="news-list-img">
 											<img src="${item.indeximg }" class="transition">
 										</div>
 										<h5 class="transition">${item.title }</h5>
-										<p>${item.abstract_content }</p>
+										<p>${item.abstractContent }</p>
 										<span class="time">${item.ctime }</span>
 										<span class="number"><i class="iconfont">&#xe616;</i>0</span>
 									</li>
 									 </c:forEach>
 								</ul>
-								<!--分页-->
-								<!-- <div class="page">
-									<ul class="clr">
-										<li><i class="iconfont">&#xe611;</i></li>
-										<li>10</li>
-										<li>9</li>
-										<li>8</li>
-										<li class="none">……</li>
-										<li>3</li>
-										<li>2</li>
-										<li class="active">1</li>
-										<li><i class="iconfont">&#xe611;</i></li>
-									</ul>
-								</div> -->
-								<!--分页end-->
+								<page:page href="${contextpath}/xiuxian.htm" data="pageList" />	
 							</div>
 		<!--图标列表-->	
 		

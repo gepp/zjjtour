@@ -6,10 +6,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>${indexMap.title }</title>
+		<title>${activity.title }</title>
 	</head>
 	<link rel="stylesheet" href="${contextpath }/css/style.css" />
 	<link rel="stylesheet" href="${contextpath }/font/iconfont.css" />
+	 
 
 	<body>
 		 
@@ -44,7 +45,16 @@
 							<c:if test="${activity.activityStatus==2 }">已结束</c:if>
 							</span>
 							<!--下面的按钮不可点击时，把“carried-out”换成“active”-->
+							<c:if test="${activity.activityStatus==0 }">
+							<button class="active" >未开始</button>
+							</c:if>
+							
+							<c:if test="${activity.activityStatus==1 }">
 							<button class="carried-out" onclick="checkUser('${activity.activityStatus }','${activity.id }')">我要报名</button>
+							</c:if>
+							<c:if test="${activity.activityStatus==2 }">
+							<button class="active" >已结束</button>
+							</c:if>
 						</div>
 					</div>
 					<div class="news-content">
@@ -138,7 +148,7 @@
 							 layer.alert(data.message, {
 								    closeBtn: 0
 								}, function(){
-								     window.location.href="${contextpath}/toLogin.htm";
+									window.location.reload();
 								});
 						 }
 					} 

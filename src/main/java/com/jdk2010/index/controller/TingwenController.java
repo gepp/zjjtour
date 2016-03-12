@@ -20,6 +20,8 @@ import com.jdk2010.base.security.securitynews.model.SecurityNews;
 import com.jdk2010.base.security.securitynews.service.ISecurityNewsService;
 import com.jdk2010.framework.controller.BaseController;
 import com.jdk2010.framework.dal.client.DalClient;
+import com.jdk2010.framework.util.DbKit;
+import com.jdk2010.framework.util.Page;
 import com.jdk2010.framework.util.StringUtil;
 import com.jdk2010.member.memberactivity.model.MemberActivity;
 import com.jdk2010.system.systemadv.model.SystemAdv;
@@ -70,18 +72,22 @@ public class TingwenController extends BaseController {
         setAttr("secondMenuId", secondMenuId);
         String thirdShowName="";
         //全景的新闻
-        List<Map<String,Object>> newsList;
+        DbKit dbKit=null;        
         if(secondMenuId!=""){
-            newsList=dalClient.queryForObjectList("select * from security_news where menu_id="+secondMenuId+" and review_status=1 order by orderlist asc");
+        	dbKit = new DbKit("select * from security_news where menu_id="+secondMenuId+" and review_status=1 order by orderlist asc");
             SecurityMenu thirdShowMenu=   dalClient.findById(secondMenuId,SecurityMenu.class);
             thirdShowName=thirdShowMenu.getName();
         }else{
         	thirdShowName="全部";
-             newsList=dalClient.queryForObjectList("select * from security_news where  review_status=1 and menu_id in (select id from security_menu where  parent_id=1037) order by orderlist asc");
+        	dbKit = new DbKit("select * from security_news where  review_status=1 and menu_id in (select id from security_menu where  parent_id=1037) order by orderlist asc");
          }
         setAttr("thirdShowName", thirdShowName);
         
-        setAttr("newsList", newsList);
+        Page pagePage = getPage();
+		pagePage.setPageSize(6);
+		Page pageList = dalClient.queryForPageList(dbKit, pagePage,
+				SecurityNews.class);
+		setAttr("pageList", pageList);
         return "/tingwen" ;
     }
     
@@ -103,7 +109,9 @@ public class TingwenController extends BaseController {
         setAttr("quanjing", menu);
          
         String id=getPara("id");
+        dalClient.update("update security_news set readtotal=readtotal+1 where id="+id);
         SecurityNews securityNew=dalClient.findById(id, SecurityNews.class);
+      
         setAttr("securityNew", securityNew);
         
         SecurityMenu securityMenu=dalClient.queryForObject("select * from security_menu where id="+securityNew.getMenuId() ,SecurityMenu.class);

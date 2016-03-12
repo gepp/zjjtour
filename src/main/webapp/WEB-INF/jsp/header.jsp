@@ -10,7 +10,9 @@
 	</head>
 	<link rel="stylesheet" href="${contextpath }/css/style.css" />
 	<link rel="stylesheet" href="${contextpath }/font/iconfont.css" />
-		<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
+	<link rel="shortcut icon" href="${contextpath }/favicon.ico"/>
+	<link rel="bookmark" href="${contextpath }/favicon.ico"/>
+	<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
 
 	<body>
 		<!--视频弹窗遮罩  这一段需要放在前面-->
@@ -28,7 +30,7 @@
 				<div class="logo-right-top clr">
 				<c:if test="${member!=null }">
 					<div class="login">
-						<a href="">欢迎您,${member.data.cloginname }</a><a href="javascript:void(0)" onclick="logout();">退出</a>
+						<a href="${contextpath }/memberCenter.htm">欢迎您,${member.data.cloginname }</a><a href="javascript:void(0)" onclick="logout();">退出</a>
 					</div>
 
 				</c:if>
@@ -43,7 +45,7 @@
 						<button class="iconfont transition" type="button" onclick="search()">&#xe605;</button>
 						<!--搜索提示-->
 							<div id="searchTag" style="display:none">
-								<div id="tagClose" onclick="closeSearch();">关闭</div>
+								 
 								<p><span>热门标签：</span>
 								<c:forEach items="${wordList }" var="word">
 								<a href="javascript:void(0)" onClick="searchSelectKeyword('${word.name}')">${word.name }</a>
@@ -53,7 +55,7 @@
 							<!--搜索提示 end-->
 					</div>
 					<div class="weather">
-<iframe width="240" scrolling="no" height="24" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1"></iframe>					</div>
+<iframe width="280" scrolling="no" height="24" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1"></iframe>					</div>
 				</div>
 				<div class="logo-right-bottom">
 					<!--导航-->
@@ -232,7 +234,14 @@
 				}
 				window.location.href="${contextpath}/search.htm?keyword="+keyword;
 			}
-			
+			$(document).keyup(function(event){ 
+			    var keycode = event.which; 
+			    //处理回车的情况 
+			    if(keycode==13){ 
+			    	search();
+			   } 
+			    
+			});
  
 		</script>
 	</body>

@@ -22,7 +22,9 @@ import com.jdk2010.base.security.securitynews.service.ISecurityNewsService;
 import com.jdk2010.framework.constant.Constants;
 import com.jdk2010.framework.controller.BaseController;
 import com.jdk2010.framework.dal.client.DalClient;
+import com.jdk2010.framework.util.DbKit;
 import com.jdk2010.framework.util.JsonUtil;
+import com.jdk2010.framework.util.Page;
 import com.jdk2010.framework.util.ReturnData;
 import com.jdk2010.member.memberactivity.model.MemberActivity;
 import com.jdk2010.search.systemsearchword.model.SystemSearchword;
@@ -45,10 +47,11 @@ public class IndexController extends BaseController {
 	ISystemAdvService systemAdvService;
 
 	@RequestMapping("/dtIndex")
-	public String dtIndex(HttpServletRequest request, HttpServletResponse response){
+	public String dtIndex(HttpServletRequest request,
+			HttpServletResponse response) {
 		return "index";
 	}
-	
+
 	@RequestMapping("/")
 	public String index(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -159,15 +162,18 @@ public class IndexController extends BaseController {
 				"select * from security_menu where parent_id=1058",
 				SecurityMenu.class);
 		setAttr("xiuxianMenuList", xiuxianMenuList);
-		
+
 		Map<String, Object> indexMap = dalClient
 				.queryForObject("select * from system_indexsetting");
 		setAttr("indexMap", indexMap);
 
 		String type = getPara("type");
 		setAttr("type", type);
-		
-		List<SystemSearchword> wordList=dalClient.queryForObjectList("select * from system_searchword where status=1 order by orderlist ",SystemSearchword.class);
+
+		List<SystemSearchword> wordList = dalClient
+				.queryForObjectList(
+						"select * from system_searchword where status=1 order by orderlist ",
+						SystemSearchword.class);
 		setAttr("wordList", wordList);
 
 		return "/header";
@@ -180,13 +186,13 @@ public class IndexController extends BaseController {
 		// 活动
 		List<MemberActivity> activityList = dalClient
 				.queryForObjectList(
-						"select * from member_activity where  top_status=1 and review_status=1 limit 0,2",
+						"select * from member_activity where  id in (select key_id from setting where type=2)",
 						MemberActivity.class);
 		setAttr("activityList", activityList);
 		// 畅游
 		List<SecurityNews> changyouList = dalClient
 				.queryForObjectList(
-						"select * from security_news where menu_id in (select id from security_menu where parent_id=1010) and index_status=1 and review_status=1   limit 0,8",
+						"select * from security_news where id in (select key_id from setting where type=1)",
 						SecurityNews.class);
 		setAttr("changyouList", changyouList);
 		return "/right";
@@ -195,6 +201,9 @@ public class IndexController extends BaseController {
 	@RequestMapping("/footer")
 	public String footer(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		Map<String, Object> indexMap = dalClient
+				.queryForObject("select * from system_indexsetting");
+		setAttr("indexMap", indexMap);
 		return "/footer";
 	}
 
@@ -203,7 +212,7 @@ public class IndexController extends BaseController {
 			HttpServletResponse response) throws Exception {
 		Map<String, Object> member = getSessionAttr("member");
 		if (member == null) {
-			return "/login";
+			return REDIRECT+"/toLogin";
 		} else {
 			// 活动
 			Map<String, Object> data = (Map<String, Object>) member.get("data");
@@ -275,7 +284,7 @@ public class IndexController extends BaseController {
 		// setSessionAttr("member",JsonUtil.jsonToMap(testMember));
 		Map<String, Object> member = getSessionAttr("member");
 		if (member == null) {
-			return "/login";
+			return REDIRECT+"/toLogin";
 		} else {
 			// 活动
 			Map<String, Object> data = (Map<String, Object>) member.get("data");
@@ -294,7 +303,7 @@ public class IndexController extends BaseController {
 			HttpServletResponse response) throws Exception {
 		Map<String, Object> member = getSessionAttr("member");
 		if (member == null) {
-			return "/login";
+			return REDIRECT+"/toLogin";
 		} else {
 			return "/memberEdit";
 		}
@@ -304,37 +313,37 @@ public class IndexController extends BaseController {
 	public String memberEditAction(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Map<String, Object> member = getSessionAttr("member");
-		System.out.println("member:"+member);
+		System.out.println("member:" + member);
 		if (member == null) {
-			return "/login";
+			return REDIRECT+"/toLogin";
 		} else {
-			
-		Map<String, Object> data = (Map<String, Object>) member.get("data");
-		System.out.println(data);
-		String memberid = data.get("id") + "";
-		Integer id=Integer.parseInt(memberid);
-		String cnickname = getPara("cnickname");
-		cnickname="";
-		String cname = getPara("cname");
-		String csex = getPara("csex");
-		csex="";
-		String dbirthday = getPara("dbirthday");
-		dbirthday="";
-		
-		String cemail = getPara("cemail");
-		cemail="";
-		String cheadimgurl = getPara("cheadimgurl");
-		cheadimgurl="";
-		String returnMsg = ZjjMsgUtil.updateMember(id, cnickname, cname, csex,
-				dbirthday, cemail, cheadimgurl);
-		Map returnMap=JsonUtil.jsonToMap(returnMsg);
-		if(returnMap.get("status").equals("failure")){
-			
-		}else{
-			setSessionAttr("member",returnMap );
-		}
-		
-		return FORWARD+"/memberCenter";
+
+			Map<String, Object> data = (Map<String, Object>) member.get("data");
+			System.out.println(data);
+			String memberid = data.get("id") + "";
+			Integer id = Integer.parseInt(memberid);
+			String cnickname = getPara("cnickname");
+			//cnickname = "";
+			String cname = getPara("cname");
+			String csex = getPara("csex");
+			//csex = "";
+			String dbirthday = getPara("dbirthday");
+			//dbirthday = "";
+
+			String cemail = getPara("cemail");
+			//cemail = "";
+			String cheadimgurl = getPara("cheadimgurl");
+			//cheadimgurl = "";
+			String returnMsg = ZjjMsgUtil.updateMember(id, cnickname, cname,
+					csex, dbirthday, cemail, cheadimgurl);
+			Map returnMap = JsonUtil.jsonToMap(returnMsg);
+			if (returnMap.get("status").equals("failure")) {
+
+			} else {
+				setSessionAttr("member", returnMap);
+			}
+
+			return FORWARD + "/memberCenter";
 		}
 	}
 
@@ -391,17 +400,14 @@ public class IndexController extends BaseController {
 		}
 		setAttr("currentId", currentId);
 
-		// 全景的新闻
-		List<Map<String, Object>> newsList;
-		if (currentId == "") {
-			newsList = new ArrayList<Map<String, Object>>();
-		} else {
-			newsList = dalClient
-					.queryForObjectList("select * from security_news where id in (select news_id from bq_news where bq_id="
-							+ currentId + ")");
-		}
-
-		setAttr("quanjingList", newsList);
+		DbKit dbKit = new DbKit(
+				"select * from security_news where id in (select news_id from bq_news where bq_id="
+						+ currentId + ")");
+		Page pagePage = getPage();
+		pagePage.setPageSize(6);
+		Page pageList = dalClient.queryForPageList(dbKit, pagePage,
+				SecurityNews.class);
+		setAttr("pageList", pageList);
 		return "/quanjing";
 	}
 
@@ -434,6 +440,8 @@ public class IndexController extends BaseController {
 
 		String id = getPara("id");
 		SecurityNews securityNew = dalClient.findById(id, SecurityNews.class);
+		 securityNew.setReadtotal(securityNew.getReadtotal()+1);
+	        dalClient.update(securityNew);
 		setAttr("securityNew", securityNew);
 
 		String bqId = getPara("bqId");
@@ -467,13 +475,11 @@ public class IndexController extends BaseController {
 						+ currentId + ")");
 		renderJson(response, newsList);
 	}
-	
-	
+
 	@RequestMapping("/jingqu")
 	public String jingqu(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		return "/jingqu";
 	}
 
-	 
 }

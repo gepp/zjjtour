@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.tag.mytag.com" prefix="page"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -40,41 +42,27 @@
 			<div class="section">
 				<div class="news-font-list">
 					<ul>
-						<c:forEach var="item" items="${newsList }">
+						<c:forEach items="${pageList.list }" var="item">
 									 <li class="clr" style="float:none" onclick="jumpDetail('${item.id}')">
 											<h4 class="transition">
-											<c:if test="${item.index_status==1 }">
+											<c:if test="${item.indexStatus==1 }">
 											<span class="zhiding"><em></em>置顶</span>
 											</c:if>
-											<c:if test="${item.top_status==1 }">
+											<c:if test="${item.topStatus==1 }">
 											<span class="toutiao"><em></em>头条</span>
 											</c:if>
 											${item.title }
 											<fmt:formatDate value="${item.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 											</h4>
 											<div class="time">${ctime }<span class="number"><i class="iconfont">&#xe616;</i>0</span></div>
-								<p>${item.abstract_content }<span class="transition">查看详情<i class="iconfont">&#xe611;</i></span></p>
+								<p>${item.abstractContent }<span class="transition">查看详情<i class="iconfont">&#xe611;</i></span></p>
 									</li>
 								 
 						</c:forEach>
 					
 					</ul>
 					
-				<!--分页-->
-				<!-- <div class="page">
-					<ul class="clr">
-						<li><i class="iconfont">&#xe611;</i></li>
-						<li>10</li>
-						<li>9</li>
-						<li>8</li>
-						<li class="none">……</li>
-						<li>3</li>
-						<li>2</li>
-						<li class="active">1</li>
-						<li><i class="iconfont">&#xe611;</i></li>
-					</ul>
-				</div> -->
-				<!--分页end-->
+				  <page:page href="${contextpath}/changyou.htm" data="pageList" />	
 				</div>
 			</div>
 			 <div id="rightNews"></div>

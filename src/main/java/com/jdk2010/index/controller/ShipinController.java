@@ -17,7 +17,10 @@ import com.jdk2010.base.security.securitynews.model.SecurityNews;
 import com.jdk2010.base.security.securitynews.service.ISecurityNewsService;
 import com.jdk2010.framework.controller.BaseController;
 import com.jdk2010.framework.dal.client.DalClient;
+import com.jdk2010.framework.util.DbKit;
+import com.jdk2010.framework.util.Page;
 import com.jdk2010.framework.util.StringUtil;
+import com.jdk2010.member.membercomplain.model.MemberComplain;
 import com.jdk2010.system.systemadv.service.ISystemAdvService;
 
 
@@ -46,9 +49,11 @@ public class ShipinController extends BaseController {
         
         SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1054" ,SecurityMenu.class);
         setAttr("shipin", menu);
-        List<Map<String,Object>> newsList;
-        newsList=dalClient.queryForObjectList("select * from security_news where  review_status=1 and menu_id =1054 order by orderlist asc");
-        setAttr("newsList", newsList);
+        DbKit dbKit = new DbKit("select * from security_news where  review_status=1 and menu_id =1054 order by orderlist asc");
+        Page pagePage=getPage();
+    	pagePage.setPageSize(6);
+    	Page pageList = dalClient.queryForPageList(dbKit, pagePage, SecurityNews.class);
+    	setAttr("pageList", pageList);
         return "/shipin" ;
     }
      

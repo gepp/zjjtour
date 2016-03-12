@@ -6,11 +6,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>${indexMap.title }</title>
+		<title>${securityNew.title }</title>
 	</head>
 	<link rel="stylesheet" href="${contextpath }/css/style.css" />
 	<link rel="stylesheet" href="${contextpath }/font/iconfont.css" />
-
+	<meta name="Keywords" content="${securityNew.keywords }">
 	<body>
 		 
 		 <div id="header"></div>
@@ -33,7 +33,7 @@
 					<h4>${securityNew.title }</h4>
 					<div class="tit-bar">
 						<span>${securityNew.ctime }</span>
-						<span><i class="iconfont">&#xe616;</i>&nbsp;0</span></span>
+						<span><i class="iconfont">&#xe616;</i>&nbsp;${securityNew.readtotal }</span></span>
 						<span>来源：本站原创</span>
 					</div>
 					<div class="abstract">${securityNew.abstractContent }</div>

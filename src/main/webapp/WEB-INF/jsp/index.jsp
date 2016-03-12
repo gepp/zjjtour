@@ -54,7 +54,7 @@
 					<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
 				</svg>
 			</h2>
-			<div class="more transition">查看更多</div>
+			<div class="more transition" onclick="window.location.href='${contextpath}/shipin.htm'">查看更多</div>
 		</div>
 		<!--标题  end-->
 		<!--视频轮播-->
@@ -63,7 +63,7 @@
 			<div class="bd">
 				<ul>
 					<c:forEach items="${videoList }" var="video">
-					<li onclick="openShipin('${video.title}','${video.outJs }');">
+					<li onclick="openShipin('${video.title}','${video.indeximg }','${video.videoUrl }');">
 						<a  class="btn1"><i class="iconfont transition">&#xe600;</i><div class="title">${video.title }</div><img src="${video.indeximg }" /></a>
 					</li>
  					 </c:forEach>
@@ -87,9 +87,12 @@
 				<div class="hint3"><i class="iconfont transition">&#xe614;</i></div>
 			</div>
 			<div id="shipinUrl">
-			<div id="youkuplayer" style="width:780px;height:430px"></div>
+			<div class="video-info" id="a1" style="width:780px;height:430px"></div>
 			
 			</div>
+			<!-- <div id="youkuplayer" style="width:780px;height:430px"></div>
+			
+			</div> -->
  		</div>
 		<!--视频轮播 end-->
 		<!--标题-->
@@ -157,7 +160,18 @@
 			<div class="entertainment-content">
 				<img src="${yule.indeximg }" />
 				<div class="mask">
-					<button onclick="checkUser('${yule.activityStatus}','${yule.id }')">立即报名</button>
+					<button onclick="checkUser('${yule.activityStatus}','${yule.id }')">
+					<c:if test="${yule.activityStatus==0}">
+					即将开始
+					</c:if>
+					<c:if test="${yule.activityStatus==1}">
+					参与活动
+					</c:if>
+					<c:if test="${yule.activityStatus==2}">
+					查看详情
+					</c:if>
+					
+					</button>
 					<p>${yule.abstractContent }</p>
 				</div>
 			</div>
@@ -267,8 +281,7 @@
 		<script type="text/javascript" src="${contextpath }/js/slide.js"></script>
 		<script src="${contextpath}/js/layer/layer.js"></script>
 		<script src="${contextpath}/js/common.js"></script>
-		<script src="http://player.youku.com/jsapi"></script>
-
+ 		<script type="text/javascript" src="${contextpath}/js/ckplayer/ckplayer.js" charset="utf-8"></script>
 		<script>
 			//		头部悬浮
 			$("div.navbar-fixed-top").autoHidingNavbar();
@@ -402,7 +415,7 @@ $(document).ready(function($){
 	});
 	
 });
- 	function openShipin(title,outJsId){
+function openShipin(title,img,videoUrl){
  		$(".hint").css({"display":"block"});
 		$(".box").css({"display":"block"});
  		$("#shipinTitle").html(title);
@@ -412,12 +425,23 @@ $(document).ready(function($){
  		"player = new YKU.Player('youkuplayer',{"+
  		"styleid: '0',client_id: '383f88d830f3015c',vid: '"+outJsId+"'});"
  		+"<//script>"; */
- 		player = new YKU.Player('youkuplayer',{
+ 		/* player = new YKU.Player('youkuplayer',{
  			styleid: '0',
  			client_id: '383f88d830f3015c',
  			vid: outJsId
- 		 });
- 		
+ 		 }); */
+ 		 var paths = '';
+		    var flashvars = {
+		        f: videoUrl,
+		        c: 0,
+		        i: img
+		    };
+		    var params = { bgcolor: '#FFF', allowFullScreen: true, allowScriptAccess: 'always', wmode: 'transparent' };
+		    CKobject.embedSWF('${contextpath}/js/ckplayer/ckplayer.swf', 'a1', 'ckplayer_a1', '780', '430', flashvars, params);
+
+		    $(function () {
+		        f.ini(2);
+		    });
  		//$("#shipinUrl").html(outJs);  
  	}
 
@@ -447,8 +471,11 @@ $(document).ready(function($){
 	}
 	
 	function checkUser(status,id){
-		if(status!=1){
-			layer.msg('您好，活动暂未开始或已结束！');
+		if(status==0){
+			window.location.href="${contextpath}/activityDetail.htm?id="+id;
+			return false;
+		}else if(status==2){
+			window.location.href="${contextpath}/activityDetail.htm?id="+id;
 			return false;
 		}
 		$.ajax({
@@ -456,19 +483,33 @@ $(document).ready(function($){
 			url: "${contextpath}/checkActivity.htm?id="+id, 
 			dataType: "json",
 			success: function (data) { 
-				 if(data.status=='success'){
+				
+ 				 if(data.status=='success'){
+ 					 
 					 layer.alert('恭喜您,报名成功！', {
 						    closeBtn: 0
 						}, function(){
 							window.location.reload();
 						});
 					 
-				 }else{
-					 layer.alert(data.message, {
+				 }else if(data.status=='001'){
+					 layer.open({
+							type : 2, 
+							title : '登录',
+							shadeClose : true,
+							shade : 0.8,
+							area : [ '500px', '40%' ],
+							content : '${contextpath}/loginForm.htm'
+						});
+					
+					 
+				 } else if(data.status=='002'){
+					 layer.alert('恭喜您,报名成功！', {
 						    closeBtn: 0
 						}, function(){
-						     window.location.href="${contextpath}/toLogin.htm";
+							window.location.reload();
 						});
+					  
 				 }
 			} 
 	});

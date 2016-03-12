@@ -22,9 +22,9 @@
 				<p class="clr">
 					<input type="text" placeholder="请输手机验证码" id="verifyCode" name="verifyCode"/>
 					<button onclick="sendCode();" id="getCode">获取验证码</button>
-					 
 				</p>
 				<button onclick="register();">注册</button>
+				 <input type="hidden" value="${openid }" name="openid" id="openid"/>
 				<p class="signup-guide clr"><span>已有账号<a href="${contextpath }/toLogin.htm">立即登录</a></span></p>
 			</div>
 		</div>
@@ -108,6 +108,7 @@
 				var mobile = $("#mobile").val();
 				var verifyCode = $("#verifyCode").val();
 				var cpassword = $("#cpassword").val();
+				var openid=$("#openid").val();
 				if (trim(mobile) == '') {
 					layer.msg('请输入手机号码！');
 					return false;
@@ -117,12 +118,16 @@
 				} else if (trim(cpassword) == '') {
 					layer.msg('请输入密码！');
 					return false;
+				}else if(trim(cpassword).length<6){
+					layer.msg('密码最低长度6位！');
+					return false;
 				}
+				
 				
 				 $.ajax({
 						type: "post", 
 						  async: false,
-						url: "${contextpath}/register.htm?mobile="+mobile+"&verifyCode="+verifyCode+"&cpassword="+cpassword, 
+						url: "${contextpath}/register.htm?mobile="+mobile+"&verifyCode="+verifyCode+"&cpassword="+cpassword+"&openid="+openid, 
 						dataType: "json",
 						success: function (data) { 
 							 

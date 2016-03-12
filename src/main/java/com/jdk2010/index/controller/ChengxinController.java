@@ -62,7 +62,9 @@ public class ChengxinController extends BaseController {
         setAttr("chegnxin", menu);
          
         String id=getPara("id");
+        dalClient.update("update security_news set readtotal=readtotal+1 where id="+id);
         SecurityNews securityNew=dalClient.findById(id, SecurityNews.class);
+        
         setAttr("securityNew", securityNew);
         
         return "/chengxinDetail" ;

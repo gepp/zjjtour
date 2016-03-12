@@ -37,7 +37,7 @@
 			</ul>
 		</div>
 		<div class="tourist-right">
-		 <form method="post" action="${contextpath }/myActivityList.htm">
+		 <form method="post" action="${contextpath }/myActivityList.htm" id="myform" name="myform">
 				<div class="retrieval clr">
 					<div class="form-group">
 						<label>标题</label>
@@ -45,25 +45,25 @@
 					</div>
 					<div class="form-group">
 						<label>状态</label>
-							<select  name="activity_status">
+							<select  name="activity_status" onchange="doSearch();">
 							<option value="" <c:if test="${activity_status==''}">selected</c:if>>全部</option>
-							<option value="0" <c:if test="${activity_status=='1'}">selected</c:if>>未开始</option>
-							<option value="1" <c:if test="${activity_status=='2'}">selected</c:if>>进行中</option>
-							<option value="2" <c:if test="${activity_status=='3'}">selected</c:if>>已结束</option>
+							<option value="0" <c:if test="${activity_status=='0'}">selected</c:if>>未开始</option>
+							<option value="1" <c:if test="${activity_status=='1'}">selected</c:if>>进行中</option>
+							<option value="2" <c:if test="${activity_status=='2'}">selected</c:if>>已结束</option>
 					      </select>
 					</div>
 					 
 					<div class="form-group">
 						<label>起始时间</label>
-						<input class="laydate-icon" value="${start_time_start }" onclick="laydate()" placeholder="请选择起始时间" name="start_time_start" >
+						<input class="laydate-icon" value="${start_time_start }" onclick="laydate()" placeholder="请选择起始时间" name="start_time_start" id="start_time_start" >
 					</div>
 					<div class="form-group">
 						<label>截止时间</label>
-						<input class="laydate-icon" value="${start_time_end }" onclick="laydate()" placeholder="请选择截止时间" name="start_time_end">
+						<input class="laydate-icon" value="${start_time_end }" onclick="laydate()" placeholder="请选择截止时间" name="start_time_end" id="start_time_end">
 					</div>
 					<div class="form-group">
 						<label></label>
-						<button type="submit">搜索</button>
+						<button type="button" onclick="doSearch();">搜索</button>
 					</div>
 					
 				</div>
@@ -93,7 +93,7 @@
 									<c:if test="${ item.activityStatus==0}">
 									<span onclick="cancelActivity('${item.id}')">取消报名</span>
 									</c:if>
-									<c:if test="${ item.activityStatus!=0}">
+									<c:if test="${ item.activityStatus!=1}">
 									活动已开始或已结束
 									</c:if>
 									</td>
@@ -115,6 +115,8 @@
 		<script src="${contextpath}/js/bootstrap.min.js"></script>
 		<script src="${contextpath}/js/jquery.bootstrap-autohidingnavbar.js"></script>
 		<script src="${contextpath}/js/laydate/laydate.js"></script>
+		<script src="${contextpath}/js/layer/layer.js"></script>
+		
 	<script type="text/javascript">
 	jQuery(document).ready(function() {
 		$("#header").load("${contextpath}/header.htm?type=youke");
@@ -123,6 +125,25 @@
 	function jumpActivity(id){
 		window.location.href="${contextpath}/activityDetail.htm?id="+id;
 	}
+	function doSearch(){
+		var complain_time_start=$("#start_time_start").val();
+		var complain_time_end=$("#start_time_end").val();
+		if(complain_time_start!=''&&complain_time_end!=''){
+			  var start_at =  new Date(complain_time_start.replace(/^(\d{4})(\d{2})(\d{2})$/,"$1/$2/$3"));
+		      var end_at = new Date(complain_time_end.replace(/^(\d{4})(\d{2})(\d{2})$/,"$1/$2/$3"));
+		      if(start_at > end_at) {
+				  layer.alert('起始时间应该小于截止时间，请重新选择', {
+						closeBtn: 0
+					}, function(index){
+						layer.close(index);
+						 
+					});
+				  return false;
+				} 
+		}
+		$("#myform").submit();
+	}
+	
 	function cancelActivity(id){
 		layer.confirm('您确认取消您所选择的活动？',function(index){
 			//ajax提交删除数据

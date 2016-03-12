@@ -6,11 +6,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>全景详情</title>
+		<title>${securityNew.title }</title>
 	</head>
 	<link rel="stylesheet" href="${contextpath}/css/style.css" />
 	<link rel="stylesheet" href="${contextpath}/font/iconfont.css" />
-
+	<meta name="Keywords" content="${securityNew.keywords }">
 	<body>
 		 <div id="header">
 		</div>
@@ -26,8 +26,8 @@
 				<li><a href="${contextpath }/">首页</a></li>
 				<li><a href="${contextpath }/quanjing.htm">全景</a></li>
 				<c:if test="${secondMenu!=null }">
-				<li><a href="#">${secondMenu.name }</a></li>
-				<li><a href="#">${bqMenu.name }</a></li>
+				<li><a href="${contextpath }/quanjing.htm?currentId=&secondMenuId=${secondMenu.id}">${secondMenu.name }</a></li>
+				<li><a href="${contextpath }/quanjing.htm?currentId=${bqMenu.id }&secondMenuId=${secondMenu.id}">${bqMenu.name }</a></li>
 				</c:if>
 				<li>${securityNew.title }</li>
 			</ul>
@@ -55,8 +55,7 @@
 				<div id="content">
 				<c:if test="${securityNew.quanjingUrl !=null&&securityNew.quanjingUrl !='' }">
 					<div class="content-item" id="item-1">
-					
-						<h4><i class="iconfont">&#xe610;</i>${biaoqian.maodian_name }</h4>
+						<h4><i class="iconfont">&#xe610;</i>360°全景</h4>
 						<iframe allowtransparency="true" frameborder="0" src="${securityNew.quanjingUrl }" width="750" height="400" style="border: 1px solid #eee;">这里是全景控件</iframe>
 				
 					</div>
@@ -76,7 +75,7 @@
 					<div class="tit-bar">
 					<fmt:formatDate value="${securityNew.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 						<span>${ctime }</span>
-						<span><i class="iconfont">&#xe616;</i>&nbsp;0</span></span>
+						<span><i class="iconfont">&#xe616;</i>&nbsp;${securityNew.readtotal }</span></span>
 						<span>来源：本站原创</span>
 					</div>
 					<div class="abstract">${securityNew.abstractContent }</div>

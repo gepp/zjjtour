@@ -24,11 +24,15 @@
 					<span class="text">记住用户名</span>
 				</label> -->
 				<button onclick="login();">登录</button>
-				<p class="signup-guide clr" onclick="window.location.href='${contextpath}/toGetPwd.htm'"><span>没有账号？<a href="${contextpath }/toRegister.htm">免费注册</a></span><span>忘记密码？</span></p>
+				<p class="signup-guide clr" onclick="window.location.href='${contextpath}/toGetPwd.htm'"><span>没有账号？<a href="${contextpath }/toRegister.htm">免费注册</a> &nbsp;&nbsp;
+				<a href="https://open.weixin.qq.com/connect/qrconnect?appid=${appid }&redirect_uri=http%3A%2F%2F${callbackurl }%2Fcallback&response_type=code&scope=snsapi_login&state=<%=request.getSession().getId()%>#wechat_redirect"   style="float:right">
+					<img src="${contextpath }/images/icon24_wx_button.png" /></a>
+					</span><span>忘记密码？</span></p>
 			</div>
+			 <input type="hidden" value="${openid }" name="openid" id="openid"/>
 			<div class="login-right">
-				<h4>微信扫描登录</h4>
-				<img src="${contextpath}/images/mmqrcode.jpg" />
+				<h4>微信扫描关注</h4>
+				<img src="${contextpath}/images/qrcode_for_gh_14fe25658a90_344.jpg" />
 			</div>
 		</div>
 		<!--登录 end-->
@@ -50,18 +54,19 @@
 			$("#header").load("${contextpath}/header.htm?type=index");
 			$("#footer").load("${contextpath}/footer.htm");
 		});
-		
-		$(document).keyup(function(event){ 
+	 
+		/* $(document).keyup(function(event){ 
 		    var keycode = event.which; 
 		    //处理回车的情况 
 		    if(keycode==13){ 
 		    	login();
 		   } 
 		    
-		});  
+		});   */
 		function login(){
 			var mobile = $("#mobile").val();
 			var cpassword = $("#cpassword").val();
+			var openid=$("#openid").val();
 			if (trim(mobile) == '') {
 				layer.msg('请输入手机号码！');
 				return false;
@@ -73,7 +78,7 @@
 			 $.ajax({
 					type: "post", 
 					  async: false,
-					url: "${contextpath}/login.htm?mobile="+mobile+"&cpassword="+cpassword, 
+					url: "${contextpath}/login.htm?mobile="+mobile+"&cpassword="+cpassword+"&openid="+openid, 
 					dataType: "json",
 					success: function (data) { 
 						 var jsonArray=str2json(data);

@@ -37,7 +37,8 @@
 				<li><span>姓名:</span><font>${member.data.cname }</font></li>
 				
 				<li><span>性别:</span><font><c:if test="${member.data.csex==null }">未设置</c:if><c:if test="${member.data.csex!=null }">${member.data.csex }</c:if></font></li>
- 				<li><span>生日:</span><font><c:if test="${member.data.dbirthday==null }">未设置</c:if><c:if test="${member.data.dbirthday!=null }">${member.data.dbirthday }</c:if></font></li>
+ 				<li><span>生日:</span><font><c:if test="${member.data.dbirthday==null }">未设置</c:if><c:if test="${member.data.dbirthday!=null }">
+ 				${member.data.dbirthday }</c:if></font></li>
 				<li><span>手机:</span><font>${member.data.ctel }</font></li>
 				<li><span>邮箱:</span><font>${member.data.cemail }</font></li>
 			</ul>
@@ -87,6 +88,7 @@
 	<script type="text/javascript" src="${contextpath}/js/jquery.min.js"></script>
 	<script src="${contextpath}/js/bootstrap.min.js"></script>
 	<script src="${contextpath}/js/jquery.bootstrap-autohidingnavbar.js"></script>
+		<script src="${contextpath}/js/layer/layer.js"></script>
 
 	<script>
 	jQuery(document).ready(function() {

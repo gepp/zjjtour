@@ -109,7 +109,7 @@ public class TousuController extends BaseController {
         
         Map<String, Object> member = getSessionAttr("member");
 		if (member == null) {
-			return "/login";
+			return REDIRECT+"/toLogin";
 		} else {
 			// 活动
 			Map<String, Object> data = (Map<String, Object>) member.get("data");

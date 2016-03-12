@@ -19,6 +19,8 @@ import com.jdk2010.framework.constant.Constants;
 import com.jdk2010.framework.controller.BaseController;
 import com.jdk2010.framework.dal.client.DalClient;
 import com.jdk2010.framework.util.DateUtil;
+import com.jdk2010.framework.util.DbKit;
+import com.jdk2010.framework.util.Page;
 import com.jdk2010.framework.util.ReturnData;
 import com.jdk2010.framework.util.StringUtil;
 import com.jdk2010.member.memberactivity.model.MemberActivity;
@@ -67,8 +69,12 @@ public class ActivityController extends BaseController {
         }
         setAttr("activityStatus",activityStatus);
         String sql="select * from member_activity where 1=1 "+conditionSql+"  order by orderlist asc";
-        List<MemberActivity> activityList=dalClient.queryForObjectList(sql,MemberActivity.class);
-        setAttr("activityList", activityList);
+        DbKit dbKit=new DbKit(sql);
+        Page pagePage = getPage();
+		pagePage.setPageSize(6);
+		Page pageList = dalClient.queryForPageList(dbKit, pagePage,
+				MemberActivity.class);
+		setAttr("pageList", pageList);
         return "/activity" ;
     }
     
@@ -76,7 +82,6 @@ public class ActivityController extends BaseController {
     public String xiuxianDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<SecurityMenu> quanjingMenuList=dalClient.queryForObjectList("select * from security_menu where parent_id=1011",SecurityMenu.class);
         setAttr("quanjingMenuList",quanjingMenuList);
-        
         List<SecurityMenu> changyouMenuList=dalClient.queryForObjectList("select * from security_menu where parent_id=1010",SecurityMenu.class);
         setAttr("changyouMenuList",changyouMenuList);
         

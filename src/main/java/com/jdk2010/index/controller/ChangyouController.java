@@ -17,6 +17,8 @@ import com.jdk2010.base.security.securitynews.model.SecurityNews;
 import com.jdk2010.base.security.securitynews.service.ISecurityNewsService;
 import com.jdk2010.framework.controller.BaseController;
 import com.jdk2010.framework.dal.client.DalClient;
+import com.jdk2010.framework.util.DbKit;
+import com.jdk2010.framework.util.Page;
 import com.jdk2010.framework.util.StringUtil;
 import com.jdk2010.system.systemadv.service.ISystemAdvService;
 
@@ -66,17 +68,24 @@ public class ChangyouController extends BaseController {
         String thirdShowName="";
         //畅游的新闻
         List<Map<String,Object>> newsList;
+        DbKit dbKit=null;
         if(secondMenuId!=""){
-            newsList=dalClient.queryForObjectList("select * from security_news where menu_id="+secondMenuId+" and review_status=1 order by orderlist asc");
+        	 dbKit = new DbKit("select * from security_news where menu_id="+secondMenuId+" and review_status=1 order by orderlist asc");
             SecurityMenu thirdShowMenu=   dalClient.findById(secondMenuId,SecurityMenu.class);
             thirdShowName=thirdShowMenu.getName();
         }else{
         	thirdShowName="全部";
-             newsList=dalClient.queryForObjectList("select * from security_news where  review_status=1 and menu_id in (select id from security_menu where  parent_id=1010) order by orderlist asc");
+        	dbKit = new DbKit("select * from security_news where  review_status=1 and menu_id in (select id from security_menu where  parent_id=1010) order by orderlist asc");
          }
+        
         setAttr("thirdShowName", thirdShowName);
         
-        setAttr("newsList", newsList);
+        Page pagePage = getPage();
+		pagePage.setPageSize(6);
+		Page pageList = dalClient.queryForPageList(dbKit, pagePage,
+				SecurityNews.class);
+		setAttr("pageList", pageList);
+         
         return "/changyou" ;
     }
     
@@ -98,7 +107,10 @@ public class ChangyouController extends BaseController {
         setAttr("changyou", menu);
          
         String id=getPara("id");
+        dalClient.update("update security_news set readtotal=readtotal+1 where id="+id);
+        
         SecurityNews securityNew=dalClient.findById(id, SecurityNews.class);
+       
         setAttr("securityNew", securityNew);
         
         SecurityMenu securityMenu=dalClient.queryForObject("select * from security_menu where id="+securityNew.getMenuId() ,SecurityMenu.class);

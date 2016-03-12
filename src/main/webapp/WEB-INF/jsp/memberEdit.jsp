@@ -55,15 +55,16 @@
 									<div class="upload"><i class="iconfont">&#xe619;</i><input type="file" ></div>
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label>真实姓名</label>
+								<input type="text" placeholder="请输入真实姓名" name="cname" value="${member.data.cname }"/>
+							</div>
 							<div class="form-group">
 								<label>昵称</label>
 								<input type="text" placeholder="请输入昵称" name="cnickname"  value="${member.data.cnickname }"/>
 							</div>
 							 
-							<div class="form-group">
-								<label>真实姓名</label>
-								<input type="text" placeholder="请输入真实姓名" name="cname" value="${member.data.cname }"/>
-							</div>
 							<div class="form-group">
 								<label>邮箱</label>
 								<input type="text" placeholder="请输入邮箱" name="cemail" value="${member.data.cemail }"/>

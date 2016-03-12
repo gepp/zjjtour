@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.tag.mytag.com" prefix="page"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -22,9 +24,8 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="#">全景</a></li>
-				<li><a href="#">绝美风光</a></li>
-				<li>地标美景</li>
+				<li><a href="${contextpath }/quanjing.htm">全景</a></li>
+			 
 			</ul>
 		</div>
 		<!--面包屑  end-->
@@ -50,13 +51,14 @@
 		<!--图片列表-->
 		<div class="item-list">
 			<ul class="clr" id="newsListUl">
-				<c:forEach items="${quanjingList }" var="quanjingNews">
+				<c:forEach items="${pageList.list }" var="quanjingNews">
 				<li class="transition" onclick="jumpDetail('${quanjingNews.id}')">
-					<div class="img-content"><img src="${quanjingNews.indeximg }" class="transition"><span>${quanjingNews.abstract_content }</span></div>
+					<div class="img-content"><img src="${quanjingNews.indeximg }" class="transition"><span>${quanjingNews.abstractContent }</span></div>
 					<h5 class="transition">${quanjingNews.title }</h5>
 				</li>
 				</c:forEach>
 			</ul>
+			 <page:page href="${contextpath}/quanjing.htm" data="pageList" />	
 		</div>
 		<!--图标列表-->		
 		
