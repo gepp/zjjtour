@@ -1,6 +1,7 @@
 package com.jdk2010.util;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -97,7 +98,7 @@ public class ZjjMsgUtil {
 	public static String updateMember(int id, String cnickname, String cname,
 			String csex, String dbirthday, String cemail, String cheadimgurl) {
 		String methodName = "updateMember";
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("id", id);
 		if (StringUtil.isNotBlank(cnickname)) {
 			map.put("cnickname", cnickname);
@@ -119,6 +120,7 @@ public class ZjjMsgUtil {
 		}
 
 		String paramsJson = JsonUtil.toJson(map);
+		System.out.println("加密params："+USERNAME + paramsJson + KEY);
 		String sign = MD5Utils.md5(USERNAME + paramsJson + KEY);
 		String posturl = URL + methodName + "?format=json&user=" + USERNAME
 				+ "&paramsJson=" + paramsJson + "&sign=" + sign;
@@ -182,6 +184,42 @@ public class ZjjMsgUtil {
 		System.out.println("returnstr:" + returnStr);
 		return returnStr;
 	}
+	//Mar 12, 2016 12:00:00 AM
+	public static String transdate(String datestr){
+		String[] newstr=datestr.split(" ");
+		String year=newstr[2];
+		String mouth="";
+		if(newstr[0].equals("Jan")){
+			mouth="01";
+		}else if (newstr[0].equals("Feb")){
+			mouth="02";
+		}else if (newstr[0].equals("Mar")){
+			mouth="03";
+		}else if (newstr[0].equals("Apr")){
+			mouth="04";
+		}else if (newstr[0].equals("May")){
+			mouth="05";
+		}else if (newstr[0].equals("Jun")){
+			mouth="06";
+		}else if (newstr[0].equals("Jul")){
+			mouth="07";
+		}else if (newstr[0].equals("Aug")){
+			mouth="08";
+		}else if (newstr[0].equals("Sep")){
+			mouth="09";
+		}else if (newstr[0].equals("Oct")){
+			mouth="10";
+		}else if (newstr[0].equals("Nov")){
+			mouth="11";
+		}else if (newstr[0].equals("Dec")){
+			mouth="12";
+		}
+		String day=newstr[1].split(",")[0];
+		if(day.length()==1){
+			day="0"+day;
+		}
+		return year+"-"+mouth+"-"+day;
+	}
 
 	public static void main(String[] args) {
 		int id = 252; // gpp
@@ -193,7 +231,11 @@ public class ZjjMsgUtil {
 		String cemail = "";
 		String cheadimgurl = "";
 		// System.out.println(getMemberByOpenid("oaM4nw1tsrzCZwTcOFA1ZTbIdjz8"));
-		bindMemberOpenid(id + "", "11");
+//		bindMemberOpenid(id + "", "11");
+		//System.out.println(transdate("Mar 12, 2016 12:00:00 AM"));
+		//System.out.println(updateMember(252, "15951984655", "杨海", "男", "1988-09-04", "mqo198@sina.com",null));
+	String s="v7line001{\"id\":252,\"cnickname\":\"15951984655\",\"cname\":\"杨海\",\"csex\":\"男\",\"dbirthday\":\"1988-09-04\",\"cemail\":\"mqo198@sina.com\"}YD#$kweri8889";
+	System.out.println(MD5Utils.md5(USERNAME + s + KEY));
 	}
 
 }

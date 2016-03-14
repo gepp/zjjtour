@@ -504,7 +504,7 @@ function openShipin(title,img,videoUrl){
 					
 					 
 				 } else if(data.status=='002'){
-					 layer.alert('恭喜您,报名成功！', {
+					 layer.alert('本活动您已报名，可在游客中心中查看！', {
 						    closeBtn: 0
 						}, function(){
 							window.location.reload();

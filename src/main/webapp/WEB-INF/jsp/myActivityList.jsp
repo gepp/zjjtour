@@ -94,7 +94,7 @@
 									<span onclick="cancelActivity('${item.id}')">取消报名</span>
 									</c:if>
 									<c:if test="${ item.activityStatus!=1}">
-									活动已开始或已结束
+									 
 									</c:if>
 									</td>
 								</tr>

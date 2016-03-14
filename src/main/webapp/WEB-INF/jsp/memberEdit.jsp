@@ -47,12 +47,16 @@
 							<div class="form-group">
 								<label>*头像</label>
 								<div class="thumbnail clr">
-									<div class="thumbnail-img"><i class="iconfont">&#xe60f;</i>
-									<img src="
+									<div class="thumbnail-img">
+									<img id="memberImage" name="memberImage" src="
 									<c:if test="${member.data.cheadimgurl==null }">${contextpath }/images/4.jpg</c:if><c:if test="${member.data.cheadimgurl!=null }">${member.data.cheadimgurl }</c:if>
 									">
 									</div>
-									<div class="upload"><i class="iconfont">&#xe619;</i><input type="file" ></div>
+									<div class="upload"><i class="iconfont">&#xe619;</i>
+									 	<input type="file" value="" capture="camera" accept="image/*" id="cameraInput" name="cameraInput"/>
+										<canvas id="myCanvas" style="display:none"></canvas>
+										<input type="hidden" value="" name="memberImage1" id="memberImage1"/>
+									</div>
 								</div>
 							</div>
 							
@@ -74,18 +78,18 @@
 								<div class="sex">
 									<label>
 										
-										<input type="radio" name="csex" value="男"  <c:if test="${member.data.csex=='男' }">checked</c:if>/>
+										<input type="radio" name="csex" value="man"  <c:if test="${member.data.csex=='man' }">checked</c:if>/>
 										<span class="text">男</span>
 									</label>
 									<label>
-										<input type="radio"  name="csex" value="女" <c:if test="${member.data.csex=='女' }">checked</c:if>/>
+										<input type="radio"  name="csex" value="wom" <c:if test="${member.data.csex=='wom' }">checked</c:if>/>
 										<span class="text">女</span>
 									</label>
 								</div>
 							</div>
 							<div class="form-group">
 								<label>生日</label>
-								<input class="laydate-icon" onclick="laydate()" placeholder="请选择生日时间" name="dbirthday"  value="${member.data.dbirthday}">
+								<input class="laydate-icon" onclick="laydate()" placeholder="请选择生日时间" name="dbirthday"  value="${dbirthday}">
 							</div>
 							 
 							<div class="form-group">
@@ -110,6 +114,8 @@
 		<script src="${contextpath}/js/bootstrap.min.js"></script>
 		<script src="${contextpath}/js/jquery.bootstrap-autohidingnavbar.js"></script>
 		<script src="${contextpath}/js/laydate/laydate.js"></script>
+		<script src="${contextpath}/js/MegaPixImage.js" type="text/javascript"></script>
+		<script src="${contextpath}/js/exif.min.js" type="text/javascript"></script>
  	
 	</body>
 
@@ -117,6 +123,26 @@
 jQuery(document).ready(function() {
 	$("#header").load("${contextpath}/header.htm?type=youke");
 	$("#footer").load("${contextpath}/footer.htm");
+	  var fileInput = document.getElementById('cameraInput');
+      fileInput.onchange = function () {
+          var file = fileInput.files[0];
+          var mpImg = new MegaPixImage(file);
+          var resCanvas1 = document.getElementById('myCanvas');
+          var _max = 320;
+          EXIF.getData(file, function(){ 
+              var Orientation= EXIF.getTag(this,'Orientation'); 
+               mpImg.render(resCanvas1, {
+              maxHeight: _max,
+              orientation: Orientation
+          });
+              
+          }); 
+          setTimeout(function(){
+        	  $("#memberImage").attr("src",resCanvas1.toDataURL());
+        	  $("#memberImage1").val(resCanvas1.toDataURL());
+          },100);
+
+      };
 });
 </script>
 </html>

@@ -424,7 +424,45 @@ span.zhiding>em,span.toutiao>em{ display: block; width: 0; height: 0; position: 
 .event-details>.event-details-right>button.carried-out:hover{background:#00BB9E; }
 
 /*登录注册*/
-.login.clr{margin: 170px auto 50px auto; width: 1040px; background: #F7F7F7;padding: 40px 80px;}
+.login-bg{position: relative; overflow: hidden;}
+.blackBg{background: rgba(0,0,0,0.2); position: absolute; z-index: 1; height: 100%; width: 100%; top: 0;}
+.blur {	
+    filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+    
+    -webkit-filter: blur(10px); /* Chrome, Opera */
+       -moz-filter: blur(10px);
+        -ms-filter: blur(10px);    
+            filter: blur(10px);
+    
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+   height: 600px;
+}
+.login.clr{height: 400px; width: 600px; border-radius: 10px; background: #FFFFFF; overflow: hidden; position: absolute; z-index: 2; top: 160px; left: -webkit-calc(50% - 300px);left: calc(50% - 300px);left: -moz-calc(50% - 300px);}
+.login.clr .left{width: 250px;float: left; background: #F2F2F2; height: 400px;}
+.login.clr .left p{margin: 20px auto; width: 120px; height: 24px; background: #00BC0C; text-align: center; color: #fff; border-radius: 2px; line-height: 24px;}
+.login.clr .left img{width: 150px; margin: 80px 50px 20px 50px;}
+.login.clr .left h5{font-size: 14px; width: 100%; text-align: center; font-weight: normal; color: #00BB9E;}
+.login.clr .right{width: 350px;height: 400px;float: right;background: #FFF url(../images/1.png) no-repeat top;background-position-x: 100%; background-size: 160%; position: relative;}
+.login.clr .right h4{ font-size: 16px; padding: 10px 20px; background: rgba(255,255,255,0.3); position: absolute; top: 0; left: 50px; color: #00BB9E;}
+.login.clr .right img{width: 60px; margin: 30px auto 10px auto;}
+.login.clr .right>.mt40>input,.login.clr .right>.mt85>input,.login.clr .right>.mt40>.yzm>input{display: block; width: 245px; margin: 15px auto; height: 30px; border: none; background: rgba(255,255,255,0.8); padding: 0 10px; border-radius: 2px;}
+.login.clr .right .yzm{width: 245px; padding: 0; margin: 0 auto; height: 30px; position: relative;}
+.login.clr .right .mt85>button,.login.clr .right .mt40>button{background: #00BB9E; width: 245px; height: 30px; padding: 0 10px; border: 0; border: none; border-radius: 2px; margin:50px auto 10px auto; display: block; font-size: 14px; color: #fff;}
+.login.clr .right .mt85>button{margin-top: 10px;}
+.login.clr .right .mt40>.yzm>button{background: #00BB9E; height: 24px; padding: 0 5px; border: 0; border: none; border-radius: 2px; display: block; font-size: 12px; font-weight: normal; color: #fff; position: absolute; top: 3px ; right: 3px;}
+.login.clr .right .mt40>p,.login.clr .right .mt85>p{ width: 245px; display: block; text-align: right; line-height: 30px; margin: 0 auto;}
+.login.clr .right .mt40>p>a,.login.clr .right .mt85>p>a{ margin-left: 10px; color: #00BB9E;}
+.login.clr .right .mt85>p>span{color: #00BB9E; float: left;}
+.login.clr .right button:hover{ background: rgba(0, 187, 158, 0.6);}
+.login.clr label{ position: relative; width: 245px;display: block; cursor: pointer; margin: 30px auto 0 auto; line-height: 20px;} 
+.login.clr label>input{ display: none;}
+.login.clr label>input[type=checkbox] + .text{margin-left: 30px;}
+.login.clr label>input[type=checkbox] + .text:before{ border: 1px solid #ccc; position: absolute;top: 0;display: block; content: ""; height: 18px; width: 18px;  margin-right: 10px;left: 0;}
+.login.clr label>input[type=checkbox]:checked + .text:before{ content: "\e604"; position: absolute; font-family:"iconfont" !important;font-size: 16px; font-style:normal;  height: 20px;-webkit-font-smoothing: antialiased;-webkit-text-stroke-width: 0.2px;-moz-osx-font-smoothing: grayscale;border-color: #00BB9E;box-sizing: border-box;color: #FFFFFF;background: #00bb9e;width: 20px;text-align: center;line-height: 18px;}
+
+.mt85{margin-top: 85px;}
+.mt40{margin-top: 40px;}
+/*.login.clr{margin: 170px auto 50px auto; width: 1040px; background: #F7F7F7;padding: 40px 80px;}
 .login.clr>.login-left{ float: left; width:460px ; background: #fff; padding: 20px; height: 364px;}
 .login.clr>.login-register{width:500px ; background: #fff; padding: 20px;display: block; margin: 0 auto;}
 .login.clr>.login-right{ float: right; width:340px ; background: #fff; padding: 20px;}
@@ -446,7 +484,8 @@ span.zhiding>em,span.toutiao>em{ display: block; width: 0; height: 0; position: 
 .login.clr p>input{ width: 300px; float: left;}
 .login.clr p>button{float: right; width: 160px; background: rgba(0, 0, 0, 0.1); color: #4a4a4a;}
 .login.clr p>button:hover{ color: #fff;}
-.login.clr .error{line-height: 24px; color: #00BB9E; display: block; padding-left: 20px; }
+.login.clr .error{line-height: 24px; color: #00BB9E; display: block; padding-left: 20px; }*/
+
 /*个人中心*/
 .white{background: #fff !important;}
 .page-breadcrumbs.white{margin-top: 120px;}

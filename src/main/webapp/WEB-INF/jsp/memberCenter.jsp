@@ -30,15 +30,19 @@
 
 		<div class="tourist-top clr">
 			<div class="header-img">
-				<img src="${contextpath}/images/11.jpg" />
+				
+				<img   src="<c:if test="${member.data.cheadimgurl==null }">${contextpath }/images/4.jpg</c:if><c:if test="${member.data.cheadimgurl!=null }">${member.data.cheadimgurl }</c:if>
+									">
 			</div>
 			<ul>
 			
 				<li><span>姓名:</span><font>${member.data.cname }</font></li>
-				
-				<li><span>性别:</span><font><c:if test="${member.data.csex==null }">未设置</c:if><c:if test="${member.data.csex!=null }">${member.data.csex }</c:if></font></li>
+				<li><span>性别:</span><font><c:if test="${member.data.csex==null }">未设置</c:if><c:if test="${member.data.csex!=null }">
+				<c:if test="${member.data.csex=='man'}">男</c:if>
+				<c:if test="${member.data.csex!='man' }">女</c:if>
+				</c:if></font></li>
  				<li><span>生日:</span><font><c:if test="${member.data.dbirthday==null }">未设置</c:if><c:if test="${member.data.dbirthday!=null }">
- 				${member.data.dbirthday }</c:if></font></li>
+ 				${dbirthday }</c:if></font></li>
 				<li><span>手机:</span><font>${member.data.ctel }</font></li>
 				<li><span>邮箱:</span><font>${member.data.cemail }</font></li>
 			</ul>

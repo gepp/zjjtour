@@ -1,15 +1,14 @@
 package com.jdk2010.util;
 
-import org.apache.commons.lang.StringEscapeUtils;
-
-import com.jdk2010.framework.util.HttpUtil;
-import com.jdk2010.framework.util.MD5Utils;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Test {
 	// String
 	// sign=MD5(“v7line001{\"ctel\":\"18616240385\",\"type\":\"3\"}#ESDfsdfff”)
 	// c9ffe4b0ec0a04591b7e9edc1f14fe00
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 //		String url = "http://ststest.travelzjj.com:15404/sts-app/Api/member/";
 //		String paramsJson = "{\"ctel\":\"18952028230\",\"type\":\"1\"}";
 //		String sign = MD5Utils.md5("v7line001"+paramsJson+"YD#$kweri8889");
@@ -22,5 +21,9 @@ public class Test {
 //		String posturl=url+ "sendCode?format=json&user=v7line001&paramsJson="+ paramsJson + "&sign="+sign;
 //		System.out.println(posturl);
 //		System.out.println(HttpUtil.post(posturl,""));
+		String dateold="2015-07-01";
+		Date date=new SimpleDateFormat("yyyy-MM-dd").parse(dateold);
+		System.out.println(date);
+ 
 	}
 }

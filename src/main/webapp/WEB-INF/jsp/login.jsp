@@ -13,30 +13,36 @@
 
 	<body>
 		 <div id="header"></div>
-		<!--登录-->
-		<div class="login clr">
-			<div class="login-left">
-				<h4>登录</h4>
-				<input type="text" placeholder="请输入用户名" id="mobile" name="mobile"/>
-				<input type="password" placeholder="请输入密码" id="cpassword" name="cpassword"/>
-				<!-- <label>
-					<input type="checkbox" />
-					<span class="text">记住用户名</span>
-				</label> -->
-				<button onclick="login();">登录</button>
-				<p class="signup-guide clr" onclick="window.location.href='${contextpath}/toGetPwd.htm'"><span>没有账号？<a href="${contextpath }/toRegister.htm">免费注册</a> &nbsp;&nbsp;
-				<a href="https://open.weixin.qq.com/connect/qrconnect?appid=${appid }&redirect_uri=http%3A%2F%2F${callbackurl }%2Fcallback&response_type=code&scope=snsapi_login&state=<%=request.getSession().getId()%>#wechat_redirect"   style="float:right">
-					<img src="${contextpath }/images/icon24_wx_button.png" /></a>
-					</span><span>忘记密码？</span></p>
-			</div>
-			 <input type="hidden" value="${openid }" name="openid" id="openid"/>
-			<div class="login-right">
-				<h4>微信扫描关注</h4>
+		 <!-- banner -->
+		<div class="login-bg">
+			<img src="${contextpath }/images/banner1.png"  class="blur"/>
+			<div class="blackBg"></div>
+			<!--登录内容-->
+			<div class="login clr">
+				<!--二维码-->
+				<div class="left">
 				<img src="${contextpath}/images/qrcode_for_gh_14fe25658a90_344.jpg" />
+					<h5>扫描以二维码登录</h5>
+					<p onclick="javascript:window.location.href='https://open.weixin.qq.com/connect/qrconnect?appid=${appid }&redirect_uri=http%3A%2F%2F${callbackurl }%2Fcallback&response_type=code&scope=snsapi_login&state=<%=request.getSession().getId()%>#wechat_redirect'">微信登录</p>
+				</div>
+				<!--二维码 end-->
+				<div class="right">
+					<h4>登录</h4>
+					<img src="${contextpath }/images/logo.png" />
+					<div class="mt85">
+						<input type="text" placeholder="请输入用户名" id="mobile" name="mobile"/>
+						<input type="password" placeholder="请输入密码" id="cpassword" name="cpassword"/>
+						<br/>
+						<button onclick="login();">登录</button>
+						<p class="clr"><span><a href="${contextpath }/toRegister.htm">免费注册</a></span><a href="${contextpath}/toGetPwd.htm">忘记密码</a></p>
+					</div>
+				</div>
 			</div>
+			<!--登录内容 end-->
 		</div>
-		<!--登录 end-->
-		
+		<!--banner end-->
+		 
+	 
 		<div id="footer">
 			 
 		</div>

@@ -50,6 +50,8 @@ public class RegisterController extends BaseController {
 			HttpServletResponse response) throws Exception {
 		String openid = getPara("openid");
 		setAttr("openid", openid);
+		setAttr("appid", appid);
+		setAttr("callbackurl", callbackurl);
 		return "/register";
 	}
 
@@ -141,6 +143,8 @@ public class RegisterController extends BaseController {
 	@RequestMapping("/toGetPwd")
 	public String toGetPwd(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		setAttr("appid", appid);
+		setAttr("callbackurl", callbackurl);
 		return "/toGetPwd";
 	}
 

@@ -13,22 +13,41 @@
 
 	<body>
 		<div id="header"></div>
-		<!--登录-->
-		<div class="login clr">
-			<div class="login-register">
-				<h4>注册</h4>
-				<input type="text" placeholder="手机号码"  id="mobile" name="mobile"/>
-				<input type="password" placeholder="请输入密码" id="cpassword" name="cpassword"/>
-				<p class="clr">
-					<input type="text" placeholder="请输手机验证码" id="verifyCode" name="verifyCode"/>
-					<button onclick="sendCode();" id="getCode">获取验证码</button>
-				</p>
-				<button onclick="register();">注册</button>
-				 <input type="hidden" value="${openid }" name="openid" id="openid"/>
+		
+		<!-- banner -->
+		<div class="login-bg">
+			<img src="${contextpath }/images/banner1.png"  class="blur"/>
+			<div class="blackBg"></div>
+			<!--登录内容-->
+			<div class="login clr">
+				<!--二维码-->
+				<div class="left">
+					<img src="${contextpath}/images/qrcode_for_gh_14fe25658a90_344.jpg" />
+					<h5>扫描以二维码登录</h5>
+				    <p onclick="javascript:window.location.href='https://open.weixin.qq.com/connect/qrconnect?appid=${appid }&redirect_uri=http%3A%2F%2F${callbackurl }%2Fcallback&response_type=code&scope=snsapi_login&state=<%=request.getSession().getId()%>#wechat_redirect'">微信登录</p>
+					
+				</div>
+				<!--二维码 end-->
+				<div class="right">
+					<h4>注册</h4>
+					<img src="${contextpath }/images/logo.png" />
+					<div class="mt40">
+						<input type="text" placeholder="手机号码"  id="mobile" name="mobile"/>
+						<input type="password" placeholder="请输入密码" id="cpassword" name="cpassword"/>
+						<div class="yzm">
+							<input type="text" placeholder="请输手机验证码" id="verifyCode" name="verifyCode"/>
+							<button onclick="sendCode();" id="getCode">获取验证码</button>
+						</div>
+						<button onclick="register();">注册</button>
+						 <input type="hidden" value="${openid }" name="openid" id="openid"/>
 				<p class="signup-guide clr"><span>已有账号<a href="${contextpath }/toLogin.htm">立即登录</a></span></p>
+					</div>
+				</div>
 			</div>
+			<!--登录内容 end-->
 		</div>
-		<!--登录 end-->
+		<!--banner end-->
+		 
 		
 		<div id="footer">
 		</div>

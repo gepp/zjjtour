@@ -144,12 +144,24 @@
 									window.location.reload();
 								});
 							 
-						 }else{
-							 layer.alert(data.message, {
+						 }else if(data.status=='001'){
+							 layer.open({
+									type : 2, 
+									title : '登录',
+									shadeClose : true,
+									shade : 0.8,
+									area : [ '500px', '40%' ],
+									content : '${contextpath}/loginForm.htm'
+								});
+							
+							 
+						 } else if(data.status=='002'){
+							 layer.alert('本活动您已报名，可在游客中心中查看！', {
 								    closeBtn: 0
 								}, function(){
 									window.location.reload();
 								});
+							  
 						 }
 					} 
 			});

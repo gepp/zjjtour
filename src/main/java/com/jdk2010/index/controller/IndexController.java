@@ -1,8 +1,10 @@
 package com.jdk2010.index.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,13 +25,17 @@ import com.jdk2010.framework.constant.Constants;
 import com.jdk2010.framework.controller.BaseController;
 import com.jdk2010.framework.dal.client.DalClient;
 import com.jdk2010.framework.util.DbKit;
+import com.jdk2010.framework.util.ImageUtils;
 import com.jdk2010.framework.util.JsonUtil;
+import com.jdk2010.framework.util.MD5Utils;
 import com.jdk2010.framework.util.Page;
 import com.jdk2010.framework.util.ReturnData;
+import com.jdk2010.framework.util.StringUtil;
 import com.jdk2010.member.memberactivity.model.MemberActivity;
 import com.jdk2010.search.systemsearchword.model.SystemSearchword;
 import com.jdk2010.system.systemadv.model.SystemAdv;
 import com.jdk2010.system.systemadv.service.ISystemAdvService;
+import com.jdk2010.util.QiniuUtil;
 import com.jdk2010.util.ZjjMsgUtil;
 
 @Controller
@@ -212,7 +218,7 @@ public class IndexController extends BaseController {
 			HttpServletResponse response) throws Exception {
 		Map<String, Object> member = getSessionAttr("member");
 		if (member == null) {
-			return REDIRECT+"/toLogin";
+			return REDIRECT + "/toLogin";
 		} else {
 			// 活动
 			Map<String, Object> data = (Map<String, Object>) member.get("data");
@@ -284,11 +290,16 @@ public class IndexController extends BaseController {
 		// setSessionAttr("member",JsonUtil.jsonToMap(testMember));
 		Map<String, Object> member = getSessionAttr("member");
 		if (member == null) {
-			return REDIRECT+"/toLogin";
+			return REDIRECT + "/toLogin";
 		} else {
 			// 活动
 			Map<String, Object> data = (Map<String, Object>) member.get("data");
 			String memberid = data.get("id") + "";
+			String birthday = (String) data.get("dbirthday");
+			if (birthday != null) {
+				String dbirthday = ZjjMsgUtil.transdate(birthday);
+				setAttr("dbirthday", dbirthday);
+			}
 			List<MemberActivity> activityList = dalClient
 					.queryForObjectList(
 							"select * from member_activity where id in (select  activity_id from member_activity_detail where userid="
@@ -298,13 +309,21 @@ public class IndexController extends BaseController {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping("/toMemberEdit")
 	public String toMemberEdit(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Map<String, Object> member = getSessionAttr("member");
+
 		if (member == null) {
-			return REDIRECT+"/toLogin";
+			return REDIRECT + "/toLogin";
 		} else {
+			Map<String, Object> data = (Map<String, Object>) member.get("data");
+			String birthday = (String) data.get("dbirthday");
+			if (birthday != null) {
+				String dbirthday = ZjjMsgUtil.transdate(birthday);
+				setAttr("dbirthday", dbirthday);
+			}
 			return "/memberEdit";
 		}
 	}
@@ -315,25 +334,37 @@ public class IndexController extends BaseController {
 		Map<String, Object> member = getSessionAttr("member");
 		System.out.println("member:" + member);
 		if (member == null) {
-			return REDIRECT+"/toLogin";
+			return REDIRECT + "/toLogin";
 		} else {
 
 			Map<String, Object> data = (Map<String, Object>) member.get("data");
-			System.out.println(data);
 			String memberid = data.get("id") + "";
 			Integer id = Integer.parseInt(memberid);
 			String cnickname = getPara("cnickname");
-			//cnickname = "";
+			// cnickname = "";
 			String cname = getPara("cname");
 			String csex = getPara("csex");
-			//csex = "";
+			// csex = "";
 			String dbirthday = getPara("dbirthday");
-			//dbirthday = "";
+			// dbirthday = "";
 
 			String cemail = getPara("cemail");
-			//cemail = "";
-			String cheadimgurl = getPara("cheadimgurl");
-			//cheadimgurl = "";
+			// cemail = "";
+			String cheadimgurl = getPara("memberImage1");
+			if (StringUtil.isNotBlank(cheadimgurl)) {
+				
+				String path = request.getRealPath("/")+"headimg/";
+				String type=cheadimgurl.split(",")[0].split(";")[0].split("/")[1];
+				String imgName = UUID.randomUUID().toString()+"."+type;
+				com.jdk2010.util.ImageUtils.decodeBase64ToImage(cheadimgurl.split(",")[1],
+						path, imgName);
+				System.out.println("path + imgName:"+path + imgName);
+				System.out.println("cheadimgurl:"+cheadimgurl);
+				//cheadimgurl = QiniuUtil.upload(path + imgName);
+				cheadimgurl ="/headimg/" + imgName;
+				System.out.println("cheadimgurl:---"+cheadimgurl);
+			}
+			// cheadimgurl = "";
 			String returnMsg = ZjjMsgUtil.updateMember(id, cnickname, cname,
 					csex, dbirthday, cemail, cheadimgurl);
 			Map returnMap = JsonUtil.jsonToMap(returnMsg);
@@ -440,8 +471,8 @@ public class IndexController extends BaseController {
 
 		String id = getPara("id");
 		SecurityNews securityNew = dalClient.findById(id, SecurityNews.class);
-		 securityNew.setReadtotal(securityNew.getReadtotal()+1);
-	        dalClient.update(securityNew);
+		securityNew.setReadtotal(securityNew.getReadtotal() + 1);
+		dalClient.update(securityNew);
 		setAttr("securityNew", securityNew);
 
 		String bqId = getPara("bqId");
