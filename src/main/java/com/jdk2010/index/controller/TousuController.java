@@ -90,6 +90,7 @@ public class TousuController extends BaseController {
        complain.setMemberMobile(data.get("ctel")+"");
        complain.setReplayStatus(0);
        complain.setReviewStatus(0);
+       complain.setMemberImg(data.get("cheadimgurl").toString());
        if(data.get("cname")!=null){
     	   complain.setMemberName(data.get("cname")+"");
        }else{

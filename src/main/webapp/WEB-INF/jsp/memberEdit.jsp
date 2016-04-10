@@ -37,7 +37,7 @@
 			</div>
 			<div class="tourist-right">
 				<!--我的活动编辑-->
-				<form method="post" action="${contextpath }/memberEditAction.htm">
+				<form method="post" action="${contextpath }/memberEditAction.htm" id="postForm" name="postForm">
 				<div class="tourist-right-item">
 					<div class="item-title clr">
 						<h5>个人信息编辑</h5>
@@ -49,7 +49,7 @@
 								<div class="thumbnail clr">
 									<div class="thumbnail-img">
 									<img id="memberImage" name="memberImage" src="
-									<c:if test="${member.data.cheadimgurl==null }">${contextpath }/images/4.jpg</c:if><c:if test="${member.data.cheadimgurl!=null }">${member.data.cheadimgurl }</c:if>
+									<c:if test="${member.data.cheadimgurl==null }">${contextpath }/images/4.jpg</c:if><c:if test="${member.data.cheadimgurl!=null }">${contextpath}${member.data.cheadimgurl }</c:if>
 									">
 									</div>
 									<div class="upload"><i class="iconfont">&#xe619;</i>
@@ -71,7 +71,7 @@
 							 
 							<div class="form-group">
 								<label>邮箱</label>
-								<input type="text" placeholder="请输入邮箱" name="cemail" value="${member.data.cemail }"/>
+								<input type="text" id="cemail" placeholder="请输入邮箱" name="cemail" value="${member.data.cemail }"/>
 							</div>
 							<div class="form-group">
 								<label>性别</label>
@@ -94,7 +94,7 @@
 							 
 							<div class="form-group">
 								<label></label>
-								<button type="submit">保存</button>
+								<button type="button" onclick="dosubmit();">保存</button>
 								<!-- <button>更改密码</button> -->
 							</div>
 						</div>
@@ -116,7 +116,8 @@
 		<script src="${contextpath}/js/laydate/laydate.js"></script>
 		<script src="${contextpath}/js/MegaPixImage.js" type="text/javascript"></script>
 		<script src="${contextpath}/js/exif.min.js" type="text/javascript"></script>
- 	
+ 		<script src="${contextpath}/js/layer/layer.js"></script>
+		<script src="${contextpath}/js/common.js"></script>
 	</body>
 
 <script type="text/javascript">
@@ -144,5 +145,16 @@ jQuery(document).ready(function() {
 
       };
 });
+function dosubmit(){
+	 var str = document.getElementById('cemail').value.trim();    
+     if(str.length!=0){    
+     reg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;    
+     if(!reg.test(str)){    
+    	 layer.msg("对不起，请输入正确的邮箱!");
+    	 return false;
+     }    
+     }   
+	$("#postForm").submit();
+}
 </script>
 </html>

@@ -12,13 +12,13 @@
 	<link rel="stylesheet" href="${contextpath }/font/iconfont.css" />
 	<link rel="shortcut icon" href="${contextpath }/favicon.ico"/>
 	<link rel="bookmark" href="${contextpath }/favicon.ico"/>
+	<link rel="stylesheet" href="${contextpath }/css/tianqi.css" />
 	<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
 
 	<body>
 		<!--视频弹窗遮罩  这一段需要放在前面-->
 		<div class="box"></div>
-		<!--视频弹窗遮罩 end-->
-		<div class="navbar-fixed-top clr"  >
+		<div class="navbar-fixed-top clr topNav"  >
 			<div class="logo" onclick="window.location.href='${contextpath}/'">
 				<img src="${contextpath }/images/logo.png"/>
 			</div>
@@ -54,9 +54,17 @@
 							</div>
 							<!--搜索提示 end-->
 					</div>
-					<div class="weather">
-<iframe width="280" scrolling="no" height="24" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1"></iframe>					</div>
+				<div class="weather topWeather" style="height:25px;line-height:25px;cursor:pointer;overflow:hidden">
+				<div style="float:left">张家界&nbsp;&nbsp;&nbsp;</div>
+				<div style="float:left" class="${realPic }"  style="border:0;width:25px;height:25px;vertical-align:middle;float:left">
 				</div>
+				 <span style="float:left">${leixing }&nbsp;&nbsp;</span>
+				<span style="color:#c30;font-family:Arial;float:left">${upWendu }</span>
+				～
+				<span style="color:#390;font-family:Arial;margin-right:10px">${downWendu }℃</span>
+				<strong>${xingqi }&nbsp;&nbsp;</strong>
+					</div>						
+ 				</div>
 				<div class="logo-right-bottom">
 					<!--导航-->
 					<ul class="nav navbar-nav clr">
@@ -74,13 +82,13 @@
 							<div class="normal"><a href="${contextpath }/changyou.htm">畅游</a></div>
 						</li>
 						<li _t_nav="news" class="<c:if test="${type=='yule' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/activity.htm">娱乐</a></div>
+							<div class="normal"><a href="${contextpath }/activity.htm">活动</a></div>
 						</li>
 						<li _t_nav="xiuxian" class="<c:if test="${type=='xiuxian' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/xiuxian.htm">休闲</a></div>
+							<div class="normal"><a href="${contextpath }/xiuxian.htm?secondMenuId=1091">印象</a></div>
 						</li>
 						<li _t_nav="community" class="<c:if test="${type=='tingwen' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/tingwen.htm">听闻</a></div>
+							<div class="normal"><a href="${contextpath }/tingwen.htm">新闻</a></div>
 						</li>
 						<li _t_nav="route" class="<c:if test="${type=='youke' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/memberCenter.htm">游客中心</a></div>
@@ -238,7 +246,12 @@
 			    var keycode = event.which; 
 			    //处理回车的情况 
 			    if(keycode==13){ 
-			    	search();
+					if (document.title=='登录'){
+						login();
+					}else{
+						search();
+					}
+			    	
 			   } 
 			    
 			});

@@ -76,6 +76,9 @@ public class XiuxianController extends BaseController {
 		Page pageList = dalClient.queryForPageList(dbKit, pagePage,
 				SecurityNews.class);
 		setAttr("pageList", pageList);
+		
+		SecurityNews securityNews=dalClient.queryForObject("select * from security_news where menu_id="+secondMenuId+"",SecurityNews.class);
+		setAttr("securityNews", securityNews);
         return "/xiuxian" ;
     }
     

@@ -22,7 +22,7 @@
 				<!--二维码-->
 				<div class="left">
 				<img src="${contextpath}/images/qrcode_for_gh_14fe25658a90_344.jpg" />
-					<h5>扫描以二维码登录</h5>
+					<h5>扫描关注张家界旅游官方微信</h5>
 					<p onclick="javascript:window.location.href='https://open.weixin.qq.com/connect/qrconnect?appid=${appid }&redirect_uri=http%3A%2F%2F${callbackurl }%2Fcallback&response_type=code&scope=snsapi_login&state=<%=request.getSession().getId()%>#wechat_redirect'">微信登录</p>
 				</div>
 				<!--二维码 end-->
@@ -34,6 +34,7 @@
 						<input type="password" placeholder="请输入密码" id="cpassword" name="cpassword"/>
 						<br/>
 						<button onclick="login();">登录</button>
+						<input type="hidden" value="${openid }" name="openid" id="openid"/>
 						<p class="clr"><span><a href="${contextpath }/toRegister.htm">免费注册</a></span><a href="${contextpath}/toGetPwd.htm">忘记密码</a></p>
 					</div>
 				</div>
@@ -61,14 +62,16 @@
 			$("#footer").load("${contextpath}/footer.htm");
 		});
 	 
-		/* $(document).keyup(function(event){ 
+		 $(document).keyup(function(event){ 
 		    var keycode = event.which; 
 		    //处理回车的情况 
 		    if(keycode==13){ 
-		    	login();
+		    	if(document.title='登录'){
+		    		login();
+		    	}
 		   } 
 		    
-		});   */
+		}); 
 		function login(){
 			var mobile = $("#mobile").val();
 			var cpassword = $("#cpassword").val();

@@ -48,6 +48,8 @@ public class WeixinController extends BaseController {
 				.getToken(code);
 		String openid=responseCode.getOpenid();
 		//openid="123";
+		System.out.println(responseCode);
+		System.out.println("openid:"+openid);
 		if(openid==null){
 			setAttr("message","您好,请通过微信扫描访问！");
 			return "/error";

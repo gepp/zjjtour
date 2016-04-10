@@ -23,7 +23,7 @@
 				<!--二维码-->
 				<div class="left">
 					<img src="${contextpath}/images/qrcode_for_gh_14fe25658a90_344.jpg" />
-					<h5>扫描以二维码登录</h5>
+					<h5>扫描关注张家界旅游官方微信</h5>
 				    <p onclick="javascript:window.location.href='https://open.weixin.qq.com/connect/qrconnect?appid=${appid }&redirect_uri=http%3A%2F%2F${callbackurl }%2Fcallback&response_type=code&scope=snsapi_login&state=<%=request.getSession().getId()%>#wechat_redirect'">微信登录</p>
 					
 				</div>
@@ -67,6 +67,7 @@
 			
 		});
 			function sendCode() {
+				var cpassword = $("#cpassword").val();
 				var mobile = $("#mobile").val();
 				if (trim(mobile) == '') {
 					layer.msg('请输入手机号码！');
@@ -75,7 +76,11 @@
 					layer.msg("手机号码有误，请 重新输入！");
 					$("#mobile").focus();
 					return false;
-				} else {
+				}else if(trim(cpassword).length<6){
+					layer.msg('密码最低长度6位！');
+					return false;
+				}
+				else {
 					$.ajax({
 						type: "post", 
 						url: "${contextpath}/isExists.htm?mobile="+mobile, 

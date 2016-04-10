@@ -29,38 +29,39 @@
 		<!--面包屑  end-->
 		<!--分类标签-->
 		<div class="list-label">
-			<button onclick="jumpXiuxian('')" <c:if test="${secondMenuId==''}"> class="active"</c:if>>全部</button>
 			<c:forEach var="menu" items="${secondMenuList }">
 			<button onclick="jumpXiuxian('${menu.id}')" <c:if test="${secondMenuId==menu.id}"> class="active"</c:if>>${menu.name }</button>
 			</c:forEach>
 		</div>
 		<!--分类标签 end-->
-		 
-		 <!--新闻列表-->
-		 <div class="news-list">
-								<ul class="clr">
-									<c:forEach items="${pageList.list }" var="item">
-									<li class="transition" onclick="jumpDetail('${item.id}')">
-										<div class="news-list-img">
-											<img src="${item.indeximg }" class="transition">
-										</div>
-										<h5 class="transition">${item.title }</h5>
-										<p>${item.abstractContent }</p>
-										<span class="time">${item.ctime }</span>
-										<span class="number"><i class="iconfont">&#xe616;</i>0</span>
-									</li>
-									 </c:forEach>
-								</ul>
-								<page:page href="${contextpath}/xiuxian.htm" data="pageList" />	
-							</div>
-		<!--图标列表-->	
-		
+		 <div class="panorama-details clr">
+			<div class="section">
+				<div class="news-font-list">
+					 
+					<div class="news-content">
+						 ${securityNews.content }
+					</div>
+				<!--分页-->
+				<!-- <div class="page">
+					<ul class="clr">
+						<li title="下一篇"><i class="iconfont">&#xe611;</i></li>
+						<li title="上一篇"><i class="iconfont">&#xe611;</i></li>
+					</ul>
+				</div> -->
+				<!--分页end-->
+				</div>
+			</div>
+			<div id="rightNews">
+			 
+			</div>
+		  </div>
 		<input type="hidden" name="secondMenuId" id="secondMenuId" value="${secondMenuId }"/>
 		<input type="hidden" name="currentId" id="currentId" value="${currentId }"/>
-		<div id="footer">
+		 
+
+		 <div id="footer">
 			 
 		</div>
-
 		 
 		
 		<script type="text/javascript" src="${contextpath }/js/jquery.min.js"></script>

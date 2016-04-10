@@ -827,11 +827,11 @@ html5浠ｇ爜鍧楃殑浠ｇ爜鍙互闅忔剰鏇存敼浠ラ€傚悎浣犵
 			g = false,
             j = document,
             r = 'http://www.macromedia.com/go/getflashplayer',
-            t = '<a href="' + r + '" target="_blank">璇风偣鍑绘澶勪笅杞藉畨瑁呮渶鏂扮殑flash鎻掍欢</a>',
+            t = '<a href="' + r + '" target="_blank">请先下载flash播放器</a>',
             error = {
-                w: '鎮ㄧ殑缃戦〉涓嶇鍚坵3c鏍囧噯锛屾棤娉曟樉绀烘挱鏀惧櫒',
-                f: '鎮ㄦ病鏈夊畨瑁協lash鎻掍欢锛屾棤娉曟挱鏀捐棰戯紝' + t,
-                v: '鎮ㄧ殑flash鎻掍欢鐗堟湰杩囦綆锛屾棤娉曟挱鏀捐棰戯紝' + t
+                w: '您的网页不符合w3c标准，无法显示播放器',
+                f: '您没有安装flash插件，无法播放视频，' + t,
+                v: '您的flash插件版本过低，无法播放视频，' + t
             },
             w3c = typeof j.getElementById != u && typeof j.getElementsByTagName != u && typeof j.createElement != u,
             i = 'id="' + N + '" name="' + N + '" ',

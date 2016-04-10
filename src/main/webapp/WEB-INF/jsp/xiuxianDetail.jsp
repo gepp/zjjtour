@@ -21,8 +21,8 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="#">休闲</a></li>
-				<li><a href="${contextpath }/changyou.htm?secondMenuId=${securityMenu.id}">${securityMenu.name }</a></li>
+				<li><a href="#">印象</a></li>
+				<li><a href="${contextpath }/xiuxian.htm?secondMenuId=${securityMenu.id}">${securityMenu.name }</a></li>
 				<li>${securityNew.title }</li>
 			</ul>
 		</div>

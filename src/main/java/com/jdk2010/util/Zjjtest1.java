@@ -1,128 +1,127 @@
 package com.jdk2010.util;
 
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSONArray;
 import com.jdk2010.framework.util.HttpUtil;
 import com.jdk2010.framework.util.JsonUtil;
-import com.jdk2010.framework.util.MD5Utils;
-import com.jdk2010.framework.util.StringUtil;
 
 public class Zjjtest1 {
-	public static final String URL="http://ststest.travelzjj.com:15404/sts-app/Api/member/";
-	public static final String KEY="YD#$kweri8889";
-	public static final String USERNAME="v7line001";
+	 
 	
-	public static String getSign(String param){
-		return MD5Utils.md5(USERNAME+param+KEY);
-	}
 	
-	//发送验证码
-	public static String sendCode(String mobile,String type){
- 		String methodName="sendCode";
-		String paramsJson = "{\"ctel\":\""+mobile+"\",\"type\":\""+type+"\"}";
-		String sign = MD5Utils.md5(USERNAME+paramsJson+KEY);
-		String posturl=URL+ methodName+"?format=json&user="+USERNAME+"&paramsJson="+ paramsJson + "&sign="+sign;
-		System.out.println("sendCode-url:"+posturl);
-		String returnStr=HttpUtil.post(posturl,"");
-		System.out.println("returnstr:"+returnStr);
-		return returnStr;
-	}
 	
-	//是否注册
-	public static String isExists(String mobile){
-		String methodName="isExists";
-		String paramsJson = "{\"cloginname\":\""+mobile+"\"}";
-		String sign = MD5Utils.md5(USERNAME+paramsJson+KEY);
-		String posturl=URL+ methodName+"?format=json&user="+USERNAME+"&paramsJson="+ paramsJson + "&sign="+sign;
-		System.out.println("isExists-url:"+posturl);
-		String returnStr=HttpUtil.post(posturl,"");
-		System.out.println("returnstr:"+returnStr);
-		return returnStr;
-	}
-	
-	//注册
-	public static String registerMember(String mobile,String verifyCode,String cpassword){
-		String methodName="registerMember";
-		String paramsJson ="{\"verifyCode\":\""+verifyCode+"\",data:{\"ctel\":\""+mobile+"\",\"cpassword\":\""+cpassword+"\",\"cnickname\":\""+mobile+"\"}}";
-		String sign = MD5Utils.md5(USERNAME+paramsJson+KEY);
-		String posturl=URL+ methodName+"?format=json&user="+USERNAME+"&paramsJson="+ paramsJson + "&sign="+sign;
-		System.out.println("registerMember-url:"+posturl);
-		String returnStr=HttpUtil.post(posturl,"");
-		System.out.println("returnstr:"+returnStr);
-		return returnStr;
-	}
-	
-	//登录
-	public static String login(String mobile,String cpassword){
-		String methodName="memberLogin";
-		String paramsJson ="{\"cloginname\":\""+mobile+"\",\"cpassword\":\""+cpassword+"\"}";
-		String sign = MD5Utils.md5(USERNAME+paramsJson+KEY);
-		String posturl=URL+ methodName+"?format=json&user="+USERNAME+"&paramsJson="+ paramsJson + "&sign="+sign;
-		System.out.println("memberLogin-url:"+posturl);
-		String returnStr=HttpUtil.post(posturl,"");
-		System.out.println("returnstr:"+returnStr);
-		return returnStr;
-	}
-	
-	public static String updateMember(int id,String cnickname,String cname,String csex,String dbirthday,String cemail,String cheadimgurl){
-		String methodName="updateMember";
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("id", id);
-		if(StringUtil.isNotBlank(cnickname)){
-			map.put("cnickname", cnickname);
-		}
-		if(StringUtil.isNotBlank(cname)){
-			map.put("cname", cname);
-		}
-		if(StringUtil.isNotBlank(csex)){
-			map.put("csex", csex);
-		}
-		if(StringUtil.isNotBlank(dbirthday)){
-			map.put("dbirthday", dbirthday);
-		}
-		if(StringUtil.isNotBlank(cemail)){
-			map.put("cemail", cemail);
-		}
-		if(StringUtil.isNotBlank(cheadimgurl)){
-			map.put("cheadimgurl", cheadimgurl);
-		}
+	public static void main(String[] args) throws IOException {
+//		Document doc = Jsoup.connect("http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1").timeout(5000).get();
+//		Elements elem = doc.select(".cityname");
+//		String cityName=elem.text();
+//		String imgUrl= doc.select(".pngtqico").attr("src");
+//		String tianqiType=doc.select(".divCurrentWeather").text();
+//		String upWendu=doc.select(".cc30").get(0).text();
+//		String downWendu=doc.select(".c390").get(0).text();
+//		String xingqi=doc.select("strong").get(0).text();
+//		System.out.println("xingqi:"+xingqi);
+//		System.out.println("upWendu："+upWendu);
+//		System.out.println("downWendu:"+downWendu);
+//		System.out.println(tianqiType);
+//		String leixing=doc.select("divCurrentWeather").text();
+//		System.out.println(tianqiType.split(" ")[0]);
 		
-		String paramsJson =JsonUtil.toJson(map);
-		String sign = MD5Utils.md5(USERNAME+paramsJson+KEY);
-		String posturl=URL+ methodName+"?format=json&user="+USERNAME+"&paramsJson="+ paramsJson + "&sign="+sign;
-		System.out.println("updateMember-url:"+posturl);
-		String returnStr=HttpUtil.post(posturl,"");
-		System.out.println("returnstr:"+returnStr);
-		return returnStr;
-	}
-	
-	
-	//注册
-		public static String changePass(String mobile,String verifyCode,String cpassword){
-			String methodName="changePass";
-			String paramsJson ="{\"verifyCode\":\""+verifyCode+"\",\"ctel\":\""+mobile+"\",\"cpassword\":\""+cpassword+"\"}";
-			String sign = MD5Utils.md5(USERNAME+paramsJson+KEY);
-			System.out.println("sign:"+sign);
-			String posturl=URL+ methodName+"?format=json&user="+USERNAME+"&paramsJson="+ paramsJson + "&sign="+sign;
-			System.out.println("changePass-url:"+posturl);
-			String returnStr=HttpUtil.post(posturl,"");
-			System.out.println("returnstr:"+returnStr);
-			return returnStr;
-		}
-	
-	
-	
-	public static void main(String[] args) {
-		int id=252;
-		String cnickname="";
-		String cname="123";
-		String csex="";
-		String dbirthday="";
-		String cemail="";
-		String cheadimgurl="";
-		//System.out.println(login("15951984655",MD5Utils.md5("111111")));
-		System.out.println(updateMember(273, "15951984655", "杨海", "男", "1988-09-04", "mqo198@sina.com", null));
+		
+		String returnMsg = HttpUtil.get("http://api.map.baidu.com/telematics/v3/weather?location=z&output=json&ak=BB70434a0c0facb5cf2b3bfd7406e86c");
+		System.out.println("returnMsg"+returnMsg);
+		Map<String,Object> returnMap=JsonUtil.jsonToMap(returnMsg);
+		JSONArray array=(JSONArray)returnMap.get("results");
+		Map<String,Object> result=(Map<String,Object>)array.get(0);
+		String cityName=(String)result.get("currentCity");
+		Map<String,Object> weather_data=(Map<String,Object>)(((JSONArray)result.get("weather_data")).get(0));
+		String realPic="sun";
+		String pic=(String)weather_data.get("weather");
+		if(pic.equals("暴雨")){
+    		realPic="rainstorm";
+    	}
+    	if(pic.equals("大暴雨")){
+    		realPic="heavyRain";
+    	}
+    	if(pic.equals("大雪")){
+    		realPic="heavySnow";
+    	}
+    	if(pic.equals("大雨")){
+    		realPic="hardRain";
+    	}
+    	if(pic.equals("冻雨")){
+    		realPic="freezingRain";
+    	}
+    	if(pic.equals("多云")){
+    		realPic="cloudy";
+    	}
+    	if(pic.equals("浮沉")){
+    		realPic="dust";
+    	}
+    	if(pic.equals("雷阵雨")){
+    		realPic="thunderShower";
+    	}
+    	if(pic.equals("雷阵雨伴有冰雹")){
+    		realPic="thunderstormsWithHail";
+    	}
+    	if(pic.equals("霾")){
+    		realPic="haze";
+    	}
+    	if(pic.equals("强沙尘暴")){
+    		realPic="severeSandAndDustStorm";
+    	}
+    	if(pic.equals("晴")){
+    		realPic="sun";
+    	}
+    	if(pic.equals("沙尘暴")){
+    		realPic="sandStorm";
+    	}
+    	if(pic.equals("特大暴雨")){
+    		realPic="heavyRainfall";
+    	}
+    	if(pic.equals("雾")){
+    		realPic="fog";
+    	}
+    	if(pic.equals("小雪")){
+    		realPic="lightSnow";
+    	}
+    	if(pic.equals("小雨")){
+    		realPic="lightRain";
+    	}
+    	if(pic.equals("扬沙")){
+    		realPic="blowingSand";
+    	}
+    	if(pic.equals("阴")){
+    		realPic="yin";
+    	}
+    	if(pic.equals("雨夹雪")){
+    		realPic="sleet";
+    	}
+    	if(pic.equals("阵雪")){
+    		realPic="snowShower";
+    	}
+    	if(pic.equals("阵雨")){
+    		realPic="shower";
+    	}
+    	if(pic.equals("中雪")){
+    		realPic="moderateSnow";
+    	}
+    	if(pic.equals("中雨")){
+    		realPic="moderateRain";
+    	}
+    	if(pic.equals("暴雪")){
+    		realPic="rainstorm";
+    	}
+    	String temperature=(String)weather_data.get("temperature");
+    	String xingqi=(String)weather_data.get("date");
+    	System.out.println(xingqi);
+		System.out.println("weather:"+realPic);
+		System.out.println(cityName);
+		System.out.println("data:"+xingqi);
+		System.out.println("temperature:"+temperature);
+				
+		 
 	}
 	
 }

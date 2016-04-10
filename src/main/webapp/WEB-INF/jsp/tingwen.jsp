@@ -24,7 +24,7 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="#" onclick="jumpTingwen('')">听闻</a></li>
+				<li><a href="#" onclick="jumpTingwen('')">新闻</a></li>
 				<li><a href="#">${thirdShowName }</a></li>
 			</ul>
 		</div>
@@ -35,14 +35,14 @@
 			<c:forEach var="menu" items="${secondMenuList }">
 			<button onclick="jumpTingwen('${menu.id}')" <c:if test="${secondMenuId==menu.id}"> class="active"</c:if>>${menu.name }</button>
 			</c:forEach>
-			<span class="transition" onclick="changeType();"><i class="iconfont" id="tingwensrc">&#xe621;</i></span>
+			<span class="transition" onclick="changeType();" id="changeSpan"><i class="iconfont" id="tingwensrc">&#xe621;</i></span>
 		</div>
 		
 		<!--分类标签 end-->
 		 
 		 <!--新闻列表-->
 		<div class="news-list" id="tupian">
-			<ul class="clr" id="tupian">
+			<ul class="clr"  >
 				<c:forEach items="${pageList.list }" var="item">
 				<li class="transition" onclick="jumpDetail('${item.id}')">
 					<div class="news-list-img">
@@ -59,11 +59,11 @@
 					<p>${item.abstractContent }</p>
 					<fmt:formatDate value="${item.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 					<span class="time">${ctime }</span>
-					<span class="number"><i class="iconfont" >&#xe616;</i>0</span>
+					<span class="number"><i class="iconfont" >&#xe616;</i>${item.readtotal }</span>
 				</li>
 				 </c:forEach>
 			</ul>
-			<page:page href="${contextpath}/tingwen.htm" data="pageList" />	
+			<page:page href="${contextpath}/tingwen.htm?secondMenuId=${secondMenuId }" data="pageList" />	
 		</div>
 		<!--图标列表-->	
 		 <div class="panorama-details clr"  id="wenzi" style="display:none">
@@ -82,7 +82,7 @@
 											${item.title }
 											<fmt:formatDate value="${item.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 											</h4>
-											<div class="time">${ctime }<span class="number"><i class="iconfont">&#xe616;</i>0</span></div>
+											<div class="time">${ctime }<span class="number"><i class="iconfont">&#xe616;</i>${item.readtotal }</span></div>
 								<p>${item.abstractContent }<span class="transition">查看详情<i class="iconfont">&#xe611;</i></span></p>
 									</li>
 								 
@@ -94,6 +94,20 @@
 				</div>
 			</div>
 			 <div id="rightNews"></div>
+		</div>
+		
+		
+		<div class="Leadership_talk" id="lingdaozhichuang" style="display:none">
+			
+			<c:forEach var="lingdao" items="${lingdaoList }">
+			<div class="Leader-item clr" onclick="gotoLingdao('${lingdao.id}')">
+				<img src="${lingdao.img }" />
+				<div class="Leader-item-right">
+					<span>${lingdao.code }</span>
+					<h5>${lingdao.name }</h5>
+				</div>
+			</div>
+			 </c:forEach>
 		</div>
 		
 		<input type="hidden" name="secondMenuId" id="secondMenuId" value="${secondMenuId }"/>
@@ -123,12 +137,22 @@
 					$("#tingwensrc").html("&#xe620;");
 				}
 			}
+			function gotoLingdao(id){
+				window.location.href='${contextpath}/lingdaoDetail.htm?id='+id;
+			}
 			//		头部悬浮
 			$("div.navbar-fixed-top").autoHidingNavbar();
 			jQuery(document).ready(function() {
 				$("#header").load("${contextpath}/header.htm?type=tingwen");
 				$("#footer").load("${contextpath}/footer.htm");
 				$("#rightNews").load("${contextpath}/right.htm");
+				
+				if('${secondMenuId}'=='1108'){
+					$("#tupian").hide();
+					$("#changeSpan").hide();
+					$("#lingdaozhichuang").show();
+				}
+				
 			});
 		 
 			function jumpDetail(id){

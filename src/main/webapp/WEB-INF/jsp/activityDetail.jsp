@@ -22,7 +22,7 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="${contextpath }/activity.htm">娱乐</a></li>
+				<li><a href="${contextpath }/activity.htm">活动</a></li>
 				<li>精彩活动</li>
 			</ul>
 		</div>
@@ -150,7 +150,7 @@
 									title : '登录',
 									shadeClose : true,
 									shade : 0.8,
-									area : [ '500px', '40%' ],
+									area : [ '540px', '40%' ],
 									content : '${contextpath}/loginForm.htm'
 								});
 							

@@ -54,7 +54,7 @@
 											${item.title }
 											<fmt:formatDate value="${item.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 											</h4>
-											<div class="time">${ctime }<span class="number"><i class="iconfont">&#xe616;</i>0</span></div>
+											<div class="time">${ctime }<span class="number"><i class="iconfont">&#xe616;</i>${item.readtotal }</span></div>
 								<p>${item.abstractContent }<span class="transition">查看详情<i class="iconfont">&#xe611;</i></span></p>
 									</li>
 								 
@@ -62,7 +62,7 @@
 					
 					</ul>
 					
-				  <page:page href="${contextpath}/changyou.htm" data="pageList" />	
+				  <page:page href="${contextpath}/changyou.htm?secondMenuId=${secondMenuId }" data="pageList" />	
 				</div>
 			</div>
 			 <div id="rightNews"></div>

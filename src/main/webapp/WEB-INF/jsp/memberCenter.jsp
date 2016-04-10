@@ -28,10 +28,20 @@
 	<!--游客中心-->
 	<div class="tourist-center clr">
 
+		
+		<div class="tourist-left">
+			<ul>
+				<li class="active">游客中心</li>
+				<li onclick="window.location.href='${contextpath}/toMemberEdit.htm'">个人信息</li>
+				<li onclick="window.location.href='${contextpath}/myActivityList.htm'">我的活动</li>
+				<li  onclick="window.location.href='${contextpath}/myTousuList.htm'">我的投诉</li>
+			</ul>
+		</div>
+		<div class="tourist-right">
 		<div class="tourist-top clr">
 			<div class="header-img">
 				
-				<img   src="<c:if test="${member.data.cheadimgurl==null }">${contextpath }/images/4.jpg</c:if><c:if test="${member.data.cheadimgurl!=null }">${member.data.cheadimgurl }</c:if>
+				<img   src="<c:if test="${member.data.cheadimgurl==null }">${contextpath }/images/4.jpg</c:if><c:if test="${member.data.cheadimgurl!=null }">${contextpath}${member.data.cheadimgurl }</c:if>
 									">
 			</div>
 			<ul>
@@ -48,15 +58,6 @@
 			</ul>
 			<a href="${contextpath }/toMemberEdit.htm">信息修改</a>
 		</div>
-		<div class="tourist-left">
-			<ul>
-				<li class="active">游客中心</li>
-				<li onclick="window.location.href='${contextpath}/toMemberEdit.htm'">个人信息</li>
-				<li onclick="window.location.href='${contextpath}/myActivityList.htm'">我的活动</li>
-				<li  onclick="window.location.href='${contextpath}/myTousuList.htm'">我的投诉</li>
-			</ul>
-		</div>
-		<div class="tourist-right">
 			<!--我参加的活动-->
 			<div class="tourist-right-item">
 				<div class="item-title clr">

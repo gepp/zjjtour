@@ -58,7 +58,7 @@
 				</li>
 				</c:forEach>
 			</ul>
-			 <page:page href="${contextpath}/quanjing.htm" data="pageList" />	
+			 <page:page href="${contextpath}/quanjing.htm?currentId=${currentId }&secondMenuId=${secondMenuId }" data="pageList" />	
 		</div>
 		<!--图标列表-->		
 		

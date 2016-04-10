@@ -31,7 +31,7 @@
 								</p>
 								</c:if>
 							</div>
-							<img class="pic" src="${adv.imgUrl }" width="1600" height="600" alt="">
+							<img class="pic" src="${adv.imgUrl }" width="1920" height="600" alt="">
 						</a>
 					</li>
 					</c:forEach>
@@ -179,7 +179,7 @@
 			<!--标题-->
 			<div class="index-title clr">
 				<h2 class="transition">
-					<span>娱乐</span>张家界
+					<span>活动</span>张家界
 					<svg id="svgLineTutorial" style=" position: absolute; top: -50px; left:0 ; z-index: -1;" height="160px" width="200px" xmlns="http://www.w3.org/2000/svg">
 					   <line x1="0" y1="160" x2="63" y2="110"  style="stroke:rgb(0,187,158);stroke-width:1" />
 						<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
@@ -192,7 +192,7 @@
 		<!--标题-->
 		<div class="index-title clr" id="index_5">
 			<h2 class="transition">
-				<span>休闲</span>张家界
+				<span>印象</span>张家界
 				<svg id="svgLineTutorial" style=" position: absolute; top: -50px; left:0 ; z-index: -1;" height="160px" width="200px" xmlns="http://www.w3.org/2000/svg">
 				   <line x1="0" y1="160" x2="63" y2="110"  style="stroke:rgb(0,187,158);stroke-width:1" />
 					<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
@@ -203,29 +203,30 @@
 		<!--标题  end-->
 		<!--休闲张家界-->
 		<div class="leisure clr">
-			<div class="delicacy"  onclick="jumpXiuxiansecond('${meishiMenu.id}');"><img src="${meishiMenu.img }">
+			<div class="delicacy"  onclick="jumpXiuxiansecond('${meishiMenu.id}');" style="cursor:pointer"><img src="${meishiMenu.img }-yinxiangindex01">
+				<div class="Mask-1"></div>
 				<div class="mask">
 					<h4>${meishiMenu.name }</h4>
 					<p>${meishiMenu.description }</p>
 				</div>
 			</div>
 			<div class="hotel">
-				<div class="leisure-top" onclick="jumpXiuxiansecond('${jiudianMenu.id}');"><img src="${jiudianMenu.img }"></div>
+				<div class="leisure-top" onclick="jumpXiuxiansecond('${jiudianMenu.id}');" style="cursor:pointer"><img src="${jiudianMenu.img }-yinxiangindex02"></div>
 				<div class="leisure-bottom transition">
 					<h5>${jiudianMenu.name }</h5>
-					<p>${jiudianMenu.description }<a href="#">［详细介绍］</a></p><i></i></div>
+					<p>${jiudianMenu.description }<a href="#" onclick="jumpXiuxiansecond('${jiudianMenu.id}');">［详细介绍］</a></p><i></i></div>
 			</div>
 			<div class="spots">
-				<div class="leisure-top transition" onclick="jumpXiuxiansecond('${jingdianMenu.id}');">
+				<div class="leisure-top transition" onclick="jumpXiuxiansecond('${jingdianMenu.id}');" >
 					<h5>${jingdianMenu.name }</h5>
-					<p>${jingdianMenu.description }<a href="#">［详细介绍］</a></p><i></i></div>
-				<div class="leisure-bottom"><img src="${jingdianMenu.img }"></div>
+					<p>${jingdianMenu.description }<a href="#" onclick="jumpXiuxiansecond('${jingdianMenu.id}');">［详细介绍］</a></p><i></i></div>
+				<div class="leisure-bottom" style="cursor:pointer"><img src="${jingdianMenu.img }-yinxiangindex02"></div>
 			</div>
 			<div class="gate">
-				<div class="leisure-top" onclick="jumpXiuxiansecond('${menpiaoMenu.id}');"><img src="${menpiaoMenu.img }"></div>
+				<div class="leisure-top" onclick="jumpXiuxiansecond('${menpiaoMenu.id}');" style="cursor:pointer"><img src="${menpiaoMenu.img }-yinxiangindex02"></div>
 				<div class="leisure-bottom transition">
 					<h5>${menpiaoMenu.name }</h5>
-					<p>${menpiaoMenu.description}<a href="#">［详细介绍］</a></p><i></i></div>
+					<p>${menpiaoMenu.description}<a href="#" onclick="jumpXiuxiansecond('${menpiaoMenu.id}');">［详细介绍］</a></p><i></i></div>
 			</div>
 		</div>
 		<!--休闲张家界 end-->
@@ -245,13 +246,13 @@
 			<div class="index-swim-left">
 				<div class="index-title clr">
 					<h2 class="transition">
-					<span>听闻</span>张家界
+					<span>新闻</span>张家界
 					<svg id="svgLineTutorial" style=" position: absolute; top: -50px; left:0 ; z-index: -1;" height="160px" width="200px" xmlns="http://www.w3.org/2000/svg">
 					   <line x1="0" y1="160" x2="63" y2="110"  style="stroke:rgb(0,187,158);stroke-width:1" />
 						<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
 					</svg>
 				</h2>
-					<div class="more transition" onclick="window.location.href='${contextpath}/tingwen.htm'">查看更多</div>
+					<div class="more transition" onclick="window.open('${contextpath}/tingwen.htm')">查看更多</div>
 				</div>
 			</div>
 			<!--标题  end-->
@@ -266,9 +267,9 @@
 			<a class="taoba" href="javascript:void(0)" title="1">视觉</a>
 			<a class="taoba" href="javascript:void(0)" title="2">全景</a>
 			<a class="taoba" href="javascript:void(0)" title="3">畅游</a>
-			<a class="taoba" href="javascript:void(0)" title="4">娱乐</a>
-			<a class="taoba" href="javascript:void(0)" title="5">休闲</a>
-			<a class="taoba" href="javascript:void(0)" title="6">听闻</a>
+			<a class="taoba" href="javascript:void(0)" title="4">活动</a>
+			<a class="taoba" href="javascript:void(0)" title="5">印象</a>
+			<a class="taoba" href="javascript:void(0)" title="6">新闻</a>
 			<a id="gotop" href="javascript:void(0)" title="回到顶部" class="transition"><i class="iconfont transition">&#xe60d;</i></a>
 			<!-- 这个也是id="gotop"  -->
 		</div>
@@ -458,16 +459,16 @@ function openShipin(title,img,videoUrl){
 	}
 	
 	function jumpQuanjingDetail(id){
-		window.location.href='${contextpath}/quanjingDetail.htm?id='+id;
+		window.open('${contextpath}/quanjingDetail.htm?id='+id);
 	}
 	function jumpChangyouDetail(id){
-		window.location.href='${contextpath}/changyouDetail.htm?id='+id;
+		window.open('${contextpath}/changyouDetail.htm?id='+id);
 	}
 	function jumpTingwenDetail(id){
-		window.location.href='${contextpath}/tingwenDetail.htm?id='+id;
+		window.open('${contextpath}/tingwenDetail.htm?id='+id);
 	}
 	function jumpXiuxiansecond(secondMenuId){
-		window.location.href="${contextpath}/xiuxian.htm?secondMenuId="+secondMenuId;
+		window.open("${contextpath}/xiuxian.htm?secondMenuId="+secondMenuId);
 	}
 	
 	function checkUser(status,id){

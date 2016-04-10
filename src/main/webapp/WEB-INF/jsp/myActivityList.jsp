@@ -62,8 +62,7 @@
 						<input class="laydate-icon" value="${start_time_end }" onclick="laydate()" placeholder="请选择截止时间" name="start_time_end" id="start_time_end">
 					</div>
 					<div class="form-group">
-						<label></label>
-						<button type="button" onclick="doSearch();">搜索</button>
+						<button type="button" onclick="doSearch();"  style="margin-left: 75px">搜索</button>
 					</div>
 					
 				</div>
@@ -93,8 +92,11 @@
 									<c:if test="${ item.activityStatus==0}">
 									<span onclick="cancelActivity('${item.id}')">取消报名</span>
 									</c:if>
-									<c:if test="${ item.activityStatus!=1}">
-									 
+									<c:if test="${ item.activityStatus==1}">
+									 <span onclick="cancelActivity('${item.id}')">取消报名</span>
+									</c:if>
+									<c:if test="${ item.activityStatus==2}">
+									 <span onclick="cancelActivity('${item.id}')">删除报名</span>
 									</c:if>
 									</td>
 								</tr>

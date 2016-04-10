@@ -22,8 +22,7 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="#">听闻</a></li>
-				<li><a href="${contextpath }/tingwen.htm?secondMenuId=${securityMenu.id}">${securityMenu.name }</a></li>
+				<li><a href="${contextpath }/tingwen.htm">新闻</a></li>
 				<li>${securityNew.title }</li>
 			</ul>
 		</div>

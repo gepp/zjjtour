@@ -17,13 +17,13 @@
 
 	<div id="header"></div>
 
-	<img src="${contextpath }/images/banner1.png" style="width: 100%" />
+	<img src="${contextpath }/images/08.jpg" style="width: 100%" />
 	<!--面包屑-->
 	<div class="page-breadcrumbs">
 		<ul class="clr">
 			<span>当前位置：</span>
 			<li><a href="${contextpath }/">首页</a></li>
-			<li><a href="${contextpath }/activity.htm">娱乐</a></li>
+			<li><a href="${contextpath }/activity.htm">活动</a></li>
 			<li>精彩活动</li>
 		</ul>
 	</div>
@@ -78,7 +78,7 @@
 				</li>
 			</c:forEach>
 		</ul>
-		<page:page href="${contextpath}/activity.htm" data="pageList" />
+		<page:page href="${contextpath}/activity.htm?activityStatus=${activityStatus }" data="pageList" />
 
 
 	</div>
