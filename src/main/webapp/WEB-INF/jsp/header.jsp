@@ -91,7 +91,7 @@
 							<div class="normal"><a href="${contextpath }/tingwen.htm">新闻</a></div>
 						</li>
 						<li _t_nav="route" class="<c:if test="${type=='youke' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/memberCenter.htm">游客中心</a></div>
+							<div class="normal"><a href="${contextpath }/about.htm?secondMenuId=1118">游客中心</a></div>
 						</li>
 					</ul>
 					<div class="navigation-down phone-header">

@@ -299,18 +299,18 @@ a {text-decoration: none;}
 .activity-item-list>ul>li>.img-content>span  {line-height: 24px !important;padding: 10px !important;}
 .activity-item-list>ul>li>.img-content>i{ height: 90px; width: 90px; font-size: 60px;  padding-left: 6px;padding-top: 4px; color: rgba(255, 255, 255, 0.8); position: absolute; top: 0; left: 0;background: rgba(253, 53, 53, 0.8);border-bottom-right-radius: 100%;}
 .item-list>ul>li>h5,.activity-item-list>ul>li>.intro {/*font-size: 24px;*/color: #666;height: 70px;margin: 20px 0 0 5px;}
-.activity-item-list>ul>li>.intro>span{ display: block; margin: 10px 20px 0 0; float: left; color: #00BB9E;}
+.activity-item-list>ul>li>.intro>span{ display: block; margin: 10px 10px 0 0; float: left; color: #00BB9E;}
 .activity-item-list>ul>li>.intro>span>font{color: #ccc; margin-right: 5px;}
 .item-list>ul>li:hover,.activity-item-list>ul>li:hover  {background: #00BB9E;}
 .item-list>ul>li:hover>.img-content>span  {height: 50px;bottom: 0;}
 .activity-item-list>ul>li:hover>.img-content>span {height: 92px;bottom: 0;}
 .item-list>ul>li:hover>.img-content>img,.activity-item-list>ul>li:hover>.img-content>img {transform: scale(1.2);}
-.item-list>ul>li:hover>h5,.activity-item-list>ul>li:hover>.intro,.activity-item-list>ul>li:hover>.intro>span,.activity-item-list>ul>li:hover>.intro>span>font {color: #fff;}
+.item-list>ul>li:hover>h5,.activity-item-list>ul>li:hover>.intro,.activity-item-list>ul>li:hover>.intro>span,.activity-item-list>ul>li:hover>.intro>span>font,.item-list>ul>li:hover>.hotel-list {color: #fff;}
 .list-label>button{ width: 160px; height: 60px; line-height: 60px;  background: #F5F5F5; border: none ; font-size: 20px; border-radius: 5px; margin-right: 10px;font-family: "微软雅黑";}
 .list-label>button:hover,.list-label>button.active{color: #fff; background: #00BB9E;}
 /*活动列表*/
-.activity-item-list .activity{position: absolute; bottom: 20px; right: 10px; z-index: 100;}
-.activity-item-list .activity>i{font-size: 50px;}
+.activity-item-list .activity{position: absolute; bottom: 20px; right: 0px; z-index: 100;}
+.activity-item-list .activity>i{font-size: 40px;}
 .activity-item-list .activity.start{color: #ff4e00;}
 .activity-item-list .activity.end{color: #ccc;}
 .activity-item-list .activity.not-started{color: #737383;}
@@ -462,18 +462,18 @@ span.zhiding>em,span.toutiao>em{ display: block; width: 0; height: 0; position: 
 .mt85{margin-top: 85px;}
 .mt40{margin-top: 40px;}
  .loginForm.clr{margin: 170px auto 50px auto; width: 1040px; padding: 40px 80px;}
- .loginForm.clr>.login-left{ float: left; width:460px ; background: #fff; padding: 20px; height: 364px;}
+ .loginForm.clr>.login-left{ float: left; width:460px ; background: #fff; padding: 20px; height: 364px;box-sizing:border-box;}
  .loginForm.clr>.login-register{width:500px ; background: #fff; padding: 20px;display: block; margin: 0 auto;}
  .loginForm.clr>.login-right{ float: right; width:340px ; background: #fff; padding: 20px;}
  .loginForm.clr>.login-right>img{ width: 100%;}
  .loginForm.clr h4{color: #00BB9E;}
- .loginForm.clr input{ margin-top: 20px; display: block; padding:10px 20px;  border: 1px solid #eee; font-size: 14px; width: 80%;}
+ .loginForm.clr input{ margin-top: 20px; display: block; padding:10px 20px;  border: 1px solid #eee; font-size: 14px; width: 100%;box-sizing:border-box;}
  .loginForm.clr label{ position: relative; display: block; cursor: pointer; margin-top:20px; line-height: 20px;} 
  .loginForm.clr label>input{ display: none;}
  .loginForm.clr label input[type=checkbox] + .text{margin-left: 30px;}
  .loginForm.clr label input[type=checkbox] + .text:before{ border: 1px solid #ccc; position: absolute;top: 0;display: block; content: ""; height: 18px; width: 18px;  margin-right: 10px;left: 0;}
  .loginForm.clr label input[type=checkbox]:checked + .text:before{ content: "\e604"; position: absolute; font-family:"iconfont" !important;font-size: 16px; font-style:normal;  height: 20px;-webkit-font-smoothing: antialiased;-webkit-text-stroke-width: 0.2px;-moz-osx-font-smoothing: grayscale;border-color: #00BB9E;box-sizing: border-box;color: #FFFFFF;background: #00bb9e;width: 20px;text-align: center;line-height: 18px;}
- .loginForm.clr button{display: block; margin-top: 20px; width: 88%; background: #00BB9E; border: none; padding: 0; margin: 0; line-height: 39px; text-align: center; font-size: 16px; color: #fff; margin-top: 20px;}
+ .loginForm.clr button{display: block; margin-top: 20px; width: 100%; background: #00BB9E; border: none; padding: 0; margin: 0; line-height: 39px; text-align: center; font-size: 16px; color: #fff; margin-top: 20px;}
  .loginForm.clr button:hover{ background: rgba(0, 187, 158, 0.8);}
  .loginForm.clr button:active{box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) inset;;}
  .loginForm.clr .signup-guide{display: block; margin-top: 20px;}
@@ -664,5 +664,11 @@ span.zhiding>em,span.toutiao>em{ display: block; width: 0; height: 0; position: 
 .Leader-item>.Leader-item-right{float: right; width: 920px;}
 .Leader-item>.Leader-item-right>span{display: block; height: 163px; line-height: 163px; text-align: center; font-size: 30px;color: #00BB9E;  background: url(../images/bg-flower.png) no-repeat; background-size: 100%;}
 .Leader-item>.Leader-item-right>h5{ height: 80px; margin-top: 17px; line-height: 80px; text-align: center; font-size: 24px; border: 1px solid #43CAB6; color: #00BB9E; font-weight: normal;}
-
+.leadership-title>a{color:#999;}
+.leadership-title>a:hover{color:#00BB9E;}
+.leadership-title>a>i{font-size:12px;}
+.hotel-titel{height: 30px !important;}
+.hotel-list{line-height: 24px; padding-left: 15px; padding-bottom: 20px;}
+.hotel-list>p{width: 100%; height: 24px; overflow: hidden;}
+.hotel-list>p>span{margin-right: 10px;}
 

@@ -132,7 +132,9 @@
 				</div>
 			</div>
 			<div class="footer-img-list clr"><img src="${contextpath }/images/footer.png"><img src="${contextpath }/images/footer1.png"><img src="${contextpath }/images/footer2.png"><img src="${contextpath }/images/footer3.png"><img src="${contextpath }/images/footer4.png"></div>
-			<div class="copyright">版权所有：张家界市人民政府    湘ICP备15001419号-2    E-mail：admin@travelzjj.com</div>
+			<div class="copyright">版权所有：张家界市人民政府   
+		 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43080202000109" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="${contextpath }/images/beian.png" style="float:left;"/>湘公网安备 43080202000109号</a>
+		 	   E-mail：admin@travelzjj.com</div>
 		</div>
 	</body>
 

@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title>${indexMap.title }</title>
@@ -44,7 +43,9 @@
 		<!--分类标签-->
 		<div class="list-label">
 			<c:forEach var="bq" items="${bqMenuList }">
-			<button onclick="gotoBiaoqian('${bq.id}')" <c:if test="${bq.id==currentId}">class="active"</c:if>>${bq.name }</button>
+					
+					<button onclick="gotoBiaoqian('${bq.id}')" <c:if test="${bq.id==currentId}">class="active"</c:if>>${bq.name }</button>
+					
 			</c:forEach>
 		</div>
 		<!--分类标签 end-->
@@ -52,10 +53,22 @@
 		<div class="item-list">
 			<ul class="clr" id="newsListUl">
 				<c:forEach items="${pageList.list }" var="quanjingNews">
+				<c:if test="${secondMenuId==1086 }">
+					<li class="transition">
+						<div class="img-content"><img src="${quanjingNews.smallimg }" class="transition"><span>${quanjingNews.abstractContent }</span></div>
+						<h5 class="transition hotel-titel">${quanjingNews.title }</h5>
+						<div class="hotel-list">
+							${quanjingNews.content}
+						</div>
+					</li>
+					
+				</c:if>
+				<c:if test="${secondMenuId!=1086 }">
 				<li class="transition" onclick="jumpDetail('${quanjingNews.id}')">
 					<div class="img-content"><img src="${quanjingNews.indeximg }" class="transition"><span>${quanjingNews.abstractContent }</span></div>
 					<h5 class="transition">${quanjingNews.title }</h5>
 				</li>
+				</c:if>
 				</c:forEach>
 			</ul>
 			 <page:page href="${contextpath}/quanjing.htm?currentId=${currentId }&secondMenuId=${secondMenuId }" data="pageList" />	
@@ -70,7 +83,7 @@
 		 
 		
 		<!--<script src="${contextpath }/js/jquery-2.1.0.js"></script>-->
-		<script type="text/javascript" src="${contextpath }/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${contextpath }/js/jquery.js"></script>
 		<script src="${contextpath }/js/bootstrap.min.js"></script>
 		<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
 		<script src="${contextpath}/js/layer/layer.js"></script>
