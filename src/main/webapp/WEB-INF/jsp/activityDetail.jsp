@@ -16,13 +16,13 @@
 		 
 		 <div id="header"></div>
 		 
-		<img src="${contextpath }/images/banner1.png" style="width:100%"/>
+		<img src="${xiuxian.img }" style="width: 100%" />
 		<!--面包屑-->
 		<div class="page-breadcrumbs">
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="${contextpath }/activity.htm">活动</a></li>
+				<li><a href="${contextpath }/activity.htm">${xiuxian.name }</a></li>
 				<li>精彩活动</li>
 			</ul>
 		</div>
@@ -38,6 +38,7 @@
 							<fmt:formatDate value="${activity.endTime }" pattern="yyyy-MM-dd" var="endTime"/>
 							<span><font>活动介绍：</font>${activity.abstractContent }</span>
 							<span><font>活动时间：</font>${startTime }至${endTime }</span>
+							<c:if test="${activity.supportStatus==1 }">
 							<span><font>已报名人数：</font>${activity.usercount }</span>
 							<span><font>活动状态：</font>
 							<c:if test="${activity.activityStatus==0 }">未开始</c:if>
@@ -54,6 +55,7 @@
 							</c:if>
 							<c:if test="${activity.activityStatus==2 }">
 							<button class="active" >已结束</button>
+							</c:if>
 							</c:if>
 						</div>
 					</div>
@@ -78,7 +80,7 @@
 		 
 		
 		<!--<script src="${contextpath }/js/jquery-2.1.0.js"></script>-->
-		<script type="text/javascript" src="${contextpath }/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${contextpath }/js/jquery.js"></script>
 		<script src="${contextpath }/js/bootstrap.min.js"></script>
 		<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
 		<script src="${contextpath}/js/layer/layer.js"></script>
@@ -156,7 +158,7 @@
 							
 							 
 						 } else if(data.status=='002'){
-							 layer.alert('本活动您已报名，可在游客中心中查看！', {
+							 layer.alert('本活动您已报名，可在会员中心中查看！', {
 								    closeBtn: 0
 								}, function(){
 									window.location.reload();

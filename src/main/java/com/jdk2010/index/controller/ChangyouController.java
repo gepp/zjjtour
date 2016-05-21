@@ -56,14 +56,18 @@ public class ChangyouController extends BaseController {
         SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1010" ,SecurityMenu.class);
         setAttr("changyou", menu);
         //畅游
-        String sql="select * from security_menu where  parent_id=1010 order by orderlist asc";
+        String sql="select * from security_menu where  parent_id=1010 and status=1  order by orderlist asc";
         List<SecurityMenu> secondMenuList=dalClient.queryForObjectList(sql,SecurityMenu.class);
         setAttr("secondMenuList", secondMenuList);
         
         String secondMenuId=getPara("secondMenuId");
         if(StringUtil.isBlank(secondMenuId)){
-        	secondMenuId="";
+        	  if(secondMenuList.size()!=0){
+              	secondMenuId=secondMenuList.get(0).getId();
+              }
         }
+        
+      
         setAttr("secondMenuId", secondMenuId);
         String thirdShowName="";
         //畅游的新闻
@@ -115,7 +119,11 @@ public class ChangyouController extends BaseController {
         
         SecurityMenu securityMenu=dalClient.queryForObject("select * from security_menu where id="+securityNew.getMenuId() ,SecurityMenu.class);
         setAttr("securityMenu", securityMenu);
-        
+     // 标签
+     		List<Map<String, Object>> biaoqianList = dalClient
+     				.queryForObjectList("select * from news_maodian where news_id="
+     						+ id);
+     		setAttr("biaoqianList", biaoqianList);
         
         return "/changyouDetail" ;
     }

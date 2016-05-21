@@ -22,20 +22,61 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="${contextpath }/tingwen.htm">新闻</a></li>
+				<li><a href="${contextpath }/tingwen.htm">${quanjing.name }</a></li>
 				<li>${securityNew.title }</li>
 			</ul>
 		</div>
 		<!--面包屑  end-->
-		  <div class="panorama-details clr">
+		  <!--全景详情-->
+		<div class="panorama-details clr">
 			<div class="section">
-				<div class="news-font-list">
+				<c:if test="${securityNew.maodianStatus==1 }">
+				<div id="menu1" class="menu">
+					
+					<div id="menu">
+						<div class="line"></div>
+						<ul>
+							<c:if test="${securityNew.quanjingUrl !=null&&securityNew.quanjingUrl !='' }">
+							<li><a href="#item-1" class="cur transition">360°全景</a></li>
+							</c:if>
+								<c:forEach items="${biaoqianList }" var="biaoqian">
+								<li><a href="#item${biaoqian.orderlist }" class="transition">${biaoqian.maodian_name }</a></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<div id="content">
+				<c:if test="${securityNew.quanjingUrl !=null&&securityNew.quanjingUrl !='' }">
+					<div class="content-item" id="item-1">
+						<h4><i class="iconfont">&#xe610;</i>360°全景</h4>
+						<iframe allowtransparency="true" frameborder="0" src="${securityNew.quanjingUrl }" width="750" height="400" style="border: 1px solid #eee;">这里是全景控件</iframe>
+				
+					</div>
+				</c:if>
+					<c:forEach items="${biaoqianList }" var="biaoqian">
+	 				    <div class="content-item" id="item${biaoqian.orderlist }">
+	 				    	<h4><i class="iconfont">&#xe610;</i>${biaoqian.maodian_name }</h4>
+	 				    	${biaoqian.maodian_content }
+						</div>
+ 				    </c:forEach>
+				</div>
+			</c:if>
+			<c:if test="${securityNew.maodianStatus!=1 }">
+			<div  >
+			<div class="news-font-list">
 					<h4>${securityNew.title }</h4>
 					<div class="tit-bar">
-						<fmt:formatDate value="${securityNew.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
+					<fmt:formatDate value="${securityNew.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 						<span>${ctime }</span>
 						<span><i class="iconfont">&#xe616;</i>&nbsp;${securityNew.readtotal }</span></span>
-						<span>来源：本站原创</span>
+						<span>来源：
+						<c:if test="${securityNew.newsFrom=='' }">
+						本站原创
+						</c:if>
+						<c:if test="${securityNew.newsFrom!='' }">
+						${securityNew.newsFrom }
+						</c:if>
+						</span>
 					</div>
 					<div class="abstract">${securityNew.abstractContent }</div>
 					<div class="news-content">
@@ -51,8 +92,12 @@
 				<!--分页end-->
 				</div>
 			</div>
+			</c:if>
+			</div>
 			 <div id="rightNews"></div>
-		  </div>
+		</div>
+		<!--图标列表-->
+
 		<div id="footer">
 		</div>
 
@@ -64,6 +109,8 @@
 		<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
 		<script src="${contextpath}/js/layer/layer.js"></script>
 		<script src="${contextpath}/js/common.js"></script>
+			<script type="text/javascript" src="${contextpath}/js/juheweb.js"></script>
+		<script type="text/javascript" src="${contextpath}/js/menu.js"></script>
 		<script>
 			//		头部悬浮
 			$("div.navbar-fixed-top").autoHidingNavbar();
@@ -72,7 +119,11 @@
 				$("#footer").load("${contextpath}/footer.htm");
 				$("#rightNews").load("${contextpath}/right.htm");
 			});
-			 
+			$(document).ready(function() {
+				$('#menu1').stickyfloat({
+					duration : 0
+				});
+			});
 			
 		</script>
 	</body>

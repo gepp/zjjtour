@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>个人中心</title>
+<title>会员中心</title>
 </head>
 <link rel="stylesheet" href="${contextpath}/css/style.css" />
 <link rel="stylesheet" href="${contextpath}/font/iconfont.css" />
@@ -20,18 +20,17 @@
 		<ul class="clr">
 			<span>当前位置：</span>
 			<li><a href="${contextpath }/">首页</a></li>
-			<li>游客中心</li>
+			<li>会员中心</li>
 		</ul>
 	</div>
 	<!--面包屑  end-->
 
-	<!--游客中心-->
 	<div class="tourist-center clr">
 
 		
 		<div class="tourist-left">
 			<ul>
-				<li class="active">游客中心</li>
+				<li class="active">会员中心</li>
 				<li onclick="window.location.href='${contextpath}/toMemberEdit.htm'">个人信息</li>
 				<li onclick="window.location.href='${contextpath}/myActivityList.htm'">我的活动</li>
 				<li  onclick="window.location.href='${contextpath}/myTousuList.htm'">我的投诉</li>
@@ -84,7 +83,6 @@
 			 
 		</div>
 	</div>
-	<!--游客中心 end-->
 
 	<div id="footer">
 		 

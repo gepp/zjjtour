@@ -30,7 +30,7 @@
 		<!--面包屑  end-->
 		<!--分类标签-->
 		<div class="list-label">
-			<button onclick="jumpChangyou('')" <c:if test="${secondMenuId==''}"> class="active"</c:if>>全部</button>
+			<%-- <button onclick="jumpChangyou('')" <c:if test="${secondMenuId==''}"> class="active"</c:if>>全部</button> --%>
 			<c:forEach var="menu" items="${secondMenuList }">
 			<button onclick="jumpChangyou('${menu.id}')" <c:if test="${secondMenuId==menu.id}"> class="active"</c:if>>${menu.name }</button>
 			</c:forEach>

@@ -24,7 +24,7 @@
 			</div>
 			<div class="logo-title">
 				<h6>张家界市人民政府旅游官网</h6>
-				<h4>走遍全世界，还是张家界</h4>
+				<h4>走遍全世界&nbsp;&nbsp;还是张家界</h4>
 			</div>
 			<div class="logo-right">
 				<div class="logo-right-top clr">
@@ -73,10 +73,10 @@
 							<div class="normal"><a href="${contextpath }/"><i class="iconfont font-150">&#xe608;</i></a></div>
 						</li>
 						<li _t_nav="shijue" class="<c:if test="${type=='shipin' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/shipin.htm">视觉</a></div>
+							<div class="normal"><a href="${contextpath }/shipin.htm">视界</a></div>
 						</li>
 						<li _t_nav="panorama" class="<c:if test="${type=='quanjing' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/quanjing.htm">全景</a></div>
+							<div class="normal"><a href="${contextpath }/quanjing.htm">资讯</a></div>
 						</li>
 						<li _t_nav="activity" class="<c:if test="${type=='changyou' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/changyou.htm">畅游</a></div>
@@ -85,7 +85,7 @@
 							<div class="normal"><a href="${contextpath }/activity.htm">活动</a></div>
 						</li>
 						<li _t_nav="xiuxian" class="<c:if test="${type=='xiuxian' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/xiuxian.htm?secondMenuId=1091">印象</a></div>
+							<div class="normal"><a href="${contextpath }/xiuxian.htm?secondMenuId=1091">市情</a></div>
 						</li>
 						<li _t_nav="community" class="<c:if test="${type=='tingwen' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/tingwen.htm">新闻</a></div>
@@ -93,8 +93,28 @@
 						<li _t_nav="route" class="<c:if test="${type=='youke' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/about.htm?secondMenuId=1118">游客中心</a></div>
 						</li>
+						<c:forEach var="otherNew" items="${otherNewsMenuList }">
+						
+						<li _t_nav="${otherNew.id }" class="<c:if test="${type=='otherNew.id' }">active</c:if>">
+							<div class="normal"><a href="${contextpath }/other.htm?otherId=${otherNew.id}">${otherNew.name }</a></div>
+						</li>
+							
+						</c:forEach>
 					</ul>
 					<div class="navigation-down phone-header">
+						
+						<div id="shijue" class="nav-down-menu" style="display: none;" _t_nav="shijue">
+							<div class="item">
+								<ul class="clr">
+									<c:forEach var="menu"  items="${videoMenuList }">
+									<li class="transition" onclick="jumpShipinM('${menu.id }')">
+										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
+										<h5 class="transition">${menu.name }</h5>
+									</li>
+									 </c:forEach>
+								</ul>
+							</div>
+						</div>
 						
 						<div id="panorama" class="nav-down-menu" style="display: none;" _t_nav="panorama">
 							<div class="item">
@@ -121,7 +141,6 @@
 							</div>
 						</div>
 						<div id="news" class="nav-down-menu" style="display: none;" _t_nav="news">
-							 
 						</div>
 							<div id="xiuxian" class="nav-down-menu" style="display: none;" _t_nav="xiuxian">
 							<div class="item">
@@ -148,9 +167,25 @@
 								</ul>
 							</div>
 						</div>
+						
 						<div id="route" class="nav-down-menu" style="display: none;" _t_nav="route">
 							 
 						</div>
+						
+						<c:forEach var="newMap" items="${newsMap }">
+							<div id="${newMap.key }" class="nav-down-menu" style="display: none;" _t_nav="${newMap.key }">
+							<div class="item">
+								<ul class="clr">
+									<c:forEach var="menu"  items="${newMap.value }">
+									<li class="transition" onclick="jumpOther('${menu.id}','${newMap.key }');" >
+										<div class="img-content"><img src="${menu.img }" class="transition"><span>${menu.description }</span></div>
+										<h5 class="transition">${menu.name }</h5>
+									</li>
+									 </c:forEach>
+								</ul>
+							</div>
+						</div>
+						</c:forEach>
 					</div>
 					<!--导航 结束-->
 				</div>
@@ -160,6 +195,10 @@
 		function jumpQuanjing(secondMenuId){
 			var currentId="";
 			window.location.href="${contextpath}/quanjing.htm?currentId="+currentId+"&secondMenuId="+secondMenuId;
+		}
+		function jumpOther(secondMenuId,otherId){
+			var currentId="";
+			window.location.href="${contextpath}/other.htm?currentId="+currentId+"&otherId="+otherId+'&secondMenuId='+secondMenuId;
 		}
 		function jumpTingwen(secondMenuId){
 			window.location.href="${contextpath}/tingwen.htm?secondMenuId="+secondMenuId;
@@ -221,7 +260,10 @@
 					}, 150);
 				});
 			});
-			 
+			function jumpShipinM(secondMenuId){
+				var currentId="";
+				window.location.href="${contextpath}/shipin.htm?currentId="+currentId+"&secondMenuId="+secondMenuId;
+			}
 			function showSearch(){
 				$("#searchTag").show();
 			}

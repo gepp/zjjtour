@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.tag.mytag.com" prefix="page"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -17,13 +19,13 @@
 
 	<div id="header"></div>
 
-	<img src="${contextpath }/images/08.jpg" style="width: 100%" />
+	<img src="${xiuxian.img }" style="width: 100%" />
 	<!--面包屑-->
 	<div class="page-breadcrumbs">
 		<ul class="clr">
 			<span>当前位置：</span>
 			<li><a href="${contextpath }/">首页</a></li>
-			<li><a href="${contextpath }/activity.htm">活动</a></li>
+			<li><a href="${contextpath }/activity.htm">${xiuxian.name }</a></li>
 			<li>精彩活动</li>
 		</ul>
 	</div>
@@ -52,27 +54,41 @@
 						<span>活动介绍：${item.abstractContent }</span>
 					</div>
 					<div class="intro">
-						<h5 class="transition">${item.title }</h5>
+						<h5 class="transition">
+						<c:if test="${fn:length(item.title)>18}">
+										${fn:substring(item.title,0,18)}...
+									</c:if>
+									<c:if test="${fn:length(item.title)<=18}">
+										${item.title }
+									</c:if>
+						
+						</h5>
 						<fmt:formatDate value="${item.startTime }" pattern="yyyy-MM-dd"
 							var="startTime" />
 						<fmt:formatDate value="${item.endTime }" pattern="yyyy-MM-dd"
 							var="endTime" />
 						<span class="transition"><font class="transition">活动时间:</font>${startTime }至${endTime }</span>
+						<c:if test="${item.supportStatus==1 }">
 						<span class="transition"><font class="transition">报名人数:</font>${item.usercount }</span>
-					</div> <c:if test="${item.activityStatus==0 }">
+						</c:if>
+					</div>
+					<c:if test="${item.supportStatus==1 }">
+					<c:if test="${item.activityStatus==0 }">
 						<div class="activity  not-started">
 							<i class="iconfont">&#xe61e;</i>
 						</div>
-					</c:if> <c:if test="${item.activityStatus==1 }">
+					</c:if> 
+					<c:if test="${item.activityStatus==1 }">
 						<div class="activity  start">
 							<i class="iconfont">&#xe61d;</i>
 						</div>
-					</c:if> <c:if test="${item.activityStatus==2 }">
+					</c:if> 
+					<c:if test="${item.activityStatus==2 }">
 						<div class="activity  end">
 							<i class="iconfont">&#xe61f;</i>
 						</div>
 					</c:if>
-
+				</c:if>
 
 
 				</li>
@@ -90,7 +106,7 @@
 
 
 	<!--<script src="${contextpath }/js/jquery-2.1.0.js"></script>-->
-	<script type="text/javascript" src="${contextpath }/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${contextpath }/js/jquery.js"></script>
 	<script src="${contextpath }/js/bootstrap.min.js"></script>
 	<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
 	<script src="${contextpath}/js/layer/layer.js"></script>

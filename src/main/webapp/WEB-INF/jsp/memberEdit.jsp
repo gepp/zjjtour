@@ -19,17 +19,16 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="#">游客中心</a></li>
+				<li><a href="#">会员中心</a></li>
 				<li>个人信息</li>
 			</ul>
 		</div>
 		<!--面包屑  end-->
 
-		<!--游客中心-->
 		<div class="tourist-center clr">
 			<div class="tourist-left">
 				<ul>
-					<li onclick="window.location.href='${contextpath}/memberCenter.htm'">游客中心</li>
+					<li onclick="window.location.href='${contextpath}/memberCenter.htm'">会员中心</li>
 					<li class="active">个人信息</li>
 					<li  onclick="window.location.href='${contextpath}/myActivityList.htm'">我的活动</li>
 					<li  onclick="window.location.href='${contextpath}/myTousuList.htm'">我的投诉</li>
@@ -104,7 +103,6 @@
 				<!--我的活动编辑 end-->
 			</div>
 		</div>
-		<!--游客中心 end-->
 
 		<div id="footer">
 			 

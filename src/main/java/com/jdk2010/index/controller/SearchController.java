@@ -1,7 +1,5 @@
 package com.jdk2010.index.controller;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,18 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jdk2010.base.security.menu.model.SecurityMenu;
 import com.jdk2010.base.security.securitynews.model.SecurityNews;
 import com.jdk2010.base.security.securitynews.service.ISecurityNewsService;
-import com.jdk2010.framework.constant.Constants;
 import com.jdk2010.framework.controller.BaseController;
 import com.jdk2010.framework.dal.client.DalClient;
 import com.jdk2010.framework.util.DbKit;
 import com.jdk2010.framework.util.Page;
-import com.jdk2010.framework.util.ReturnData;
-import com.jdk2010.framework.util.StringUtil;
-import com.jdk2010.member.member.model.Member;
-import com.jdk2010.member.membercomplain.model.MemberComplain;
 import com.jdk2010.system.systemadv.service.ISystemAdvService;
 
 

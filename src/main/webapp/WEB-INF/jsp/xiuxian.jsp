@@ -16,7 +16,7 @@
 		 
 		<div id="header"></div>
 		 
-		<img src="${xiuxian.img }" width="100%" height="500px"/>
+		<img src="${xiuxian.img }" width="100%"/>
 		<!--面包屑-->
 		<div class="page-breadcrumbs">
 			<ul class="clr">
@@ -73,6 +73,7 @@
 		jQuery(document).ready(function() {
 		$("#header").load("${contextpath}/header.htm?type=xiuxian");
 		$("#footer").load("${contextpath}/footer.htm");
+		$("#rightNews").load("${contextpath}/right.htm");
 		});
 			function jumpQuanjing(secondMenuId){
 				var currentId="";

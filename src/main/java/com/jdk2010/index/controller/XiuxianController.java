@@ -49,7 +49,7 @@ public class XiuxianController extends BaseController {
         SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1058" ,SecurityMenu.class);
         setAttr("xiuxian", menu);
         //畅游
-        String sql="select * from security_menu where  parent_id=1058 order by orderlist asc";
+        String sql="select * from security_menu where  parent_id=1058 and status=1  order by orderlist asc";
         List<SecurityMenu> secondMenuList=dalClient.queryForObjectList(sql,SecurityMenu.class);
         setAttr("secondMenuList", secondMenuList);
         

@@ -57,7 +57,7 @@ public class ActivityController extends BaseController {
         Map<String,Object>  indexMap=dalClient.queryForObject("select * from system_indexsetting");
         setAttr("indexMap", indexMap);
         
-        SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1058" ,SecurityMenu.class);
+        SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1050" ,SecurityMenu.class);
         setAttr("xiuxian", menu);
       
         String activityStatus=getPara("activityStatus");
@@ -84,6 +84,9 @@ public class ActivityController extends BaseController {
         setAttr("quanjingMenuList",quanjingMenuList);
         List<SecurityMenu> changyouMenuList=dalClient.queryForObjectList("select * from security_menu where parent_id=1010",SecurityMenu.class);
         setAttr("changyouMenuList",changyouMenuList);
+        
+        SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1050" ,SecurityMenu.class);
+        setAttr("xiuxian", menu);
         
         List<SecurityMenu> tingwenMenuList=dalClient.queryForObjectList("select * from security_menu where parent_id=1037",SecurityMenu.class);
         setAttr("tingwenMenuList",tingwenMenuList);

@@ -23,7 +23,7 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="${contextpath }/quanjing.htm">全景</a></li>
+				<li><a href="${contextpath }/quanjing.htm">${quanjing.name }</a></li>
 			 
 			</ul>
 		</div>

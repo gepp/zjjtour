@@ -34,7 +34,14 @@
 					<div class="tit-bar">
 						<span>${securityNew.ctime }</span>
 						<span><i class="iconfont">&#xe616;</i>&nbsp;${securityNew.readtotal }</span></span>
-						<span>来源：本站原创</span>
+						<span>来源：
+						<c:if test="${securityNew.newsFrom=='' }">
+						本站原创
+						</c:if>
+						<c:if test="${securityNew.newsFrom!='' }">
+						${securityNew.newsFrom }
+						</c:if>
+						</span>
 					</div>
 					<div class="abstract">${securityNew.abstractContent }</div>
 					<div class="news-content">

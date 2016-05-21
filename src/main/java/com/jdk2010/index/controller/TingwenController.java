@@ -61,7 +61,7 @@ public class TingwenController extends BaseController {
         SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1037" ,SecurityMenu.class);
         setAttr("quanjing", menu);
         //听闻
-        String sql="select * from security_menu where  parent_id=1037 order by orderlist asc";
+        String sql="select * from security_menu where  parent_id=1037 and status=1 order by  orderlist asc";
         List<SecurityMenu> secondMenuList=dalClient.queryForObjectList(sql,SecurityMenu.class);
         setAttr("secondMenuList", secondMenuList);
         
@@ -74,12 +74,12 @@ public class TingwenController extends BaseController {
         //全景的新闻
         DbKit dbKit=null;        
         if(secondMenuId!=""){
-        	dbKit = new DbKit("select * from security_news where menu_id="+secondMenuId+" and review_status=1 order by orderlist asc");
+        	dbKit = new DbKit("select * from security_news where menu_id="+secondMenuId+" and review_status=1 order by top_status DESC, orderlist asc");
             SecurityMenu thirdShowMenu=   dalClient.findById(secondMenuId,SecurityMenu.class);
             thirdShowName=thirdShowMenu.getName();
         }else{
         	thirdShowName="全部";
-        	dbKit = new DbKit("select * from security_news where  review_status=1 and menu_id in (select id from security_menu where  parent_id=1037) order by orderlist asc");
+        	dbKit = new DbKit("select * from security_news where  review_status=1 and menu_id in (select id from security_menu where  parent_id=1037) order by top_status DESC, orderlist asc");
          }
         setAttr("thirdShowName", thirdShowName);
         
@@ -91,7 +91,7 @@ public class TingwenController extends BaseController {
 		
 		
 		if(secondMenuId.equals("1108")){
-			List<SecurityMenu> lingdaoList=dalClient.queryForObjectList("select * from security_menu where type=3 and column_type=3 order by orderlist asc",SecurityMenu.class);
+			List<SecurityMenu> lingdaoList=dalClient.queryForObjectList("select * from security_menu where type=3 and column_type=3 order by  orderlist asc",SecurityMenu.class);
 			setAttr("lingdaoList", lingdaoList);
 		}
 		
@@ -112,7 +112,7 @@ public class TingwenController extends BaseController {
         Map<String,Object>  indexMap=dalClient.queryForObject("select * from system_indexsetting");
         setAttr("indexMap", indexMap);
         
-        SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1011" ,SecurityMenu.class);
+        SecurityMenu menu=dalClient.queryForObject("select * from security_menu where id=1037" ,SecurityMenu.class);
         setAttr("quanjing", menu);
          
         String id=getPara("id");
@@ -123,7 +123,12 @@ public class TingwenController extends BaseController {
         
         SecurityMenu securityMenu=dalClient.queryForObject("select * from security_menu where id="+securityNew.getMenuId() ,SecurityMenu.class);
         setAttr("securityMenu", securityMenu);
-        
+     // 标签
+ 		List<Map<String, Object>> biaoqianList = dalClient
+ 				.queryForObjectList("select * from news_maodian where news_id="
+ 						+ id);
+ 		setAttr("biaoqianList", biaoqianList);
+    
         
         return "/tingwenDetail" ;
     }
@@ -175,7 +180,7 @@ public class TingwenController extends BaseController {
 		String menu_id=getPara("menu_id");
 		setAttr("news_type",news_type);
 		setAttr("menu_id", menu_id);
-		Page pageList = dalClient.queryForPageList("select * from security_news where news_type='"+news_type+"' and menu_id="+menu_id+" and review_status=1 order by ctime desc", pagePage,
+		Page pageList = dalClient.queryForPageList("select * from security_news where news_type='"+news_type+"' and menu_id="+menu_id+" and review_status=1 order by orderlist desc", pagePage,
 				SecurityNews.class);
 		setAttr("pageList", pageList);
         return "/lingdaoTingwen" ;

@@ -95,7 +95,12 @@
 							 layer.load(3, {
 								    shade: [0.6,'#fff'] //0.1透明度的白色背景
 								});
-							 window.location.href="${contextpath}/";
+							 if('${retrunUrl}'==''){
+								 window.location.href="${contextpath}/";
+							 }else{
+								 window.location.href="${retrunUrl}";
+							 }
+							 
 						 }else{
 							 layer.msg(jsonArray.error.msg);
 							 $("#mobile").focus();

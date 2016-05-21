@@ -11,7 +11,7 @@ import com.jdk2010.framework.util.MD5Utils;
 import com.jdk2010.framework.util.StringUtil;
 
 public class ZjjMsgUtil {
-	public static final String URL = "http://ststest.travelzjj.com:15404/sts-app/Api/member/";
+	public static final String URL = "http://mobile.zjji.com/Api/member/";
 	//public static final String URL = "http://220.168.198.144:8006/Api/member/";
 
 	

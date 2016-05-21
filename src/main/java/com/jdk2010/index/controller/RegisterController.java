@@ -62,6 +62,8 @@ public class RegisterController extends BaseController {
 		setAttr("openid", openid);
 		setAttr("appid", appid);
 		setAttr("callbackurl", callbackurl);
+		String retrunUrl=getPara("retrunUrl");
+		setAttr("retrunUrl", retrunUrl);
 		return "/login";
 	}
 

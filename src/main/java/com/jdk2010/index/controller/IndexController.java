@@ -1,6 +1,7 @@
 package com.jdk2010.index.controller;
 
-import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -9,15 +10,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alibaba.fastjson.JSONArray;
 import com.jdk2010.base.security.menu.model.SecurityMenu;
 import com.jdk2010.base.security.securitynews.model.SecurityNews;
 import com.jdk2010.base.security.securitynews.service.ISecurityNewsService;
@@ -84,35 +81,35 @@ public class IndexController extends BaseController {
 		// 视频管理
 		List<SecurityNews> videoList = dalClient
 				.queryForObjectList(
-						"select * from security_news where menu_id=1054 and index_status=1 and review_status=1 limit 0,5",
+						"select * from security_news where news_type='VIDEO' and index_status=1 and review_status=1 ORDER BY orderlist ASC  limit 0,5",
 						SecurityNews.class);
 		setAttr("videoList", videoList);
 
 		// 全景管理
 		List<SecurityNews> quanjingList = dalClient
 				.queryForObjectList(
-						"select * from security_news where menu_id in (select id from security_menu where parent_id=1011) and index_status=1 and review_status=1   limit 0,8",
+						"select * from security_news where menu_id in (select id from security_menu where parent_id=1011) and index_status=1 and review_status=1  ORDER BY orderlist ASC limit 0,8",
 						SecurityNews.class);
 		setAttr("quanjingList", quanjingList);
 
 		// 畅游
 		List<SecurityNews> changyouList = dalClient
 				.queryForObjectList(
-						"select * from security_news where menu_id in (select id from security_menu where parent_id=1010) and index_status=1 and review_status=1   limit 0,8",
+						"select * from security_news where menu_id in (select id from security_menu where parent_id=1010) and index_status=1 and review_status=1  ORDER BY orderlist ASC limit 0,8",
 						SecurityNews.class);
 		setAttr("changyouList", changyouList);
 
 		// 活动
 		List<MemberActivity> activityList = dalClient
 				.queryForObjectList(
-						"select * from member_activity where  index_status=1 and review_status=1 limit 0,2",
+						"select * from member_activity where  index_status=1 and review_status=1 ORDER BY orderlist ASC limit 0,2",
 						MemberActivity.class);
 		setAttr("activityList", activityList);
 
 		// 听闻管理
 		List<SecurityNews> tingwenList = dalClient
 				.queryForObjectList(
-						"select * from security_news where menu_id in (select id from security_menu where parent_id=1037) and index_status=1 and review_status=1   limit 0,8",
+						"select * from security_news where menu_id in (select id from security_menu where parent_id=1037) and index_status=1 and review_status=1  ORDER BY orderlist ASC limit 0,4",
 						SecurityNews.class);
 		setAttr("tingwenList", tingwenList);
 
@@ -146,142 +143,148 @@ public class IndexController extends BaseController {
 	@RequestMapping("/header")
 	public String header(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-//		String returnMsg = HttpUtil.get("http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1");
-		//System.out.println("returnMsg:"+returnMsg);
-//		Map<String,Object> returnMap=JsonUtil.jsonToMap(returnMsg);
-//		setAttr("returnMap", returnMap);
-//		Document doc = Jsoup.connect("http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1").timeout(5000).get();
-//		Elements elem = doc.select(".cityname");
-//		String cityName=elem.text();
-//		String imgUrl= doc.select(".pngtqico").attr("src");
-//		String upWendu=doc.select(".cc30").get(0).text();
-//		String downWendu=doc.select(".c390").get(0).text();
-//		String xingqi=doc.select("strong").get(0).text();
-//		String tianqiType=doc.select(".divCurrentWeather").text();
-		String location="zhangjiajie";
-		System.out.println("location:"+location);
-//		String returnMsg = HttpUtil.get("http://183.232.231.25/telematics/v3/weather?location="+location+"&output=json&ak=BB70434a0c0facb5cf2b3bfd7406e86c");
-//		System.out.println("returnMsg:"+returnMsg);
-//		Map<String,Object> returnMap=JsonUtil.jsonToMap(returnMsg);
-//		JSONArray array=(JSONArray)returnMap.get("results");
-//		Map<String,Object> result=(Map<String,Object>)array.get(0);
-//		String cityName=(String)result.get("currentCity");
-//		Map<String,Object> weather_data=(Map<String,Object>)(((JSONArray)result.get("weather_data")).get(0));
-		try{
-		String returnMsgOld= HttpUtil.get("http://220.168.198.144:8006/webpc/indexdata/getWeather");
-		Map<String,Object> returnMapOld=JsonUtil.jsonToMap(returnMsgOld);
-		Map<String,Object> returnMap=(Map<String,Object>)returnMapOld.get("weather");
-		String realPic="sun";
-		String pic=(String)returnMap.get("weather");
-		if(pic.equals("暴雨")){
-    		realPic="rainstorm";
-    	}
-    	if(pic.equals("大暴雨")){
-    		realPic="heavyRain";
-    	}
-    	if(pic.equals("大雪")){
-    		realPic="heavySnow";
-    	}
-    	if(pic.equals("大雨")){
-    		realPic="hardRain";
-    	}
-    	if(pic.equals("冻雨")){
-    		realPic="freezingRain";
-    	}
-    	if(pic.equals("多云")){
-    		realPic="cloudy";
-    	}
-    	if(pic.equals("浮沉")){
-    		realPic="dust";
-    	}
-    	if(pic.equals("雷阵雨")){
-    		realPic="thunderShower";
-    	}
-    	if(pic.equals("雷阵雨伴有冰雹")){
-    		realPic="thunderstormsWithHail";
-    	}
-    	if(pic.equals("霾")){
-    		realPic="haze";
-    	}
-    	if(pic.equals("强沙尘暴")){
-    		realPic="severeSandAndDustStorm";
-    	}
-    	if(pic.equals("晴")){
-    		realPic="sun";
-    	}
-    	if(pic.equals("沙尘暴")){
-    		realPic="sandStorm";
-    	}
-    	if(pic.equals("特大暴雨")){
-    		realPic="heavyRainfall";
-    	}
-    	if(pic.equals("雾")){
-    		realPic="fog";
-    	}
-    	if(pic.equals("小雪")){
-    		realPic="lightSnow";
-    	}
-    	if(pic.equals("小雨")){
-    		realPic="lightRain";
-    	}
-    	if(pic.equals("扬沙")){
-    		realPic="blowingSand";
-    	}
-    	if(pic.equals("阴")){
-    		realPic="yin";
-    	}
-    	if(pic.equals("雨夹雪")){
-    		realPic="sleet";
-    	}
-    	if(pic.equals("阵雪")){
-    		realPic="snowShower";
-    	}
-    	if(pic.equals("阵雨")){
-    		realPic="shower";
-    	}
-    	if(pic.equals("中雪")){
-    		realPic="moderateSnow";
-    	}
-    	if(pic.equals("中雨")){
-    		realPic="moderateRain";
-    	}
-    	if(pic.equals("暴雪")){
-    		realPic="rainstorm";
-    	}
-    	String temperature=(String)returnMap.get("temperature");
-    	//String xingqi=(String)weather_data.get("date");
-		
-		//setAttr("cityName", cityName);
-		setAttr("imgUrl", realPic);
-		setAttr("upWendu", temperature.split("~")[1]);
-		setAttr("downWendu", temperature.split("~")[0]);
-	//	setAttr("xingqi", xingqi.split(" ")[0]);
-		setAttr("leixing",pic.split(" ")[0]);
-		}catch(Exception e){
+		// String returnMsg =
+		// HttpUtil.get("http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1");
+		// System.out.println("returnMsg:"+returnMsg);
+		// Map<String,Object> returnMap=JsonUtil.jsonToMap(returnMsg);
+		// setAttr("returnMap", returnMap);
+		// Document doc =
+		// Jsoup.connect("http://i.tianqi.com/index.php?c=code&id=1&icon=1&py=zhangjiajie&wind=0&num=1").timeout(5000).get();
+		// Elements elem = doc.select(".cityname");
+		// String cityName=elem.text();
+		// String imgUrl= doc.select(".pngtqico").attr("src");
+		// String upWendu=doc.select(".cc30").get(0).text();
+		// String downWendu=doc.select(".c390").get(0).text();
+		// String xingqi=doc.select("strong").get(0).text();
+		// String tianqiType=doc.select(".divCurrentWeather").text();
+		String location = "zhangjiajie";
+		System.out.println("location:" + location);
+		// String returnMsg =
+		// HttpUtil.get("http://183.232.231.25/telematics/v3/weather?location="+location+"&output=json&ak=BB70434a0c0facb5cf2b3bfd7406e86c");
+		// System.out.println("returnMsg:"+returnMsg);
+		// Map<String,Object> returnMap=JsonUtil.jsonToMap(returnMsg);
+		// JSONArray array=(JSONArray)returnMap.get("results");
+		// Map<String,Object> result=(Map<String,Object>)array.get(0);
+		// String cityName=(String)result.get("currentCity");
+		// Map<String,Object>
+		// weather_data=(Map<String,Object>)(((JSONArray)result.get("weather_data")).get(0));
+		try {
+			String returnMsgOld = HttpUtil
+					.get("http://220.168.198.144:8006/webpc/indexdata/getWeather");
+			Map<String, Object> returnMapOld = JsonUtil.jsonToMap(returnMsgOld);
+			Map<String, Object> returnMap = (Map<String, Object>) returnMapOld
+					.get("weather");
+			String realPic = "sun";
+			String pic = (String) returnMap.get("weather");
+			if (pic.equals("暴雨")) {
+				realPic = "rainstorm";
+			}
+			if (pic.equals("大暴雨")) {
+				realPic = "heavyRain";
+			}
+			if (pic.equals("大雪")) {
+				realPic = "heavySnow";
+			}
+			if (pic.equals("大雨")) {
+				realPic = "hardRain";
+			}
+			if (pic.equals("冻雨")) {
+				realPic = "freezingRain";
+			}
+			if (pic.equals("多云")) {
+				realPic = "cloudy";
+			}
+			if (pic.equals("浮沉")) {
+				realPic = "dust";
+			}
+			if (pic.equals("雷阵雨")) {
+				realPic = "thunderShower";
+			}
+			if (pic.equals("雷阵雨伴有冰雹")) {
+				realPic = "thunderstormsWithHail";
+			}
+			if (pic.equals("霾")) {
+				realPic = "haze";
+			}
+			if (pic.equals("强沙尘暴")) {
+				realPic = "severeSandAndDustStorm";
+			}
+			if (pic.equals("晴")) {
+				realPic = "sun";
+			}
+			if (pic.equals("沙尘暴")) {
+				realPic = "sandStorm";
+			}
+			if (pic.equals("特大暴雨")) {
+				realPic = "heavyRainfall";
+			}
+			if (pic.equals("雾")) {
+				realPic = "fog";
+			}
+			if (pic.equals("小雪")) {
+				realPic = "lightSnow";
+			}
+			if (pic.equals("小雨")) {
+				realPic = "lightRain";
+			}
+			if (pic.equals("扬沙")) {
+				realPic = "blowingSand";
+			}
+			if (pic.equals("阴")) {
+				realPic = "yin";
+			}
+			if (pic.equals("雨夹雪")) {
+				realPic = "sleet";
+			}
+			if (pic.equals("阵雪")) {
+				realPic = "snowShower";
+			}
+			if (pic.equals("阵雨")) {
+				realPic = "shower";
+			}
+			if (pic.equals("中雪")) {
+				realPic = "moderateSnow";
+			}
+			if (pic.equals("中雨")) {
+				realPic = "moderateRain";
+			}
+			if (pic.equals("暴雪")) {
+				realPic = "rainstorm";
+			}
+			String temperature = (String) returnMap.get("temperature");
+			// String xingqi=(String)weather_data.get("date");
+
+			// setAttr("cityName", cityName);
+			setAttr("imgUrl", realPic);
+			setAttr("upWendu", temperature.split("~")[1]);
+			setAttr("downWendu", temperature.split("~")[0]);
+			// setAttr("xingqi", xingqi.split(" ")[0]);
+			setAttr("leixing", pic.split(" ")[0]);
+		} catch (Exception e) {
 			e.printStackTrace();
 			setAttr("imgUrl", "");
 			setAttr("upWendu", "0");
-			setAttr("downWendu","0");
-		//	setAttr("xingqi", xingqi.split(" ")[0]);
-			setAttr("leixing","");
+			setAttr("downWendu", "0");
+			// setAttr("xingqi", xingqi.split(" ")[0]);
+			setAttr("leixing", "");
 		}
 		List<SecurityMenu> quanjingMenuList = dalClient.queryForObjectList(
-				"select * from security_menu where parent_id=1011",
+				"select * from security_menu where parent_id=1011 and status=1 order by orderlist asc",
 				SecurityMenu.class);
 		setAttr("quanjingMenuList", quanjingMenuList);
 
 		List<SecurityMenu> changyouMenuList = dalClient.queryForObjectList(
-				"select * from security_menu where parent_id=1010",
+				"select * from security_menu where parent_id=1010 and status=1 order by orderlist asc",
 				SecurityMenu.class);
 		setAttr("changyouMenuList", changyouMenuList);
 
 		List<SecurityMenu> tingwenMenuList = dalClient.queryForObjectList(
-				"select * from security_menu where parent_id=1037",
+				"select * from security_menu where parent_id=1037 and status=1 order by orderlist asc",
 				SecurityMenu.class);
 		setAttr("tingwenMenuList", tingwenMenuList);
 
 		List<SecurityMenu> xiuxianMenuList = dalClient.queryForObjectList(
-				"select * from security_menu where parent_id=1058",
+				"select * from security_menu where parent_id=1058 and status=1 order by orderlist asc",
 				SecurityMenu.class);
 		setAttr("xiuxianMenuList", xiuxianMenuList);
 
@@ -294,10 +297,30 @@ public class IndexController extends BaseController {
 
 		List<SystemSearchword> wordList = dalClient
 				.queryForObjectList(
-						"select * from system_searchword where status=1 order by orderlist ",
+						"select * from system_searchword where status=1 order by orderlist asc",
 						SystemSearchword.class);
 		setAttr("wordList", wordList);
+		List<SecurityMenu> videoMenuList = dalClient.queryForObjectList(
+				"select * from security_menu where parent_id=1133 and status=1 order by orderlist asc",
+				SecurityMenu.class);
+		setAttr("videoMenuList", videoMenuList);
+		
+		
+		List<SecurityMenu> otherNewsMenuList = dalClient.queryForObjectList(
+				"select * from security_menu where parent_id=0 and page_type=1 and  status=1 order by orderlist asc",
+				SecurityMenu.class);
+		setAttr("otherNewsMenuList", otherNewsMenuList);
 
+		Map<String,Object> newsMap=new LinkedHashMap<String, Object>();
+		for(SecurityMenu menu:otherNewsMenuList){
+			List<SecurityMenu> secondMenuList = dalClient.queryForObjectList(
+					"select * from security_menu where parent_id="+menu.getId()+" and page_type=1 and status=1 order by orderlist asc",
+					SecurityMenu.class);
+			newsMap.put(menu.getId(), secondMenuList);
+		}
+		
+		setAttr("newsMap", newsMap);
+		
 		return "/header";
 	}
 
@@ -308,13 +331,13 @@ public class IndexController extends BaseController {
 		// 活动
 		List<MemberActivity> activityList = dalClient
 				.queryForObjectList(
-						"select * from member_activity where  id in (select key_id from setting where type=2)",
+						"select * from member_activity where  id in (select key_id from setting where type=2) ORDER BY orderlist ASC",
 						MemberActivity.class);
 		setAttr("activityList", activityList);
 		// 畅游
 		List<SecurityNews> changyouList = dalClient
 				.queryForObjectList(
-						"select * from security_news where id in (select key_id from setting where type=1)",
+						"select * from security_news where id in (select key_id from setting where type=1) ORDER BY orderlist ASC",
 						SecurityNews.class);
 		setAttr("changyouList", changyouList);
 		return "/right";
@@ -524,7 +547,7 @@ public class IndexController extends BaseController {
 		// 全景的二级目录
 
 		List<SecurityMenu> secondMenuList = dalClient.queryForObjectList(
-				"select * from security_menu where parent_id=1011",
+				"select * from security_menu where parent_id=1011 and status=1  order by orderlist asc",
 				SecurityMenu.class);
 		setAttr("secondMenuList", secondMenuList);
 
@@ -544,16 +567,16 @@ public class IndexController extends BaseController {
 		String currentId = getPara("currentId");
 		if (currentId == null || currentId == "") {
 			if (bqMenuList != null && bqMenuList.size() != 0)
-				if(bqMenuList!=null&&bqMenuList.size()>0)
-				currentId = bqMenuList.get(0).getId() + "";
+				if (bqMenuList != null && bqMenuList.size() > 0)
+					currentId = bqMenuList.get(0).getId() + "";
 		}
 		setAttr("currentId", currentId);
-		if(currentId.equals("")){
-			currentId="0";
+		if (currentId.equals("")) {
+			currentId = "0";
 		}
 		DbKit dbKit = new DbKit(
 				"select * from security_news where id in (select news_id from bq_news where bq_id="
-						+ currentId + ")");
+						+ currentId + ") order by orderlist asc");
 		Page pagePage = getPage();
 		pagePage.setPageSize(6);
 		Page pageList = dalClient.queryForPageList(dbKit, pagePage,

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -27,7 +29,12 @@
 								<c:if test="${adv.showFlag=='1' }">
 								<h3>${adv.title }</h3>
 								<p class="text">
-									${adv.abstractContent }
+									<c:if test="${fn:length(adv.abstractContent)>44}">
+										${fn:substring(adv.abstractContent,0,44)}...
+									</c:if>
+									<c:if test="${fn:length(adv.abstractContent)<=44}">
+										${adv.abstractContent }
+									</c:if>
 								</p>
 								</c:if>
 							</div>
@@ -48,7 +55,7 @@
 		<!--标题-->
 		<div class="index-title clr" id="index_1">
 			<h2 class="transition">
-				<span>视觉</span>张家界
+				<span>视界</span>张家界
 				<svg id="svgLineTutorial" style=" position: absolute; top: -50px; left:0 ; z-index: -1;" height="160px" width="200px" xmlns="http://www.w3.org/2000/svg">
 				   <line x1="0" y1="160" x2="63" y2="110"  style="stroke:rgb(0,187,158);stroke-width:1" />
 					<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
@@ -98,7 +105,7 @@
 		<!--标题-->
 		<div class="index-title clr" id="index_2">
 			<h2 class="transition">
-				<span>全景</span>张家界
+				<span>资讯</span>张家界
 				<svg id="svgLineTutorial" style=" position: absolute; top: -50px; left:0 ; z-index: -1;" height="160px" width="200px" xmlns="http://www.w3.org/2000/svg">
 				   <line x1="0" y1="160" x2="63" y2="110"  style="stroke:rgb(0,187,158);stroke-width:1" />
 					<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
@@ -114,7 +121,7 @@
 			
 			<c:forEach var="quanjing" items="${quanjingList }">
 				<li onclick="jumpQuanjingDetail('${quanjing.id}')">
-					<img src="${quanjing.indeximg }">
+					<img src="${quanjing.indeximg }-quanjingindex">
 					<div class="mask transition">
 						<h4>${quanjing.title }</h4>
 						<button>查看全景</button>
@@ -158,7 +165,7 @@
 		<div class="entertainment clr" id="index_4">
 			<c:forEach var="yule" items="${activityList }">
 			<div class="entertainment-content">
-				<img src="${yule.indeximg }" />
+				<img src="${yule.indeximg }-huodongindex" />
 				<div class="mask">
 					<button onclick="checkUser('${yule.activityStatus}','${yule.id }')">
 					<c:if test="${yule.activityStatus==0}">
@@ -172,7 +179,15 @@
 					</c:if>
 					
 					</button>
-					<p>${yule.abstractContent }</p>
+					<p>
+					<c:if test="${fn:length(yule.abstractContent)>44}">
+										${fn:substring(yule.abstractContent,0,44)}...
+									</c:if>
+									<c:if test="${fn:length(yule.abstractContent)<=44}">
+										${yule.abstractContent }
+									</c:if>
+					
+					</p>
 				</div>
 			</div>
 			 </c:forEach>
@@ -192,7 +207,7 @@
 		<!--标题-->
 		<div class="index-title clr" id="index_5">
 			<h2 class="transition">
-				<span>印象</span>张家界
+				<span>市情</span>张家界
 				<svg id="svgLineTutorial" style=" position: absolute; top: -50px; left:0 ; z-index: -1;" height="160px" width="200px" xmlns="http://www.w3.org/2000/svg">
 				   <line x1="0" y1="160" x2="63" y2="110"  style="stroke:rgb(0,187,158);stroke-width:1" />
 					<line x1="138" y1="50" x2="200" y2="0"  style="stroke:rgb(0,187,158);stroke-width:1" />
@@ -264,11 +279,11 @@
 		<!--悬浮定位-->
 		<div id="tbox" style='position: fixed;right: 20px;top: 150px;'>
 			<!-- 这个必须有  id="tbox"-->
-			<a class="taoba" href="javascript:void(0)" title="1">视觉</a>
-			<a class="taoba" href="javascript:void(0)" title="2">全景</a>
+			<a class="taoba" href="javascript:void(0)" title="1">视界</a>
+			<a class="taoba" href="javascript:void(0)" title="2">资讯</a>
 			<a class="taoba" href="javascript:void(0)" title="3">畅游</a>
 			<a class="taoba" href="javascript:void(0)" title="4">活动</a>
-			<a class="taoba" href="javascript:void(0)" title="5">印象</a>
+			<a class="taoba" href="javascript:void(0)" title="5">市情</a>
 			<a class="taoba" href="javascript:void(0)" title="6">新闻</a>
 			<a id="gotop" href="javascript:void(0)" title="回到顶部" class="transition"><i class="iconfont transition">&#xe60d;</i></a>
 			<!-- 这个也是id="gotop"  -->
@@ -505,7 +520,7 @@ function openShipin(title,img,videoUrl){
 					
 					 
 				 } else if(data.status=='002'){
-					 layer.alert('本活动您已报名，可在游客中心中查看！', {
+					 layer.alert('本活动您已报名，可在会员中心中查看！', {
 						    closeBtn: 0
 						}, function(){
 							window.location.reload();

@@ -24,7 +24,7 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="${contextpath }/quanjing.htm">全景</a></li>
+				<li><a href="${contextpath }/quanjing.htm">${quanjing.name }</a></li>
 				<c:if test="${secondMenu!=null }">
 				<li><a href="${contextpath }/quanjing.htm?currentId=&secondMenuId=${secondMenu.id}">${secondMenu.name }</a></li>
 				<li><a href="${contextpath }/quanjing.htm?currentId=${bqMenu.id }&secondMenuId=${secondMenu.id}">${bqMenu.name }</a></li>
@@ -46,8 +46,9 @@
 							<c:if test="${securityNew.quanjingUrl !=null&&securityNew.quanjingUrl !='' }">
 							<li><a href="#item-1" class="cur transition">360°全景</a></li>
 							</c:if>
-								<c:forEach items="${biaoqianList }" var="biaoqian">
-								<li><a href="#item${biaoqian.orderlist }" class="transition">${biaoqian.maodian_name }</a></li>
+								<c:forEach items="${biaoqianList }" var="biaoqian" varStatus="idx">
+								
+								<li><a href="#item${biaoqian.orderlist }" class="transition <c:if test="${idx.index==0 }">cur</c:if>">${biaoqian.maodian_name }</a></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -76,7 +77,14 @@
 					<fmt:formatDate value="${securityNew.ctime }" pattern="yyyy-MM-dd" var="ctime"/>
 						<span>${ctime }</span>
 						<span><i class="iconfont">&#xe616;</i>&nbsp;${securityNew.readtotal }</span></span>
-						<span>来源：本站原创</span>
+						<span>来源：
+						<c:if test="${securityNew.newsFrom=='' }">
+						本站原创
+						</c:if>
+						<c:if test="${securityNew.newsFrom!='' }">
+						${securityNew.newsFrom }
+						</c:if>
+						</span>
 					</div>
 					<div class="abstract">${securityNew.abstractContent }</div>
 					<div class="news-content">

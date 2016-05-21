@@ -24,7 +24,7 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="#" onclick="jumpTingwen('')">新闻</a></li>
+				<li><a href="#" onclick="jumpTingwen('')">${quanjing.name }</a></li>
 				<li><a href="#">${thirdShowName }</a></li>
 			</ul>
 		</div>
@@ -35,13 +35,15 @@
 			<c:forEach var="menu" items="${secondMenuList }">
 			<button onclick="jumpTingwen('${menu.id}')" <c:if test="${secondMenuId==menu.id}"> class="active"</c:if>>${menu.name }</button>
 			</c:forEach>
+			<!-- 
 			<span class="transition" onclick="changeType();" id="changeSpan"><i class="iconfont" id="tingwensrc">&#xe621;</i></span>
+			 -->
 		</div>
 		
 		<!--分类标签 end-->
 		 
 		 <!--新闻列表-->
-		<div class="news-list" id="tupian">
+		<div class="news-list" id="tupian" style="display:none">
 			<ul class="clr"  >
 				<c:forEach items="${pageList.list }" var="item">
 				<li class="transition" onclick="jumpDetail('${item.id}')">
@@ -66,7 +68,7 @@
 			<page:page href="${contextpath}/tingwen.htm?secondMenuId=${secondMenuId }" data="pageList" />	
 		</div>
 		<!--图标列表-->	
-		 <div class="panorama-details clr"  id="wenzi" style="display:none">
+		 <div class="panorama-details clr"  id="wenzi" >
 			<div class="section">
 				<div class="news-font-list">
 					<ul>
@@ -89,7 +91,7 @@
 						</c:forEach>
 					
 					</ul>
-					<page:page href="${contextpath}/tingwen.htm" data="pageList" />	
+					<page:page href="${contextpath}/tingwen.htm?secondMenuId=${secondMenuId }" data="pageList" />	
 				 
 				</div>
 			</div>
@@ -103,7 +105,7 @@
 			<div class="Leader-item clr" onclick="gotoLingdao('${lingdao.id}')">
 				<img src="${lingdao.img }" />
 				<div class="Leader-item-right">
-					<span>${lingdao.code }</span>
+					<span style="cursor: pointer;">${lingdao.code }</span>
 					<h5>${lingdao.name }</h5>
 				</div>
 			</div>
@@ -117,7 +119,7 @@
 		 
 		
 		<!--<script src="${contextpath }/js/jquery-2.1.0.js"></script>-->
-		<script type="text/javascript" src="${contextpath }/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${contextpath }/js/jquery.js"></script>
 		<script src="${contextpath }/js/bootstrap.min.js"></script>
 		<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
 		<script src="${contextpath}/js/layer/layer.js"></script>
@@ -148,8 +150,9 @@
 				$("#rightNews").load("${contextpath}/right.htm");
 				
 				if('${secondMenuId}'=='1108'){
-					$("#tupian").hide();
-					$("#changeSpan").hide();
+					$("#wenzi").hide();
+					//$("#tupian").hide();
+					//$("#changeSpan").hide();
 					$("#lingdaozhichuang").show();
 				}
 				

@@ -90,7 +90,7 @@ a {text-decoration: none;}
 
 /*焦点图*/
 
-.index_focus {position: relative;width: 100%; min-width:1200px;height: 700px;margin: 0 auto;overflow: hidden;}
+.index_focus {position: relative;width: 100%; min-width:1200px;height: 600px;margin: 0 auto;overflow: hidden;}
 .index_focus .bd li {  display: none;position: absolute;left: 0;top: 0;}
 .index_focus_post {z-index: 10;}
 .index_focus .pic {height: auto;display: block;}
@@ -106,7 +106,7 @@ a {text-decoration: none;}
    color: rgba(0,187,158,0.8);}
 .index_focus_next {right: 30px;/*background-position: 0 -72px;*/}
 .index_focus_next:hover>i {color: rgba(0,187,158,0.8);}
-.index_focus_info {position: absolute;left: 10%;bottom: 30%;width: 800px;height: 200px;padding-bottom: 10px;color: #fff;text-decoration: none;cursor: pointer;font-family: "\5fae\8f6f\96c5\9ed1";-moz-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);-webkit-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);background: url("../images/index_focus_bg.png") no-repeat;_background: none;}
+.index_focus_info {position: absolute;left: 10%;bottom: 10%;width: 800px;height: 200px;padding-bottom: 10px;color: #fff;text-decoration: none;cursor: pointer;font-family: "\5fae\8f6f\96c5\9ed1";-moz-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);-webkit-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);background: url("../images/index_focus_bg.png") no-repeat;_background: none;}
 .index_focus_info h3 {font-size: 36px;line-height: 70px;font-family: \5fae\8f6f\96c5\9ed1, \u9ed1\u4f53, "Lucida Grande";display:none;}
 .index_focus_info .text {width: 500px;line-height: 24px;font-size: 14px;word-wrap: break-word;overflow: hidden;display:none;}
 
@@ -407,9 +407,10 @@ span.zhiding>em,span.toutiao>em{ display: block; width: 0; height: 0; position: 
 .news-font-list>.tit-bar>span{ margin: 0 10px;}
 .news-font-list>.abstract{ line-height: 24px; text-indent: 30px; padding: 20px; background: #f5f5f5; margin: 30px auto;}
 .news-content{ padding: 20px 0;}
+.news-content>p>span{font-size:16px;font-family:'Microsoft YaHei';color:#666666;background:none;}
 .news-content>img{max-width: 100%; display: block; margin: 20px auto;}
 .news-content>h5{line-height: 40px; display: block; margin: 20px 0; color: #4A4A4A;}
-.news-content>p{ display: block; line-height: 24px; margin: 20px 0; text-indent: 30px;}
+.news-content>p{ display: block; line-height: 24px; margin: 20px 0; text-indent: 30px;color:#666666;}
 /*活动详情*/
 .event-details{padding: 20px; background: #F5F5F5;}
 .event-details>img{ width: 400px; height: 300px; display: block; float: left;}
@@ -435,6 +436,7 @@ span.zhiding>em,span.toutiao>em{ display: block; width: 0; height: 0; position: 
     
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
    height: 600px;
+   width:100%
 }
 .login.clr{height: 400px; width: 600px; border-radius: 10px; background: #FFFFFF; overflow: hidden; position: absolute; z-index: 2; top: 160px; left: -webkit-calc(50% - 300px);left: calc(50% - 300px);left: -moz-calc(50% - 300px);}
 .login.clr .left{width: 250px;float: left; background: #F2F2F2; height: 400px;}
@@ -659,16 +661,24 @@ span.zhiding>em,span.toutiao>em{ display: block; width: 0; height: 0; position: 
 .news-font-list>ul>li>.leadership-right>.time>.number>i{margin-right: 5px;}
 .news-font-list>ul>li>.leadership-right>p>span{ color: #4a4a4a; margin-left: 20px;}
 .news-font-list>ul>li>.leadership-right>p>span>i{ margin-left: 5px; font-size: 13px;}
-.Leader-item{width: 100%; padding: 20px; background: #a5e0d8; box-sizing: border-box; margin: 40px 0;}
+.Leader-item{width: 100%; padding: 20px; background: #a5e0d8 url(../images/leader-bg.jpg) no-repeat; background-size:100% 100%;box-sizing: border-box; margin: 40px 0;}
 .Leader-item>img{ width: 200px; height: 260px; float: left;}
 .Leader-item>.Leader-item-right{float: right; width: 920px;}
-.Leader-item>.Leader-item-right>span{display: block; height: 163px; line-height: 163px; text-align: center; font-size: 30px;color: #00BB9E;  background: url(../images/bg-flower.png) no-repeat; background-size: 100%;}
-.Leader-item>.Leader-item-right>h5{ height: 80px; margin-top: 17px; line-height: 80px; text-align: center; font-size: 24px; border: 1px solid #43CAB6; color: #00BB9E; font-weight: normal;}
-.leadership-title>a{color:#999;}
+.Leader-item>.Leader-item-right>span{display: block;height: 163px;line-height: 163px;text-align: center;font-size: 30px;color: #ffde00;background: url(../images/bg-flower.png) no-repeat;background-size: 100%;}
+.Leader-item>.Leader-item-right>h5{height: 80px;margin-top: 17px;line-height: 80px;text-align: center;font-size: 24px;border: 1px solid #ffde00;color: #ffde00;font-weight: normal;background: rgba(0,0,0,0.2);}.leadership-title>a{color:#999;}
 .leadership-title>a:hover{color:#00BB9E;}
 .leadership-title>a>i{font-size:12px;}
 .hotel-titel{height: 30px !important;}
 .hotel-list{line-height: 24px; padding-left: 15px; padding-bottom: 20px;}
 .hotel-list>p{width: 100%; height: 24px; overflow: hidden;}
 .hotel-list>p>span{margin-right: 10px;}
+.login.clr.complaint_page{ border-radius: 5px; border-top:5px solid #00ceae ;}
+.complaint_title{border-bottom:50px solid #a0cac3; margin: 0px 1px; height: 100px; position: relative; box-sizing: border-box;}
+.complaint_title>h4{ height: 50px; line-height: 50px; width: 150px; text-align: center; font-size: 22px; position: absolute; bottom: -30px; left: -1px; background: #00ceae; color: #fff; box-sizing: border-box; border-radius: 2px; border: 1px solid #fff;}
+.complaint_form{padding: 10px 100px 0 100px; position: relative;}
+.login.clr>.complaint_form>label{width: 400px; margin: 0; line-height: 30px; color: #00ceae;}
+.login.clr>.complaint_form>input{width: 100%; height: 30px; line-height: 30px; border: 1px solid #eee; box-sizing: border-box; padding: 0 10px;}
+.login.clr>.complaint_form>textarea{ border:1px solid #eee; width: 100%; outline: none; box-sizing: border-box; padding:10px}
+.login.clr.complaint_page>button{position: absolute; width: 100%; height: 60px; line-height: 60px; text-align: center; font-size: 16px; color: #fff; bottom: 0; border: 0; background:#00ceae;}
+.login.clr.complaint_page>button:hover{background: #00B99C;}
 
