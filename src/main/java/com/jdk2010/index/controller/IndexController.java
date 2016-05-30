@@ -314,7 +314,7 @@ public class IndexController extends BaseController {
 		Map<String,Object> newsMap=new LinkedHashMap<String, Object>();
 		for(SecurityMenu menu:otherNewsMenuList){
 			List<SecurityMenu> secondMenuList = dalClient.queryForObjectList(
-					"select * from security_menu where parent_id="+menu.getId()+" and page_type=1 and status=1 order by orderlist asc",
+					"select * from security_menu where parent_id="+menu.getId()+" and status=1 order by orderlist asc",
 					SecurityMenu.class);
 			newsMap.put(menu.getId(), secondMenuList);
 		}

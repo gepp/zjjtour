@@ -19,7 +19,7 @@
 				<ul class="clr">
 					<li>
 						<select name="pageselect1" onchange="javascript:window.open(this.options[this.selectedIndex].value)">
-					<option value="">张家界市政府网站</option>
+					<option value="#">张家界市政府网站</option>
 					<option value="http://www.zjj.gov.cn">张家界公众信息网</option>
 					<option value="http://www.zjjga.gov.cn">张家界公安信息网</option>
 					<option value="http://www.zjjyd.gov.cn/">永定区政府网站</option>
@@ -31,7 +31,7 @@
 					</li>
 					<li>
 						<select name="pageselect2" onchange="javascript:window.open(this.options[this.selectedIndex].value)">
-					<option value="">各省旅游政务网站</option>
+					<option value="#">各省旅游政务网站</option>
 					<option value="http://www.bjta.gov.cn/">北京旅游网</option>
 					<option value="http://www.tjtour.cn/">天津旅游网</option>
 					<option value="http://www.hebeitour.com.cn/">河北旅游网</option>
@@ -70,7 +70,7 @@
 					</li>
 					<li>
 						<select name="pageselect3" onchange="javascript:window.open(this.options[this.selectedIndex].value)">
-					<option value="">各市旅游政务网站</option>
+					<option value="#">各市旅游政务网站</option>
 					<option value="http://www.csta.gov.cn/">长沙旅游网</option>
 					<option value="http://www.zzly.gov.cn/">株洲旅游网</option>
 					<option value="http://www.xtly.net/">湘潭旅游网</option>
@@ -88,7 +88,7 @@
 					</li>
 					<li>
 						<select name="pageselect4" onchange="javascript:window.open(this.options[this.selectedIndex].value)">
-					<option value="">国际旅游组织</option>
+					<option value="#">国际旅游组织</option>
 					<option value="http://www.fia.com/">国际汽车运动联合会</option>
 					<option value="http://ec.europa.eu/enterprise/sectors/tourism/index_en.htm">欧盟委员会旅游事务处</option>
 					<option value="http://www.pata.org/">亚太旅游协会</option>
@@ -100,7 +100,7 @@
 					</li>
 					<li>
 						<select name="pageselect5" onchange="javascript:window.open(this.options[this.selectedIndex].value)">
-					<option value="">友情链接</option>
+					<option value="#">友情链接</option>
 					<option value="http://www.travelzjj.com">张家界旅游官网</option>
 					<option value="http://www.travelzjj.com">张家界旅游网</option>
 					<option value="http://www.travelzjj.com">张家界度假酒店</option>

@@ -90,7 +90,7 @@ a {text-decoration: none;}
 
 /*焦点图*/
 
-.index_focus {position: relative;width: 100%; min-width:1200px;height: 600px;margin: 0 auto;overflow: hidden;}
+.index_focus {position: relative;width: 100%; min-width:1200px;height: 600px;margin: 0 auto;overflow: hidden;margin-top:120px}
 .index_focus .bd li {  display: none;position: absolute;left: 0;top: 0;}
 .index_focus_post {z-index: 10;}
 .index_focus .pic {height: auto;display: block;}
@@ -242,11 +242,30 @@ a {text-decoration: none;}
 .copyright{ width: 100%; background: #00BB9E; color: #fff; text-align: center; line-height: 60px;}
 /*悬浮 */
 #tbox{ position:fixed; display: none; z-index: 5;}
-.taoba{display:block; background:#00BB9E; padding: 10px 15px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.2); color: #4a4a4a; line-height: 30px; overflow: hidden;cursor:pointer}
+.taoba{display:block; background:#00BB9E; padding: 10px 15px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.2); color: #4a4a4a; line-height: 30px;position:relative;cursor:pointer}
+.taoba>ul{position: absolute; right: 62px; top: 0;width:150px; display: none; text-align: center;border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;border-top-left-radius: 5px; overflow: hidden;}
+.taoba:hover>ul{ display: block; }
+.taoba>ul>li{padding: 10px 15px;background:#35DCC2; border-bottom: 1px solid rgba(255,255,255,0.2); color: #4a4a4a;}
+.taoba>ul>li:hover{color:#fff ;}
+.taoba>i{position: absolute; left: 2px; top: 11px; font-size: 12px;}
+.taoba>ul>li>span{display: block;}
+.taoba>ul>li>i{font-size: 30px;}
 .taoba.active{background:#666; text-decoration: none; color: #fff;}
-.taoba:hover{background:#dedede; text-decoration: none;}
+.taoba:hover{background:#35DCC2; text-decoration: none;}
 .taoba:first-child{border-top-right-radius: 5px; border-top-left-radius: 5px;}
-.taoba:nth-child(6){border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;}
+.taoba:nth-child(8){border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;}
+
+.taoba-1{display:block; background:#00BB9E; padding: 10px 15px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.2); color: #4a4a4a; line-height: 30px;position:relative;cursor:pointer}
+.taoba-1>ul{position: absolute; right: 62px; top: 0;width:150px; display: none; text-align: center;border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;border-top-left-radius: 5px; overflow: hidden;}
+.taoba-1:hover>ul{ display: block; }
+.taoba-1>ul>li{padding: 10px 15px;background:#35DCC2; border-bottom: 1px solid rgba(255,255,255,0.2); color: #4a4a4a;}
+.taoba-1>ul>li:hover{color:#fff ;}
+.taoba-1>i{position: absolute; left: 2px; top: 11px; font-size: 12px;}
+.taoba-1>ul>li>span{display: block;}
+.taoba-1>ul>li>i{font-size: 30px;}
+.taoba-1.active{background:#666; text-decoration: none; color: #fff;}
+.taoba-1:hover{background:#35DCC2; text-decoration: none;}
+.taoba-2{border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;}
 #gotop,#topcontrol{display:block; padding: 0px 9px; overflow: hidden; color: #fff; background: #00BB9E;  border-radius: 5px;margin-top: 5px;position:absolute;  cursor:pointer;} 
 #gotop>i,#topcontrol i{ font-size: 44px;}
 #gotop:hover,#topcontrol:hover{background: #dedede;}

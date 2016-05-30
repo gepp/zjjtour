@@ -78,9 +78,9 @@
 						<li _t_nav="panorama" class="<c:if test="${type=='quanjing' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/quanjing.htm">资讯</a></div>
 						</li>
-						<li _t_nav="activity" class="<c:if test="${type=='changyou' }">active</c:if>">
+						<!--<li _t_nav="activity" class="<c:if test="${type=='changyou' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/changyou.htm">畅游</a></div>
-						</li>
+						</li>-->
 						<li _t_nav="news" class="<c:if test="${type=='yule' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/activity.htm">活动</a></div>
 						</li>
@@ -90,9 +90,7 @@
 						<li _t_nav="community" class="<c:if test="${type=='tingwen' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/tingwen.htm">新闻</a></div>
 						</li>
-						<li _t_nav="route" class="<c:if test="${type=='youke' }">active</c:if>">
-							<div class="normal"><a href="${contextpath }/about.htm?secondMenuId=1118">游客中心</a></div>
-						</li>
+						
 						<c:forEach var="otherNew" items="${otherNewsMenuList }">
 						
 						<li _t_nav="${otherNew.id }" class="<c:if test="${type=='otherNew.id' }">active</c:if>">
@@ -100,6 +98,9 @@
 						</li>
 							
 						</c:forEach>
+						<li _t_nav="route" class="<c:if test="${type=='youke' }">active</c:if>">
+							<div class="normal"><a href="${contextpath }/about.htm?secondMenuId=1118">游客中心</a></div>
+						</li>
 					</ul>
 					<div class="navigation-down phone-header">
 						

@@ -151,7 +151,7 @@
 			<ul>
 				
 				<c:forEach var="changyou" items="${changyouList }">
-				<li class="transition" onclick="jumpChangyouDetail('${changyou.id}')">
+				<li class="transition" onclick="jumpChangyouDetail('${changyou.id}','${changyou.jumpType }','${changyou.url }')">
 					<h4>${changyou.title }</h4>
 					<p class="transition">${changyou.abstractContent }</p>
 				</li>
@@ -232,10 +232,10 @@
 					<p>${jiudianMenu.description }<a href="#" onclick="jumpXiuxiansecond('${jiudianMenu.id}');">［详细介绍］</a></p><i></i></div>
 			</div>
 			<div class="spots">
-				<div class="leisure-top transition" onclick="jumpXiuxiansecond('${jingdianMenu.id}');" >
+				<div class="leisure-top transition" >
 					<h5>${jingdianMenu.name }</h5>
 					<p>${jingdianMenu.description }<a href="#" onclick="jumpXiuxiansecond('${jingdianMenu.id}');">［详细介绍］</a></p><i></i></div>
-				<div class="leisure-bottom" style="cursor:pointer"><img src="${jingdianMenu.img }-yinxiangindex02"></div>
+				<div class="leisure-bottom" style="cursor:pointer" onclick="jumpXiuxiansecond('${jingdianMenu.id}');" ><img src="${jingdianMenu.img }-yinxiangindex02"></div>
 			</div>
 			<div class="gate">
 				<div class="leisure-top" onclick="jumpXiuxiansecond('${menpiaoMenu.id}');" style="cursor:pointer"><img src="${menpiaoMenu.img }-yinxiangindex02"></div>
@@ -251,7 +251,7 @@
 			<ul>
 			
 				<c:forEach var="tingwen" items="${tingwenList }">
-				<li class="transition" onclick="jumpTingwenDetail('${tingwen.id}')">
+				<li class="transition" onclick="jumpTingwenDetail('${tingwen.id}','${tingwen.jumpType }','${tingwen.url }')">
 					<h4>${tingwen.title }</h4>
 					<p class="transition">—— ${tingwen.abstractContent }</p>
 				</li>
@@ -285,6 +285,15 @@
 			<a class="taoba" href="javascript:void(0)" title="4">活动</a>
 			<a class="taoba" href="javascript:void(0)" title="5">市情</a>
 			<a class="taoba" href="javascript:void(0)" title="6">新闻</a>
+			<a class="taoba-1" title="救助"><i class="iconfont">&#xe609;</i>投诉
+				<ul>
+					<li onclick="gotoTousu();"><i class="iconfont">&#xe624;</i><span >
+					在线投诉
+					</span></li>
+					<li><i class="iconfont">&#xe601;</i><span>400-883-1111</span></li>
+				</ul>
+			</a>
+			<a class="taoba-1 taoba-2" href="javascript:gotoJiuzhu()" title="救助">救助</a>
 			<a id="gotop" href="javascript:void(0)" title="回到顶部" class="transition"><i class="iconfont transition">&#xe60d;</i></a>
 			<!-- 这个也是id="gotop"  -->
 		</div>
@@ -294,11 +303,31 @@
 		<script src="${contextpath }/js/bootstrap.min.js"></script>
 		<script src="${contextpath }/js/jquery.bootstrap-autohidingnavbar.js"></script>
 		<script src="${contextpath }/js/jquery.SuperSlide.js"></script>
-		<script type="text/javascript" src="${contextpath }/js/slide.js"></script>
 		<script src="${contextpath}/js/layer/layer.js"></script>
 		<script src="${contextpath}/js/common.js"></script>
  		<script type="text/javascript" src="${contextpath}/js/ckplayer/ckplayer.js" charset="utf-8"></script>
 		<script>
+		/**
+		* startWith、endWith函数 
+		*/
+		String.prototype.endWith=function(s){ 
+		if(s==null||s==""||this.length==0||s.length>this.length) 
+		return false; 
+		if(this.substring(this.length-s.length)==s) 
+		return true; 
+		else 
+		return false; 
+		return true; 
+		} 
+		String.prototype.startWith=function(s){ 
+		if(s==null||s==""||this.length==0||s.length>this.length) 
+		return false; 
+		if(this.substr(0,s.length)==s) 
+		return true; 
+		else 
+		return false; 
+		return true; 
+		} 
 			//		头部悬浮
 			$("div.navbar-fixed-top").autoHidingNavbar();
 			jQuery(document).ready(function() {
@@ -476,14 +505,65 @@ function openShipin(title,img,videoUrl){
 	function jumpQuanjingDetail(id){
 		window.open('${contextpath}/quanjingDetail.htm?id='+id);
 	}
-	function jumpChangyouDetail(id){
-		window.open('${contextpath}/changyouDetail.htm?id='+id);
+	function jumpChangyouDetail(id,jumpType,url){
+		if(url==''){
+			if(jumpType=='0'){
+				window.open('${contextpath}/changyouDetail.htm?id='+id);
+			}else{
+				window.location.href='${contextpath}/changyouDetail.htm?id='+id;
+			}
+			}else{
+				if(jumpType=='0'){
+					if(url.startWith('http')){
+						window.open(url);
+					}else{
+						window.open("${contextpath}/"+url);
+					}
+					 
+				}else{
+					if(url.startWith('http')){
+						window.location.href=url;
+					}else{
+						window.location.href="${contextpath}/"+url;
+					}
+					
+				}
 	}
-	function jumpTingwenDetail(id){
-		window.open('${contextpath}/tingwenDetail.htm?id='+id);
+	}
+	function jumpTingwenDetail(id,jumpType,url){
+		if(url==''){
+			if(jumpType=='0'){
+				window.open('${contextpath}/tingwenDetail.htm?id='+id);
+			}else{
+				window.location.href='${contextpath}/tingwenDetail.htm?id='+id;
+			}
+		}else{
+			if(jumpType=='0'){
+				if(url.startWith('http')){
+					window.open(url);
+				}else{
+					window.open("${contextpath}"+url);
+				}
+				 
+			}else{
+				if(url.startWith('http')){
+					window.location.href=url;
+				}else{
+					window.location.href="${contextpath}/"+url;
+				}
+				
+			}
+		}
 	}
 	function jumpXiuxiansecond(secondMenuId){
 		window.open("${contextpath}/xiuxian.htm?secondMenuId="+secondMenuId);
+	}
+	function gotoJiuzhu(){
+		window.open('${contextpath}/tingwenDetail.htm?id=1118');
+	}
+	
+	function gotoTousu(){
+		window.open('${contextpath}/tousu.htm');
 	}
 	
 	function checkUser(status,id){

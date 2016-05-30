@@ -119,7 +119,7 @@ public class OtherController extends BaseController {
 		setAttr("pageList", pageList);
 		
 		SecurityMenu secondMenu=dalClient.findById(secondMenuId, SecurityMenu.class);
-		
+		setAttr("secondMenu", secondMenu);
 		if(secondMenu.getColumnType().equals("1")){
 			return "/other";
 		}

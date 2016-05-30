@@ -98,11 +98,24 @@
 				}); */
 				
 			}
-			function jumpDetail(id){
-				window.location.href='${contextpath}/xiuxianDetail.htm?id='+id;
-			}
-			function jumpXiuxian(secondMenuId){
-				window.location.href="${contextpath}/xiuxian.htm?secondMenuId="+secondMenuId;
+		 
+			function jumpXiuxianDetail(secondMenuId,jumpType,url){
+				if(url==''){
+					if(jumpType=='0'){
+						window.open("${contextpath}/xiuxian.htm?secondMenuId="+secondMenuId);
+					}else{
+						window.location.href="${contextpath}/xiuxian.htm?secondMenuId="+secondMenuId;
+
+					}
+				}else{
+					if(jumpType=='0'){
+						window.open(url);
+					}else{
+						window.location.href=url;
+
+					}	
+				}
+				
 			}
 		 
 			

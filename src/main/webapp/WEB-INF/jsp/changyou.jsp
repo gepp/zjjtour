@@ -23,7 +23,7 @@
 			<ul class="clr">
 				<span>当前位置：</span>
 				<li><a href="${contextpath }/">首页</a></li>
-				<li><a href="#">${changyou.name }</a></li>
+				<li><a href="${contextpath }/changyou.htm">${changyou.name }</a></li>
 				<li><a href="#">${thirdShowName }</a></li>
 			</ul>
 		</div>
@@ -43,7 +43,7 @@
 				<div class="news-font-list">
 					<ul>
 						<c:forEach items="${pageList.list }" var="item">
-									 <li class="clr" style="float:none" onclick="jumpDetail('${item.id}')">
+									 <li class="clr" style="float:none" onclick="jumpDetail('${item.id}','${item.jumpType }','${item.url }')">
 											<h4 class="transition">
 											<c:if test="${item.indexStatus==1 }">
 											<span class="zhiding"><em></em>置顶</span>
@@ -62,7 +62,7 @@
 					
 					</ul>
 					
-				  <page:page href="${contextpath}/changyou.htm?secondMenuId=${secondMenuId }" data="pageList" />	
+				  <page:page href="${contextpath}/changyou.htm?secondMenuId=${secondMenuId }&currentId=${currentId }&otherId=${otherId }" data="pageList" />	
 				</div>
 			</div>
 			 <div id="rightNews"></div>
@@ -83,6 +83,24 @@
 		<script src="${contextpath}/js/layer/layer.js"></script>
 		<script src="${contextpath}/js/common.js"></script>
 		<script>
+		String.prototype.endWith=function(s){ 
+			if(s==null||s==""||this.length==0||s.length>this.length) 
+			return false; 
+			if(this.substring(this.length-s.length)==s) 
+			return true; 
+			else 
+			return false; 
+			return true; 
+			} 
+			String.prototype.startWith=function(s){ 
+			if(s==null||s==""||this.length==0||s.length>this.length) 
+			return false; 
+			if(this.substr(0,s.length)==s) 
+			return true; 
+			else 
+			return false; 
+			return true; 
+			} 
 			//		头部悬浮
 			$("div.navbar-fixed-top").autoHidingNavbar();
 			jQuery(document).ready(function() {
@@ -91,8 +109,31 @@
 				$("#rightNews").load("${contextpath}/right.htm");
 			});
 			 
-			function jumpDetail(id){
-				window.location.href='${contextpath}/changyouDetail.htm?id='+id;
+			function jumpDetail(id,jumpType,url){
+				if(url==''){
+				if(jumpType=='0'){
+					window.open('${contextpath}/changyouDetail.htm?id='+id);
+				}else{
+					window.location.href='${contextpath}/changyouDetail.htm?id='+id;
+				}
+				}else{
+					if(jumpType=='0'){
+						if(url.startWith('http')){
+							window.open(url);
+						}else{
+							window.open("${contextpath}"+url);
+						}
+						 
+					}else{
+						if(url.startWith('http')){
+							window.location.href=url;
+						}else{
+							window.location.href="${contextpath}/"+url;
+						}
+						
+					}
+				}
+				
 			}
 			 
 			function jumpChangyou(secondMenuId){

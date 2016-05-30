@@ -74,12 +74,12 @@ public class TingwenController extends BaseController {
         //全景的新闻
         DbKit dbKit=null;        
         if(secondMenuId!=""){
-        	dbKit = new DbKit("select * from security_news where menu_id="+secondMenuId+" and review_status=1 order by top_status DESC, orderlist asc");
+        	dbKit = new DbKit("select * from security_news where menu_id="+secondMenuId+" and review_status=1 order by top_status DESC, orderlist asc,ctime desc");
             SecurityMenu thirdShowMenu=   dalClient.findById(secondMenuId,SecurityMenu.class);
             thirdShowName=thirdShowMenu.getName();
         }else{
         	thirdShowName="全部";
-        	dbKit = new DbKit("select * from security_news where  review_status=1 and menu_id in (select id from security_menu where  parent_id=1037) order by top_status DESC, orderlist asc");
+        	dbKit = new DbKit("select * from security_news where  review_status=1 and menu_id in (select id from security_menu where  parent_id=1037) order by top_status DESC, orderlist asc,ctime desc");
          }
         setAttr("thirdShowName", thirdShowName);
         
@@ -91,7 +91,7 @@ public class TingwenController extends BaseController {
 		
 		
 		if(secondMenuId.equals("1108")){
-			List<SecurityMenu> lingdaoList=dalClient.queryForObjectList("select * from security_menu where type=3 and column_type=3 order by  orderlist asc",SecurityMenu.class);
+			List<SecurityMenu> lingdaoList=dalClient.queryForObjectList("select * from security_menu where type=3 and column_type=3 order by  orderlist asc,ctime desc",SecurityMenu.class);
 			setAttr("lingdaoList", lingdaoList);
 		}
 		

@@ -65,7 +65,7 @@
 				</c:if>
 				<c:if test="${secondMenuId!=1086 }">
 				<li class="transition" onclick="jumpDetail('${quanjingNews.id}')">
-					<div class="img-content"><img src="${quanjingNews.indeximg }" class="transition"><span>${quanjingNews.abstractContent }</span></div>
+					<div class="img-content"><img src="${quanjingNews.smallimg }" class="transition"><span>${quanjingNews.abstractContent }</span></div>
 					<h5 class="transition">${quanjingNews.title }</h5>
 				</li>
 				</c:if>

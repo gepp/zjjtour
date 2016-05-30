@@ -46,7 +46,7 @@
 		<div class="news-list" id="tupian" style="display:none">
 			<ul class="clr"  >
 				<c:forEach items="${pageList.list }" var="item">
-				<li class="transition" onclick="jumpDetail('${item.id}')">
+				<li class="transition" onclick="jumpDetail('${item.id}','${item.jumpType }','${item.url }')">
 					<div class="news-list-img">
 						<img src="${item.indeximg }" class="transition">
 					</div>
@@ -73,7 +73,7 @@
 				<div class="news-font-list">
 					<ul>
 								<c:forEach items="${pageList.list }" var="item">
-									 <li class="clr" style="float:none" onclick="jumpDetail('${item.id}')">
+									 <li class="clr" style="float:none" onclick="jumpDetail('${item.id}','${item.jumpType }','${item.url }')">
 											<h4 class="transition">
 											<c:if test="${item.indexStatus==1 }">
 											<span class="zhiding"><em></em>置顶</span>
@@ -125,6 +125,24 @@
 		<script src="${contextpath}/js/layer/layer.js"></script>
 		<script src="${contextpath}/js/common.js"></script>
 		<script>
+		String.prototype.endWith=function(s){ 
+			if(s==null||s==""||this.length==0||s.length>this.length) 
+			return false; 
+			if(this.substring(this.length-s.length)==s) 
+			return true; 
+			else 
+			return false; 
+			return true; 
+			} 
+			String.prototype.startWith=function(s){ 
+			if(s==null||s==""||this.length==0||s.length>this.length) 
+			return false; 
+			if(this.substr(0,s.length)==s) 
+			return true; 
+			else 
+			return false; 
+			return true; 
+			} 
 			function changeType(){
 				var type=$("#changeType").val();
 				if(type==1){
@@ -158,8 +176,32 @@
 				
 			});
 		 
-			function jumpDetail(id){
-				window.location.href='${contextpath}/tingwenDetail.htm?id='+id;
+			function jumpDetail(id,jumpType,url){
+				if(url==''){
+					if(jumpType=='0'){
+						window.open('${contextpath}/tingwenDetail.htm?id='+id);
+					}else{
+						window.location.href='${contextpath}/tingwenDetail.htm?id='+id;
+					}
+				}else{
+					if(jumpType=='0'){
+						if(url.startWith('http')){
+							window.open(url);
+						}else{
+							window.open("${contextpath}/"+url);
+						}
+						 
+					}else{
+						if(url.startWith('http')){
+							window.location.href=url;
+						}else{
+							window.location.href="${contextpath}/"+url;
+						}
+						
+					}
+				}
+				
+				
 			}
 		 
 		</script>

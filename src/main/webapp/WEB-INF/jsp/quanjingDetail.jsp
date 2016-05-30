@@ -44,18 +44,21 @@
 						<div class="line"></div>
 						<ul>
 							<c:if test="${securityNew.quanjingUrl !=null&&securityNew.quanjingUrl !='' }">
-							<li><a href="#item-1" class="cur transition">360°全景</a></li>
+							<li><a href="#item-0" class="cur transition">360°全景</a></li>
 							</c:if>
 								<c:forEach items="${biaoqianList }" var="biaoqian" varStatus="idx">
 								
-								<li><a href="#item${biaoqian.orderlist }" class="transition <c:if test="${idx.index==0 }">cur</c:if>">${biaoqian.maodian_name }</a></li>
+								<li><a href="#item${biaoqian.orderlist }" class="transition 
+								<c:if test="${(securityNew.quanjingUrl ==null||securityNew.quanjingUrl =='')&&idx.index==0 }">cur</c:if>
+								
+								">${biaoqian.maodian_name }</a></li>
 							</c:forEach>
 						</ul>
 					</div>
 				</div>
 				<div id="content">
 				<c:if test="${securityNew.quanjingUrl !=null&&securityNew.quanjingUrl !='' }">
-					<div class="content-item" id="item-1">
+					<div class="content-item" id="item-0">
 						<h4><i class="iconfont">&#xe610;</i>360°全景</h4>
 						<iframe allowtransparency="true" frameborder="0" src="${securityNew.quanjingUrl }" width="750" height="400" style="border: 1px solid #eee;">这里是全景控件</iframe>
 				
