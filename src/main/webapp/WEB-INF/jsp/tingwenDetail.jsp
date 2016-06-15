@@ -100,7 +100,26 @@
 
 		<div id="footer">
 		</div>
-
+<div id="tbox" style='position: fixed;right: 20px;top: 150px;'>
+			<c:if test="${securityNew.price!=null }">
+				<a class="taoba-1" title="购买"><i class="iconfont">&#xe609;</i>购买
+					<ul>
+						<li onclick="gotoShangcheng('${securityNew.goodUrl}');"><i class="iconfont">&#xe624;</i><span >
+						查看
+						</span></li>
+						<li><span>价格：${securityNew.price }</span></li>
+					</ul>
+				</a>
+			</c:if>
+			
+			<a id="gotop" href="javascript:void(0)" title="回到顶部"
+			<c:if test="${securityNew.price==null }">
+			 style="margin-left:-60px"
+			</c:if>
+			
+			 class="transition"><i class="iconfont transition">&#xe60d;</i></a>
+			<!-- 这个也是id="gotop"  -->
+		</div>
 		 
 		
 		<!--<script src="${contextpath }/js/jquery-2.1.0.js"></script>-->
@@ -118,12 +137,37 @@
 				$("#header").load("${contextpath}/header.htm?type=tingwen");
 				$("#footer").load("${contextpath}/footer.htm");
 				$("#rightNews").load("${contextpath}/right.htm");
+				$(window).scroll(function() {
+                    t = $(document).scrollTop();
+                    if (t > 500) {
+                        $('#tbox').show();
+                    } else {
+                        $('#tbox').hide();
+                    }
+                    if (t > 50) {
+                        $('#gotop').fadeIn('slow');
+                    } else {
+                        $('#gotop').fadeOut('slow');
+                    }
+
+                })
+                $('#gotop').click(function() {
+                    $('body,html').animate({
+                            scrollTop: 0
+                        },
+                        800); //点击回到顶部按钮，缓懂回到顶部,数字越小越快
+                    return false;
+                })
 			});
 			$(document).ready(function() {
 				$('#menu1').stickyfloat({
 					duration : 0
 				});
 			});
+			
+			function gotoShangcheng(goodUrl){
+				window.open(goodUrl);
+			}
 			
 		</script>
 	</body>

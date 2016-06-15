@@ -62,7 +62,7 @@ a {text-decoration: none;}
 .logo-right-top>.search>button {border: none;background: none;position: absolute;color: #909090;top: 0;right: 0;height: 28px;width: 30px;text-align: center;}
 .logo-right-top>.search>button:hover {color: #00BB9E;}
 .nav>li {float: left;margin: 6px 0;transform: skew(-30deg);transition: all linear .2s !important;-webkit-transition: all linear .2s !important;-moz-transition: all linear .2s !important;-ms-transition: all linear .2s !important;}
-.nav>li>.normal>a {font-size: 16px;color: #333;padding: 0 30px;font-weight: 600px;line-height: 40px;height: 40px;display: block;}
+.nav>li>.normal>a {font-size: 16px;color: #333;padding: 0 25px;font-weight: 600px;line-height: 40px;height: 40px;display: block;}
 .nav>li>.normal {transform: skew(30deg);}
 .nav>li:hover,.nav>li.active {background: #00BB9E;}
 .nav>li:hover>.normal>a,.nav>li.active>.normal>a {color: #FFFFFF;}
@@ -90,7 +90,7 @@ a {text-decoration: none;}
 
 /*焦点图*/
 
-.index_focus {position: relative;width: 100%; min-width:1200px;height: 600px;margin: 0 auto;overflow: hidden;margin-top:120px}
+.index_focus {position: relative;width: 100%; min-width:1200px;margin: 0 auto;overflow: hidden;margin-top:120px}
 .index_focus .bd li {  display: none;position: absolute;left: 0;top: 0;}
 .index_focus_post {z-index: 10;}
 .index_focus .pic {height: auto;display: block;}
@@ -255,7 +255,7 @@ a {text-decoration: none;}
 .taoba:first-child{border-top-right-radius: 5px; border-top-left-radius: 5px;}
 .taoba:nth-child(8){border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;}
 
-.taoba-1{display:block; background:#00BB9E; padding: 10px 15px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.2); color: #4a4a4a; line-height: 30px;position:relative;cursor:pointer}
+.taoba-1{display:block; background:#FF6464; padding: 10px 15px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.2); color: #FFF; line-height: 30px;position:relative;cursor:pointer}
 .taoba-1>ul{position: absolute; right: 62px; top: 0;width:150px; display: none; text-align: center;border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;border-top-left-radius: 5px; overflow: hidden;}
 .taoba-1:hover>ul{ display: block; }
 .taoba-1>ul>li{padding: 10px 15px;background:#35DCC2; border-bottom: 1px solid rgba(255,255,255,0.2); color: #4a4a4a;}

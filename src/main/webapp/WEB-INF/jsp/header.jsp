@@ -78,6 +78,9 @@
 						<li _t_nav="panorama" class="<c:if test="${type=='quanjing' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/quanjing.htm">资讯</a></div>
 						</li>
+						<li _t_nav="1010" class="<c:if test="${type=='1010'}">active</c:if>">
+							<div class="normal"><a href="${contextpath }/other.htm?otherId=1010">畅游</a></div>
+						</li>
 						<!--<li _t_nav="activity" class="<c:if test="${type=='changyou' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/changyou.htm">畅游</a></div>
 						</li>-->
@@ -92,12 +95,15 @@
 						</li>
 						
 						<c:forEach var="otherNew" items="${otherNewsMenuList }">
-						
-						<li _t_nav="${otherNew.id }" class="<c:if test="${type=='otherNew.id' }">active</c:if>">
+						<c:if test="${otherNew.id !='1010'}"> 
+						<li _t_nav="${otherNew.id }" class="<c:if test="${type==otherNew.id }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/other.htm?otherId=${otherNew.id}">${otherNew.name }</a></div>
 						</li>
-							
+						</c:if>	
 						</c:forEach>
+						<li _t_nav="route" >
+							<div class="normal" ><a href="http://buy.zjji.com" target="_blank" style="color:#FF7E1F"><b>商城</b></a></div>
+						</li>
 						<li _t_nav="route" class="<c:if test="${type=='youke' }">active</c:if>">
 							<div class="normal"><a href="${contextpath }/about.htm?secondMenuId=1118">游客中心</a></div>
 						</li>
@@ -301,7 +307,5 @@
  
 		</script>
 	</body>
-	<c:if test="${type!='index'&&type!='' }"> 
-	<script type="text/javascript" src="${contextpath }/js/scrolltopcontrol.js"></script><!--返回顶部-->
-	</c:if>
+	 
 </html>

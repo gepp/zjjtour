@@ -40,8 +40,8 @@ public class SearchController extends BaseController {
     public String search(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String keyword=getPara("keyword");
     	
-    	System.out.println("keyword:"+keyword);
-    	keyword=new String(keyword.getBytes("ISO8859-1"),"UTF-8");
+//    	System.out.println("keyword:"+keyword);
+//    	keyword=new String(keyword.getBytes("ISO8859-1"),"UTF-8");
     	setAttr("keyword", keyword);
     	DbKit dbKit = new DbKit("select * from security_news where  review_status=1 and title like '%"+keyword+"%' and menu_id in(select id from security_menu where can_search=1 ) order by ctime desc");
     	Page pagePage=getPage();
